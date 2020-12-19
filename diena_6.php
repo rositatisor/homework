@@ -3,9 +3,9 @@
 
     <?php
     function heading($text){
-        echo "<h1>$text</h1>";
+        return "<h1 style='display:inline;'>$text</h1>";
     }
-    // heading('labas');
+    // echo heading('labas');
     ?>
 
 <h2>2 užduotis</h2>
@@ -23,15 +23,26 @@
     <?php
     echo "<pre>";
     $str = md5(time());
-    preg_match_all('/\d+/', $str, $match);
-    echo $str;
-    // print_r($match);
+    // echo $str, "<br>";
 
-    foreach ($match as $_) {
-        foreach ($_ as $v) {
-            heading($v);
-        }
-    }
+    // with pre_match_all
+        // preg_match_all('/\d+/', $str, $match);
+        // print_r($match);
+
+        // foreach ($match as $_) {
+        //     foreach ($_ as $v) {
+        //         heading($v);
+        //     }
+        // }
+
+    //with preg_replace_callback
+        $newStr = preg_replace_callback('/\d+/', 
+            function($matches){
+                return heading($matches[0]);
+            }, $str
+        );
+        // echo $newStr;
+
     echo "</pre>";
     ?>
 
@@ -74,37 +85,64 @@
     }
     // print_r($array);
     // print_r($sortedArray);
-    print_r($sa);
+    // print_r($sa);
     echo "</pre>";
     ?>
 
 <h2>6 užduotis</h2>
 
     <?php
+    echo "<pre>";
+    $array = [];
+
+    function remove(&$array, $key) {
+        unset($array[$key]);
+    }
+
+    foreach (range(0, 9) as $value) {
+        $array[] = rand(333, 777);
+    }
+    print_r($array);
+
+    foreach ($array as $key => $value) {
+        if(integerCount($value) == 0) remove($array, $key);
+    }
+    print_r($array);
     
+    echo "</pre>";
     ?>
 
 <h2>7 užduotis</h2>
 
     <?php
-    
+    echo "<pre>";
+
+    echo "</pre>";
     ?>
 
 <h2>8 užduotis</h2>
 
     <?php
+    echo "<pre>";
     
+    echo "</pre>";
     ?>
 
 <h2>9 užduotis</h2>
 
     <?php
+    echo "<pre>";
+    
+    echo "</pre>";
     
     ?>
 
 <h2>10 užduotis</h2>
 
     <?php
+    echo "<pre>";
+    
+    echo "</pre>";
     
 
     ?>
@@ -112,4 +150,7 @@
 <h2>11 užduotis</h2>
 
     <?php
+    echo "<pre>";
+    
+    echo "</pre>";
     

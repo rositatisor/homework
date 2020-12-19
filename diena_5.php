@@ -181,4 +181,6 @@ $rand = range('A', 'Z');
 <h2>11 užduotis</h2>
 
     <?php
+    echo "<pre>";
     
+    echo "</pre>";

@@ -2,7 +2,17 @@
 <h2>1 užduotis</h2>
 
     <?php
-
+    function recursive($num){
+        echo $num, ' TOP<br>';
+        if($num < 4){
+            //Kviečiame save. Padidiname numerį vienetu.
+            echo recursive($num + 1), " MID<br>";
+        }
+        echo "$num BOTTOM <br>";
+        return $num;
+    }
+    $startNum = 1;
+    recursive($startNum);
     ?>
 
 <h2>2 užduotis</h2>

@@ -62,7 +62,7 @@
             echo 'You should enter integer.';
         }
     }
-    echo integerCount(72);
+    // echo integerCount(72);
     ?>
 
 <h2>5 užduotis</h2>
@@ -102,12 +102,12 @@
     foreach (range(0, 9) as $value) {
         $array[] = rand(333, 777);
     }
-    print_r($array);
+    // print_r($array);
 
     foreach ($array as $key => $value) {
         if(integerCount($value) == 0) remove($array, $key);
     }
-    print_r($array);
+    // print_r($array);
     
     echo "</pre>";
     ?>
@@ -116,7 +116,25 @@
 
     <?php
     echo "<pre>";
-
+    $array = [];
+    //     foreach (range(0, 9) as $key => &$value) {
+        //         $array[] = rand(0, 9);
+        //         if($key == 9) {
+            //             foreach (range(0, 9) as $key => &$value) {
+                //             $array[][] = rand(0, 9);
+                //         }
+                // }}
+    // $i=0;
+    // function generateArray(){
+        foreach (range(0, rand(9, 19)) as $key => &$value) {
+            $array[] = rand(0, 10);
+            // if($i == 3) break;
+        }
+        // if(array_key_last($array)) return generateArray();
+        // $i++;
+    // }
+    // print_r(generateArray());
+    // print_r($array);
     echo "</pre>";
     ?>
 
@@ -132,19 +150,41 @@
 
     <?php
     echo "<pre>";
+    // 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31
+    $array = [];
     
+    foreach (range(0, 2) as $key => $value) {
+        $array[] = rand(1, 33);
+    }
+    function newElement($array) {
+        $array[] = rand(1, 33);
+        return $array;
+    }
+    while(true) {
+        $array = newElement($array);
+        if(integerCount($array[count($array)-1]) == 0 and 
+            integerCount($array[count($array)-2]) == 0 and 
+            integerCount($array[count($array)-3]) == 0) 
+            break;
+    }
+    // print_r($array);
     echo "</pre>";
-    
     ?>
 
 <h2>10 užduotis</h2>
 
     <?php
     echo "<pre>";
+    $array = [];
     
+    foreach (range(0, 9) as $_) {
+        foreach (range(0, 9) as $key => $value) {
+            $array[$key][] = rand(1, 100);
+        }
+    }
+    
+    print_r($array);
     echo "</pre>";
-    
-
     ?>
 
 <h2>11 užduotis</h2>

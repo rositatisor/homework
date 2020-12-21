@@ -175,14 +175,42 @@
 
     <?php
     echo "<pre>";
-    $array = [];
+    $array = $countArray = [];
     
     foreach (range(0, 9) as $_) {
         foreach (range(0, 9) as $key => $value) {
             $array[$key][] = rand(1, 100);
-        }
+        }  
     }
     
+    function primeAvg($array) {
+        $primeSum = $primeCount = 0;
+        foreach ($array as $value) {
+            foreach ($value as $k => $v) {
+                if(integerCount($v) == 0) {
+                    $primeSum += $v;
+                    $primeCount++;
+                }
+            }
+        }
+        return $primeAvg = $primeSum / $primeCount;
+    }
+    
+    // echo "Prime sum: $primeSum, <br>Prime count: $primeCount, <br>Prime avg: $primeAvg <br>";
+    echo primeAvg($array), "<br>";
+
+    $min = 101;
+    foreach ($array as $key => $value) {
+        while(true) {
+            if(primeAvg($array) >= 70) break;
+        }
+        // foreach ($value as $k => $v) {
+        //     if($v < $min) {
+        //         $min = $v;
+        //     }
+        // }
+    }
+    // echo $min;
     print_r($array);
     echo "</pre>";
     ?>

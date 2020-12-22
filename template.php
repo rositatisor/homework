@@ -18,7 +18,24 @@
 <h2>2 užduotis</h2>
 
     <?php
+    echo "<pre>";
+    $array7 = 0;
+    function rekursija($ilgis){
 
+        if ($ilgis == 0){
+            return 0;
+        }
+
+        $length = rand(10,20);
+
+        foreach (range(1, $length-1) as $value) {
+            $array7[] = rand(0, 10);
+        }
+
+        $array7[] = rekursija($ilgis-1);
+        return $array7;
+    }
+    print_r(rekursija(5));
     ?>
 <h2>3 užduotis</h2>
 

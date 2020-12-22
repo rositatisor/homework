@@ -107,7 +107,7 @@
     foreach ($array as $key => $value) {
         if(integerCount($value) == 0) remove($array, $key);
     }
-    // print_r($array);
+    print_r($array);
     
     echo "</pre>";
     ?>
@@ -167,7 +167,7 @@
             integerCount($array[count($array)-3]) == 0) 
             break;
     }
-    // print_r($array);
+    print_r($array);
     echo "</pre>";
     ?>
 
@@ -183,18 +183,18 @@
         }  
     }
     
-    function primeAvg($array) {
-        $primeSum = $primeCount = 0;
-        foreach ($array as $value) {
-            foreach ($value as $k => $v) {
-                if(integerCount($v) == 0) {
-                    $primeSum += $v;
-                    $primeCount++;
-                }
-            }
-        }
-        return $primeAvg = $primeSum / $primeCount;
-    }
+    // function primeAvg($array) {
+    //     $primeSum = $primeCount = 0;
+    //     foreach ($array as $value) {
+    //         foreach ($value as $k => $v) {
+    //             if(integerCount($v) == 0) {
+    //                 $primeSum += $v;
+    //                 $primeCount++;
+    //             }
+    //         }
+    //     }
+    //     return $primeAvg = $primeSum / $primeCount;
+    // }
     
     // echo "Prime sum: $primeSum, <br>Prime count: $primeCount, <br>Prime avg: $primeAvg <br>";
     echo primeAvg($array), "<br>";

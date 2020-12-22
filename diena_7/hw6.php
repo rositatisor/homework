@@ -17,14 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     echo 'GET METODAS';
 }
 
-// if (!empty($_GET)) {
-//     echo 'GET METODAS';
-//     }
-    
-//     elseif (!empty($_POST)) {
-//         echo 'POST METODAS';
-//     }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

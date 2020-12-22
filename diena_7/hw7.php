@@ -6,9 +6,12 @@ print_r($_POST);
 if(isset($_GET['b'])){
     $backgroundColor = '#228B22';
 } 
+if(!empty($_GET)) {
+    $backgroundColor = '#228B22';
+}
 if(isset($_POST['b'])){
-    header('refresh:1;url=?');
     $backgroundColor = '#FFFF00';
+    header('refresh:1;url=?0=GET');
 }
 
 // which method used
@@ -18,14 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     echo 'GET METODAS';
 }
-
-// if (!empty($_GET)) {
-//     echo 'GET METODAS';
-//     }
-    
-//     elseif (!empty($_POST)) {
-//         echo 'POST METODAS';
-//     }
 
 ?>
 <!DOCTYPE html>

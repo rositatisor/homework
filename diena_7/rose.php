@@ -1,3 +1,10 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    header('location:http://localhost/homework/diena_7/pink.php');
+    die;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

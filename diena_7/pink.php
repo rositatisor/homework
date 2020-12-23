@@ -1,8 +1,3 @@
-<?php
-// header('Location:http://localhost/homework/diena_7/rose.php');
-// die;
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +13,7 @@
 </style>
 
 <body>
-    <form action="http://localhost/homework/diena_7/rose.php" method="get">
-        <!-- <input type="submit" value=""> -->
+    <form action="http://localhost/homework/diena_7/rose.php" method="post">
         <button type="submit">GO TO ROSE</button>
     </form>
 </body>

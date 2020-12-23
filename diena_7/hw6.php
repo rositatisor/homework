@@ -2,18 +2,13 @@
 // print_r($_GET);
 // print_r($_POST);
 
-// background change
-if(isset($_GET['b'])){
-        $backgroundColor = '#228B22';
-} else {
-        $backgroundColor = '#FFFF00';
-    }
-
 // which method used
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $backgroundColor = '#228B22';
     echo 'POST METODAS';
 }
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $backgroundColor = '#FFFF00';
     echo 'GET METODAS';
 }
 
@@ -35,15 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 </body>
 </html>
 <!-- GET FORM -->
-<form action="" method="get">
-<input type="text" name="t1">
-<button type="submit" name="b" value="button1">1</button>
-<button type="submit" name="b" value="button2">2</button>
+<form action="?" method="get">
+<button type="submit" name="b" value="GET-BUTTON">GET</button>
 </form>
 
 <!-- POST FORM -->
-<form action="?extra=55" method="post">
-<input type="text" name="t1">
-<button type="submit" name="b" value="button1">1</button>
-<button type="submit" name="b" value="button2">2</button>
+<form action="?" method="post">
+<button type="submit" name="b" value="POST-BUTTON">POST</button>
 </form>

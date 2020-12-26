@@ -37,7 +37,7 @@ if(isset($_GET['color'])){
     <a href="?">MAKE BLACK</a>
 
     <form action="http://localhost/homework/diena_7/hw3.php" method="get">
-        <input type="color" name="color">
+        <input type="text" name="color">
         <button type="submit">SET COLOR</button>
     </form>
 </body>

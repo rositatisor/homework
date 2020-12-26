@@ -25,13 +25,13 @@
         <?php foreach ($_SESSION['agurkai'] as $agurkas): ?>
             <div>
                 Agurkas nr. <?= $agurkas['ID'] ?>
-                Kiekis: <?= $agurkas['kiekis'] ?>
-                <!-- paspaudus ant Israuti mygtuko, i POST masyva irasomas 'rauti' => atitinkamoID elementas-->
-                <button type="submit" name="rauti" value="<?= $agurkas['ID'] ?>">ISRAUTI</button>
+                Galima skinti: <?= $agurkas['kiekis'] ?>
+                <input type="text" name="<?= $agurkas['ID'] ?>" placeholder="kiekis">
+                <button type="submit" name="skinti">Skinti</button>
+                <button type="submit" name="skinti-visus">Skinti visus</button>
             </div>
         <?php endforeach ?>
-        <!-- paspaudus ant Sodinti mygtuko, i POST masyva irasomas 'sodinti' elementas-->
-        <button type="submit" name="sodinti">SODINTI</button>
+    <button type="submit" name="nuimti-viska">Nuimti visa agurku derliu</button>
     </form>
 </body>
 </html>

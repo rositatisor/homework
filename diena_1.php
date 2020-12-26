@@ -173,7 +173,6 @@
             sprintf("%02s",$hours), ":",
             sprintf("%02s",$min), ":", 
             sprintf("%02s",$s);
-
     ?>
 
 <h2>11 užduotis</h2>
@@ -189,7 +188,4 @@
     $result = "";
 
     echo "Numbers: $one, $two, $three, $four, $five, $six";
-
-
-
     echo $result;

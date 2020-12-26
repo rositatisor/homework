@@ -198,34 +198,34 @@
 
 <h2>8 užduotis</h2>
 
-<?php
-$stars = '';
-$asterisk = "<a style='color:red;'>*<a/>";
-$lineCount = 21;
-$spaceCount = 10;
-$space = '&nbsp&nbsp';
-$bottom = 21;
+    <?php
+    $stars = '';
+    $asterisk = "<a style='color:red;'>*<a/>";
+    $lineCount = 21;
+    $spaceCount = 10;
+    $space = '&nbsp&nbsp';
+    $bottom = 21;
 
-for ($y = 1; $y <= $lineCount; $y++) {
-//     $r = rand(0, 255);
-//     $g = rand(0, 255);
-//     $b = rand(0, 255);
-    if($y < 12) {
-        $stars .= str_repeat($space, $spaceCount);
-        $stars .= str_repeat($asterisk, 2 * $y - 1);
-        //  style='color:rgb($r,$g,$b);'
-        $spaceCount--;
-    } 
-    if($y >= 12) {
-        $spaceCount++;
-        $stars .= $space;
-        $stars .= str_repeat($space, $spaceCount);
-        $stars .= str_repeat($asterisk, 2 * $bottom - 1);
+    for ($y = 1; $y <= $lineCount; $y++) {
+    //     $r = rand(0, 255);
+    //     $g = rand(0, 255);
+    //     $b = rand(0, 255);
+        if($y < 12) {
+            $stars .= str_repeat($space, $spaceCount);
+            $stars .= str_repeat($asterisk, 2 * $y - 1);
+            //  style='color:rgb($r,$g,$b);'
+            $spaceCount--;
+        } 
+        if($y >= 12) {
+            $spaceCount++;
+            $stars .= $space;
+            $stars .= str_repeat($space, $spaceCount);
+            $stars .= str_repeat($asterisk, 2 * $bottom - 1);
+        }
+        $stars .= '<br>';
+        $bottom--;
     }
-    $stars .= '<br>';
-    $bottom--;
-}
-echo $stars;
+    echo $stars;
     ?>
 
 <h2>9 užduotis</h2>

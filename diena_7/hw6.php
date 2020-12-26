@@ -2,7 +2,6 @@
 // print_r($_GET);
 // print_r($_POST);
 
-// which method used
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $backgroundColor = '#228B22';
     echo 'POST METODAS';

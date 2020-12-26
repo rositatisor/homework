@@ -111,9 +111,9 @@
 
 <h2>11 užduotis</h2>
 
-<?php
-$arr = explode(' ', $movie.' '.$sultys);
-shuffle($arr);
-$arr = array_slice($arr, 0, 10);
-$str = implode(' ', $arr);
-echo $str;
+    <?php
+    $arr = explode(' ', $movie.' '.$sultys);
+    shuffle($arr);
+    $arr = array_slice($arr, 0, 10);
+    $str = implode(' ', $arr);
+    echo $str;

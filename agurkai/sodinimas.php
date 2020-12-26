@@ -47,6 +47,9 @@
 <body>
     <h1>Agurku sodas</h1>
     <h3>Sodinimas</h3>
+    <a href="sodinimas.php">Sodinimas</a>
+    <a href="auginimas.php">Auginimas</a>
+    <a href="skynimas.php">Skynimas</a>
     <form action="" method="post">
         <?php foreach ($_SESSION['agurkai'] as $agurkas): ?>
             <div>

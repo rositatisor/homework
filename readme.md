@@ -1,7 +1,5 @@
 ![Awesome Badges](https://img.shields.io/badge/badges-awesome-green.svg)
-![Gluten Status](https://img.shields.io/badge/Gluten-Free-green.svg)
-![Eco Status](https://img.shields.io/badge/ECO-Friendly-green.svg)
-![HitCount](http://hits.dwyl.io/rositatisor/homework.svg)
+![Kazkas](https://img.shields.io/badge/PHP-homework-blue)
 ![Watchers](https://img.shields.io/github/watchers/rositatisor/homework?style=social)
 
 # PHP homework

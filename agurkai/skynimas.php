@@ -7,7 +7,7 @@
         $_SESSION['agurku ID'] = 0;
     }
 
-    // skynimas vartotojui irasius kieki
+    // skynti vartotojui irasius kieki
     if(isset($_POST['skinti'])) {
         foreach ($_SESSION['agurkai'] as &$value) {
             if($_POST['skinti'] == $value['ID']){
@@ -22,9 +22,16 @@
         }
     }
 
-    // echo "<pre>";
-    // print_r($_SESSION);
-    // echo "</pre>";
+    // skinti-visus 
+    if(isset($_POST['skinti-visus'])) {
+        foreach ($_SESSION['agurkai'] as &$value) {
+            if($_POST['skinti-visus'] == $value['ID']){
+                $value['kiekis'] = 0;
+                header('Location: http://localhost/homework/agurkai/skynimas.php');
+                exit;
+            }
+        }
+    }
 
 ?>
 <!DOCTYPE html>

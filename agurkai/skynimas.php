@@ -16,8 +16,8 @@
                     break;
                 }
                 $value['kiekis'] -= $_POST['kiek'];
-                header('Location: http://localhost/homework/agurkai/skynimas.php');
-                exit;
+                // header('Location: http://localhost/homework/agurkai/skynimas.php');
+                // exit;
             }
         }
     }
@@ -27,9 +27,18 @@
         foreach ($_SESSION['agurkai'] as &$value) {
             if($_POST['skinti-visus'] == $value['ID']){
                 $value['kiekis'] = 0;
-                header('Location: http://localhost/homework/agurkai/skynimas.php');
-                exit;
+                // header('Location: http://localhost/homework/agurkai/skynimas.php');
+                // exit;
             }
+        }
+    }
+
+    // nuimti visa derliu
+    if(isset($_POST['nuimti-viska'])) {
+        foreach ($_SESSION['agurkai'] as &$value) {
+                $value['kiekis'] = 0;
+                // header('Location: http://localhost/homework/agurkai/skynimas.php');
+                // exit;
         }
     }
 
@@ -56,8 +65,10 @@
                 <button type="submit" name="skinti-visus" value="<?= $agurkas['ID'] ?>">Skinti visus</button>
             </form>
         <?php endforeach ?>
-    <button type="submit" name="nuimti-viska">Nuimti visa agurku derliu</button>
-    <?php echo "<pre>";
-    print_r($_POST)?>
+        <form action="" method="post">
+            <button type="submit" name="nuimti-viska">Nuimti visa agurku derliu</button>
+        </form>
+    <!-- <?php echo "<pre>";
+    print_r($_POST)?> -->
 </body>
 </html>

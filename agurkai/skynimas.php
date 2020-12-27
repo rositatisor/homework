@@ -8,16 +8,20 @@
     }
 
     // skynimas vartotojui irasius kieki
-    // if(isset($_POST['skinti'])) {
-    //     foreach ($_SESSION['agurkai'] as $value) {
-    //         if($_POST['skinti'] == $value['ID']){
-    //             $_SESSION['agurkai'][$value['ID']][$value] -= 5;
-    //             header('Location: http://localhost/homework/agurkai/skynimas.php');
-    //             exit;
-    //         }
-    //     }
-    // }
-    
+    if(isset($_POST['skinti'])) {
+        foreach ($_SESSION['agurkai'] as &$value) {
+            if($_POST['skinti'] == $value['ID']){
+                if($value['kiekis'] < $_POST['kiek']) {
+                    echo '<script>alert("Negalima nuskinti daugiau agurkų nei yra.")</script>'; 
+                    break;
+                }
+                $value['kiekis'] -= $_POST['kiek'];
+                header('Location: http://localhost/homework/agurkai/skynimas.php');
+                exit;
+            }
+        }
+    }
+
     // echo "<pre>";
     // print_r($_SESSION);
     // echo "</pre>";
@@ -40,10 +44,8 @@
             <form action="" method="post">
                 Agurkas nr. <?= $agurkas['ID'] ?>
                 Galima skinti: <?= $agurkas['kiekis'] ?>
-                <input type="text" name="<?= $agurkas['ID'] ?>">
-                <!-- <input type="submit" value="Skinti"> -->
+                <input type="text" name="kiek">
                 <button type="submit" name="skinti" value="<?= $agurkas['ID'] ?>">Skinti</button>
-                <!-- <input type="submit" value="skinti visus"> -->
                 <button type="submit" name="skinti-visus" value="<?= $agurkas['ID'] ?>">Skinti visus</button>
             </form>
         <?php endforeach ?>

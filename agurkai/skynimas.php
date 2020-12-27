@@ -16,8 +16,8 @@
                     break;
                 }
                 $value['kiekis'] -= $_POST['kiek'];
-                // header('Location: http://localhost/homework/agurkai/skynimas.php');
-                // exit;
+                header('Location: http://localhost/homework/agurkai/skynimas.php');
+                exit;
             }
         }
     }
@@ -27,8 +27,8 @@
         foreach ($_SESSION['agurkai'] as &$value) {
             if($_POST['skinti-visus'] == $value['ID']){
                 $value['kiekis'] = 0;
-                // header('Location: http://localhost/homework/agurkai/skynimas.php');
-                // exit;
+                header('Location: http://localhost/homework/agurkai/skynimas.php');
+                exit;
             }
         }
     }
@@ -36,10 +36,10 @@
     // nuimti visa derliu
     if(isset($_POST['nuimti-viska'])) {
         foreach ($_SESSION['agurkai'] as &$value) {
-                $value['kiekis'] = 0;
-                // header('Location: http://localhost/homework/agurkai/skynimas.php');
-                // exit;
+            $value['kiekis'] = 0;
         }
+        header('Location: http://localhost/homework/agurkai/skynimas.php');
+        exit;
     }
 
 ?>

@@ -50,6 +50,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skynimas</title>
 </head>
+<style>
+    img {
+        height: 60px;
+    }
+</style>
 <body>
     <h1>Agurku sodas</h1>
     <h3>Skynimas</h3>
@@ -58,6 +63,7 @@
     <a href="skynimas.php">Skynimas</a>
         <?php foreach ($_SESSION['agurkai'] as $key => $agurkas): ?>
             <form action="" method="post">
+                <img src="./img/cucumber-<?= $agurkas['img-path'] ?>.jpg" alt="Agurko nuotrauka">
                 Agurkas nr. <?= $agurkas['ID'] ?>
                 Galima skinti: <?= $agurkas['kiekis'] ?>
                 <input type="text" name="kiek">

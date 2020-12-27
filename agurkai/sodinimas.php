@@ -12,8 +12,8 @@
     if(isset($_POST['sodinti'])) {
         $_SESSION['agurkai'][] = [
             'ID' => ++$_SESSION['agurku ID'],
-            'kiekis' => 0
-            //TODO: linkas i img
+            'kiekis' => 0,
+            'img-path' => rand(1,6)
         ];
         // peradresuojame i GET, kad po refresh nebesodintu agurku, o tiesiog atvaizduotu pasodintus agurkus
         header('Location: http://localhost/homework/agurkai/sodinimas.php');
@@ -43,6 +43,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sodinimas</title>
 </head>
+<style>
+    img {
+        height: 60px;
+    }
+</style>
 <body>
     <h1>Agurku sodas</h1>
     <h3>Sodinimas</h3>
@@ -52,6 +57,7 @@
     <form action="" method="post">
         <?php foreach ($_SESSION['agurkai'] as $agurkas): ?>
             <div>
+                <img src="./img/cucumber-<?= $agurkas['img-path'] ?>.jpg" alt="Agurko nuotrauka">
                 Agurkas nr. <?= $agurkas['ID'] ?>
                 Kiekis: <?= $agurkas['kiekis'] ?>
                 <!-- paspaudus ant Israuti mygtuko, i POST masyva irasomas 'rauti' => atitinkamoID elementas-->

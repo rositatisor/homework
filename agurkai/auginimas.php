@@ -26,6 +26,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auginimas</title>
 </head>
+<style>
+    img {
+        height: 60px;
+    }
+</style>
 <body>
     <h1>Agurku sodas</h1>
     <h3>Auginimas</h3>
@@ -35,6 +40,7 @@
     <form action="" method="post">
         <?php foreach ($_SESSION['agurkai'] as $agurkas): ?>
             <div>
+                <img src="./img/cucumber-<?= $agurkas['img-path'] ?>.jpg" alt="Agurko nuotrauka">
                 <!-- is anksto sugeneruojame skaiciu, kiek kiekvienas agurkas turetu paaugti -->
                 <?php $kiekis = rand(2, 9) ?>
                 <h1 style="display:inline;"><?= $agurkas['kiekis'] ?></h1>

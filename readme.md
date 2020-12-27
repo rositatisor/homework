@@ -1,5 +1,4 @@
-![Awesome Badges](https://img.shields.io/badge/badges-awesome-green.svg)
-![Kazkas](https://img.shields.io/badge/PHP-homework-blue)
+![Homework](https://img.shields.io/badge/PHP-homework-blue)
 ![Watchers](https://img.shields.io/github/watchers/rositatisor/homework?style=social)
 
 # PHP homework

@@ -6,7 +6,6 @@
         $_SESSION['agurkai'] = [];
         $_SESSION['agurku ID'] = 0;
     }
-
     // skynti vartotojui irasius kieki
     if(isset($_POST['skinti'])) {
         foreach ($_SESSION['agurkai'] as &$value) {
@@ -22,7 +21,6 @@
             }
         }
     }
-
     // skinti-visus 
     if(isset($_POST['skinti-visus'])) {
         foreach ($_SESSION['agurkai'] as &$value) {
@@ -33,7 +31,6 @@
             }
         }
     }
-
     // nuimti visa derliu
     if(isset($_POST['nuimti-viska'])) {
         foreach ($_SESSION['agurkai'] as &$value) {
@@ -42,7 +39,6 @@
         header('Location: http://localhost/homework/agurkai/skynimas.php');
         exit;
     }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,9 +77,5 @@
         <form action="" method="post">
             <button type="submit" name="nuimti-viska">Nuimti visa agurku derliu</button>
         </form>
-    <!-- <?php echo "<pre>";
-    print_r($_POST)?> -->
-    <?php echo "<pre>";
-    print_r($_SESSION)?>
 </body>
 </html>

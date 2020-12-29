@@ -11,11 +11,12 @@
     if(isset($_POST['skinti'])) {
         foreach ($_SESSION['agurkai'] as &$value) {
             if($_POST['skinti'] == $value['ID']){
-                if($value['kiekis'] < $_POST['kiek']) {
-                    echo '<script>alert("Negalima nuskinti daugiau agurkų nei yra.")</script>'; 
+                $kiek = (int) $_POST['kiek'];
+                if($value['kiekis'] < $kiek || $kiek < 0) {
+                    $_SESSION['error'] = 1;
                     break;
                 }
-                $value['kiekis'] -= $_POST['kiek'];
+                $value['kiekis'] -= $kiek;
                 header('Location: http://localhost/homework/agurkai/skynimas.php');
                 exit;
             }
@@ -61,6 +62,12 @@
     <a href="sodinimas.php">Sodinimas</a>
     <a href="auginimas.php">Auginimas</a>
     <a href="skynimas.php">Skynimas</a>
+        <?php if (isset($_SESSION['error'])): ?>
+            <?php if( 1 == $_SESSION['error']): ?>
+            <h3 style="color:red;"> Negalima nuskinti įvesto kiekio.</h3>
+            <?php endif ?>
+            <?php unset($_SESSION['error']); ?>
+        <?php endif ?>
         <?php foreach ($_SESSION['agurkai'] as $key => $agurkas): ?>
             <form action="" method="post">
                 <img src="./img/cucumber-<?= $agurkas['img-path'] ?>.jpg" alt="Agurko nuotrauka">
@@ -76,5 +83,7 @@
         </form>
     <!-- <?php echo "<pre>";
     print_r($_POST)?> -->
+    <?php echo "<pre>";
+    print_r($_SESSION)?>
 </body>
 </html>

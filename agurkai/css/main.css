@@ -1,0 +1,110 @@
+body {
+    display: inline-block;
+    height: 100vh;
+    background: #d1ddc6;
+    color: #474747;
+    /* background: linear-gradient(135deg, #CDDAC6 0%, #BCCCB2 60%, #8EA382 100%); */
+}
+.container {
+    display: inline-block;
+    position: relative;
+    width: 600px;
+    transform: translate(30vw, 16vh);
+    border-radius: 25px;
+    background: #CDDAC6;
+    box-shadow:  20px  20px 24px #b9c4b2, 
+                -20px -20px 24px #e2f0da;
+    }
+    img {
+        display: inline-block;
+        height: 60px;
+        border-radius: 30px;
+    }
+    h1, 
+    h3 {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+    }
+        h1 {
+            margin: 30px 0 20px;
+        }
+        h3 {
+            margin: 0 0 20px;
+        }
+    .nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 0 0 30px; 
+    }
+        a {
+            display: inline-block;
+            width: 20%;
+            height: 30px;
+            line-height: 30px;
+            margin-right: 10px;
+            color: #474747;
+            /* color: #fff; */
+            /* background: #ADC9A0; */
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            /* background: linear-gradient(135deg, #b9d7ab, #ADC9A0); */
+            /* background: #8EA382; */
+            box-shadow:  5px  5px 15px #b9c4b2,
+                        -5px -5px 15px #e2f0da;
+        }
+        a:first-of-type {
+            color: #474747;
+            background: #ededed;
+            box-shadow: inset 5px 5px 8px #bebebe,
+                        inset -5px -5px 8px #ffffff;
+            border: none;
+            /* background: #ADC9A0;
+            box-shadow: inset 5px 5px 7px #8aa180,
+            inset -5px -5px 7px #d0f1c0; */
+
+        }
+    form {
+        display: inline-block;
+        width: 64%;
+        margin: 0 18% 0 18%;
+    }
+        .items {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin: 0 0 15px; 
+        }
+        .items:last-of-type{
+            margin-bottom: 50px;
+        }
+        button.rauti {
+            display: inline-block;
+            width: 20px;
+            color: #474747;
+            border: none;
+            font-weight: bold;
+            background: none;
+        }
+            button.rauti:hover {
+                cursor: pointer;
+            }
+        button.sodinti {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            font-size: 14px;
+            font-weight: bold;
+            height: 30px;
+            line-height: 30px;
+            color: #fff;
+            text-align: center;
+            border: none;
+            border-radius: 0 0 8px 8px;
+            background: #8EA382;
+        }

@@ -42,30 +42,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sodinimas</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/sodinimas.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
-<style>
-    img {
-        height: 60px;
-    }
-</style>
 <body>
-    <h1>Agurku sodas</h1>
-    <h3>Sodinimas</h3>
-    <a href="sodinimas.php">Sodinimas</a>
-    <a href="auginimas.php">Auginimas</a>
-    <a href="skynimas.php">Skynimas</a>
-    <form action="" method="post">
-        <?php foreach ($_SESSION['agurkai'] as $agurkas): ?>
-            <div>
-                <img src="./img/cucumber-<?= $agurkas['img-path'] ?>.jpg" alt="Agurko nuotrauka">
-                Agurkas nr. <?= $agurkas['ID'] ?>
-                Kiekis: <?= $agurkas['kiekis'] ?>
-                <!-- paspaudus ant Israuti mygtuko, i POST masyva irasomas 'rauti' => atitinkamoID elementas-->
-                <button type="submit" name="rauti" value="<?= $agurkas['ID'] ?>">ISRAUTI</button>
-            </div>
-        <?php endforeach ?>
-        <!-- paspaudus ant Sodinti mygtuko, i POST masyva irasomas 'sodinti' elementas-->
-        <button type="submit" name="sodinti">SODINTI</button>
-    </form>
+    <div class="container">
+        <h1>Agurku sodas</h1>
+        <h3>Sodinimas</h3>
+        <div class="nav">
+            <a href="sodinimas.php">Sodinimas</a>
+            <a href="auginimas.php">Auginimas</a>
+            <a href="skynimas.php">Skynimas</a>
+        </div>
+        <form action="" method="post">
+            <?php foreach ($_SESSION['agurkai'] as $agurkas): ?>
+                <div class="items">
+                    <img src="./img/cucumber-<?= $agurkas['img-path'] ?>.jpg" alt="Agurko nuotrauka">
+                    <p>Agurkas nr. <?= $agurkas['ID'] ?></p>
+                    <p>Kiekis: <?= $agurkas['kiekis'] ?></p>
+                    <!-- paspaudus ant Israuti mygtuko, i POST masyva irasomas 'rauti' => atitinkamoID elementas-->
+                    <button class="rauti" type="submit" name="rauti" value="<?= $agurkas['ID'] ?>">X</button>
+                </div>
+            <?php endforeach ?>
+            <!-- paspaudus ant Sodinti mygtuko, i POST masyva irasomas 'sodinti' elementas-->
+            <button class="sodinti" type="submit" name="sodinti">SODINTI</button>
+        </form>
+    </div>
 </body>
 </html>

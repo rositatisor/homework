@@ -41,19 +41,19 @@
         </div>
         <form action="" method="post">
             <?php foreach ($_SESSION['agurkai'] as $agurkas): ?>
-                <div>
+                <div class="items">
                     <img src="./img/cucumber-<?= $agurkas['img-path'] ?>.jpg" alt="Agurko nuotrauka">
+                    <p>Agurkas nr. <?= $agurkas['ID'] ?></p>
                     <!-- is anksto sugeneruojame skaiciu, kiek kiekvienas agurkas turetu paaugti -->
                     <?php $kiekis = rand(2, 9) ?>
-                    <h1 style="display:inline;"><?= $agurkas['kiekis'] ?></h1>
-                    <h3 style="display:inline;color:red;">+<?= $kiekis ?></h3>
+                    <p style="display:inline;">Kiekis: <?= $agurkas['kiekis'] ?></p>
+                    <p style="display:inline;color:red;">+<?= $kiekis ?></p>
                     <!-- kiekis[] - nurodo agurku ID, value - kiek bus uzauginta augurku -->
                     <input type="hidden" name="kiekis[<?= $agurkas['ID'] ?>]" value="<?= $kiekis ?>">
-                    Agurkas nr. <?= $agurkas['ID'] ?>
                 </div>
             <?php endforeach ?>
             <!-- paspaudus ant Auginti mygtuko, i POST masyva irasomas 'auginti' elementas-->
-            <button type="submit" name="auginti">Auginti</button>
+            <button class="auginti" type="submit" name="auginti">Auginti</button>
         </form>
     </div>
 </body>

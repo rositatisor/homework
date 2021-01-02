@@ -1,9 +1,9 @@
 body {
     display: inline-block;
-    height: 100vh;
+    height: 100%;
+    width: calc(100vw - 18px);
     background: #d1ddc6;
     color: #474747;
-    /* background: linear-gradient(135deg, #CDDAC6 0%, #BCCCB2 60%, #8EA382 100%); */
 }
 button {
     outline: none;
@@ -12,8 +12,11 @@ button {
 .container {
     display: inline-block;
     position: relative;
-    width: 600px;
-    transform: translate(30vw, 16vh);
+    min-width: 600px;
+    max-width: 700px;
+    width: 39vw;
+    margin: 10vh 30vw;
+    /* transform: translate(25vw, 10vh); */
     border-radius: 25px;
     background: #CDDAC6;
     box-shadow:  20px  20px 24px #b9c4b2, 
@@ -48,43 +51,55 @@ button {
             width: 20%;
             height: 30px;
             line-height: 30px;
+            font-size: 14px;
             margin-right: 10px;
             color: #474747;
-            /* color: #fff; */
-            /* background: #ADC9A0; */
             text-align: center;
             text-decoration: none;
             border-radius: 8px;
-            /* background: linear-gradient(135deg, #b9d7ab, #ADC9A0); */
-            /* background: #8EA382; */
+            background: #d8e6d1;
             box-shadow:  5px  5px 15px #b9c4b2,
                         -5px -5px 15px #e2f0da;
         }
         a:first-of-type {
             color: #474747;
-            background: #ededed;
-            box-shadow: inset 5px 5px 8px #bebebe,
-                        inset -5px -5px 8px #ffffff;
+            background: #c4d3bb;
+            box-shadow: inset 5px 5px 6px #a9b5a1,
+                        inset -5px -5px 6px #dff1d5;
             border: none;
-            /* background: #ADC9A0;
-            box-shadow: inset 5px 5px 7px #8aa180,
-            inset -5px -5px 7px #d0f1c0; */
-
+        }
+        a:hover {
+            background: #c4d3bb;
+        }
+        a:first-of-type:hover {
+            background: #d8e6d1;
         }
     form {
         display: inline-block;
         width: 64%;
         margin: 0 18% 0 18%;
+        font-size: 14px;
     }
         .items {
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 100%;
-            margin: 0 0 15px; 
+            margin: 0 0 10px; 
         }
-        .items:last-of-type{
-            margin-bottom: 70px;
+            .items:last-of-type{
+                margin-bottom: 70px;
+            }
+            .items.skynimas:last-of-type{
+                margin-bottom: 10px;
+            }
+            /* .items:hover {
+                border: 1px solid #fff;
+                border-right: 1px solid transparent;
+                border-radius: 40px 0 0 40px;
+            } */
+        .kiek {
+            width: 40px;
         }
         button.rauti {
             display: inline-block;
@@ -98,19 +113,27 @@ button {
             button.rauti:hover {
                 cursor: pointer;
             }
-        button.sodinti {
+        button.sodinti,
+        button.auginti,
+        button.nuimti-viska {
             position: absolute;
             height: 40px;
             width: 100%;
             bottom: 0;
             left: 0;
+            text-transform: uppercase;
             font-size: 14px;
             line-height: 30px;
             font-weight: bold;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             color: #fffc;
             text-align: center;
             border: none;
             border-radius: 0 0 15px 15px;
             background: #8EA382;
         }
+            button.sodinti:hover,
+            button.auginti:hover,
+            button.nuimti-viska:hover {
+                background: #80956E;
+            }

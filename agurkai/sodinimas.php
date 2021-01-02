@@ -68,7 +68,7 @@
                 </div>
             <?php endforeach ?>
             <!-- paspaudus ant Sodinti mygtuko, i POST masyva irasomas 'sodinti' elementas-->
-            <button class="sodinti" type="submit" name="sodinti">SODINTI</button>
+            <button class="sodinti" type="submit" name="sodinti">Sodinti</button>
         </form>
     </div>
 </body>

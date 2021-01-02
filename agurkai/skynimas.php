@@ -67,17 +67,20 @@
                 <?php unset($_SESSION['error']); ?>
             <?php endif ?>
             <?php foreach ($_SESSION['agurkai'] as $key => $agurkas): ?>
+            <!-- <div class="items"> -->
                 <form action="" method="post">
-                    <img src="./img/cucumber-<?= $agurkas['img-path'] ?>.jpg" alt="Agurko nuotrauka">
-                    Agurkas nr. <?= $agurkas['ID'] ?>
-                    Galima skinti: <?= $agurkas['kiekis'] ?>
-                    <input type="text" name="kiek">
-                    <button type="submit" name="skinti" value="<?= $agurkas['ID'] ?>">Skinti</button>
-                    <button type="submit" name="skinti-visus" value="<?= $agurkas['ID'] ?>">Skinti visus</button>
+                    <div class="items skynimas">
+                        <img src="./img/cucumber-<?= $agurkas['img-path'] ?>.jpg" alt="Agurko nuotrauka">
+                        <p>Agurkas nr. <?= $agurkas['ID'] ?></p>
+                        <p>Galima skinti: <?= $agurkas['kiekis'] ?></p>
+                        <input class="kiek" type="text" name="kiek">
+                        <button type="submit" name="skinti" value="<?= $agurkas['ID'] ?>">Skinti</button>
+                        <button type="submit" name="skinti-visus" value="<?= $agurkas['ID'] ?>">Skinti visus</button>
+                    </div>
                 </form>
             <?php endforeach ?>
             <form action="" method="post">
-                <button type="submit" name="nuimti-viska">Nuimti visa agurku derliu</button>
+                <button class="nuimti-viska" type="submit" name="nuimti-viska">Nuimti visa agurku derliu</button>
             </form>
     </div>
 </body>

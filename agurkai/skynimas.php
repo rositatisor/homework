@@ -60,7 +60,7 @@
         </div>
             <?php if (isset($_SESSION['error'])): ?>
                 <?php if( 1 == $_SESSION['error']): ?>
-                <h3 style="color:red;"> Negalima nuskinti įvesto kiekio.</h3>
+                <p class="error">⚠ Negalima nuskinti įvesto kiekio.</p>
                 <?php endif ?>
                 <?php unset($_SESSION['error']); ?>
             <?php endif ?>
@@ -69,11 +69,11 @@
                 <form action="" method="post">
                     <div class="items skynimas">
                         <img src="./img/cucumber-<?= $agurkas['img-path'] ?>.jpg" alt="Agurko nuotrauka">
-                        <p>Agurkas nr. <?= $agurkas['ID'] ?></p>
-                        <p>Galima skinti: <?= $agurkas['kiekis'] ?></p>
+                        <!-- <p>Nr. <?= $agurkas['ID'] ?></p> -->
+                        <p>Galima skinti: <span style="font-weight: 600"><?= $agurkas['kiekis'] ?></span></p>
                         <input class="kiek" type="text" name="kiek">
-                        <button type="submit" name="skinti" value="<?= $agurkas['ID'] ?>">Skinti</button>
-                        <button type="submit" name="skinti-visus" value="<?= $agurkas['ID'] ?>">Skinti visus</button>
+                        <button class="skinti" type="submit" name="skinti" value="<?= $agurkas['ID'] ?>">Skinti</button>
+                        <button class="skinti-visus" type="submit" name="skinti-visus" value="<?= $agurkas['ID'] ?>">Skinti visus</button>
                     </div>
                 </form>
             <?php endforeach ?>

@@ -72,6 +72,13 @@ button {
             box-shadow: inset  5px  5px 6px #a9b5a1,
                         inset -5px -5px 6px #dff1d5;
         }
+    p.error {
+        color: #bf0000;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 20px;
+    }
     form {
         display: inline-block;
         width: 64%;
@@ -91,13 +98,12 @@ button {
             .items.skynimas:last-of-type{
                 margin-bottom: 10px;
             }
-            /* .items:hover {
-                border: 1px solid #fff;
-                border-right: 1px solid transparent;
-                border-radius: 40px 0 0 40px;
-            } */
         .kiek {
             width: 40px;
+            outline: none;
+            border: 1px solid grey;
+            border-radius: 3px;
+            padding: 0 3px 0 3px;
         }
         .kiek-augs {
             color: #5C6B54;
@@ -107,6 +113,32 @@ button {
         form.nuimti-viska {
             margin-bottom: 60px;
         }
+        button.skinti,
+        button.skinti-visus {
+            display: inline-block;
+            width: 12%;
+            height: 18px;
+            color: #474747;
+            text-align: center;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            background: #F6F4F5;
+            box-shadow:  5px  5px 15px #b9c4b2,
+                        -5px -5px 15px #e2f0da;
+        }
+            button.skinti:hover{
+                background: #fff;
+            }
+        button.skinti-visus {
+            background: #8EA382;
+            color: #fffc;
+            box-shadow:  5px  5px 15px #b9c4b2,
+                        -5px -5px 15px #e2f0da;
+            width: 22%;
+        }
+            button.skinti-visus:hover {
+                background: #c4d3bb;
+            }
         button.rauti {
             display: inline-block;
             width: 30px;

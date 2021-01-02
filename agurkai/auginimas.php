@@ -27,17 +27,15 @@
     <title>Auginimas</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/auginimas.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <h1>Agurku sodas</h1>
-        <h3>Auginimas</h3>
         <div class="nav">
-            <a href="sodinimas.php">Sodinimas</a>
-            <a href="auginimas.php">Auginimas</a>
-            <a href="skynimas.php">Skynimas</a>
+            <a class="sodinimas" href="sodinimas.php">Sodinimas</a>
+            <a class="auginimas" href="auginimas.php">Auginimas</a>
+            <a class="skynimas" href="skynimas.php">Skynimas</a>
         </div>
         <form action="" method="post">
             <?php foreach ($_SESSION['agurkai'] as $agurkas): ?>
@@ -46,8 +44,8 @@
                     <p>Agurkas nr. <?= $agurkas['ID'] ?></p>
                     <!-- is anksto sugeneruojame skaiciu, kiek kiekvienas agurkas turetu paaugti -->
                     <?php $kiekis = rand(2, 9) ?>
-                    <p style="display:inline;">Kiekis: <?= $agurkas['kiekis'] ?></p>
-                    <p style="display:inline;color:red;">+<?= $kiekis ?></p>
+                    <p>Kiekis: <?= $agurkas['kiekis'] ?></p>
+                    <p class="kiek-augs">+<?= $kiekis ?></p>
                     <!-- kiekis[] - nurodo agurku ID, value - kiek bus uzauginta augurku -->
                     <input type="hidden" name="kiekis[<?= $agurkas['ID'] ?>]" value="<?= $kiekis ?>">
                 </div>
@@ -56,5 +54,14 @@
             <button class="auginti" type="submit" name="auginti">Auginti</button>
         </form>
     </div>
+    <!-- <script src="./js/main.js" type="module"></script> -->
+    <script>
+        let allNav = document.querySelectorAll('a');
+        sessionStorage.setItem("navClicked", 1);
+        let isNavClicked = sessionStorage.getItem("navClicked");
+        if (isNavClicked) {
+            allNav[1].classList.add('clicked');
+        }
+    </script>
 </body>
 </html>

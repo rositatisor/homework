@@ -48,17 +48,15 @@
     <title>Skynimas</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/skynimas.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <h1>Agurku sodas</h1>
-        <h3>Skynimas</h3>
         <div class="nav">
-            <a href="sodinimas.php">Sodinimas</a>
-            <a href="auginimas.php">Auginimas</a>
-            <a href="skynimas.php">Skynimas</a>
+            <a class="sodinimas" href="sodinimas.php">Sodinimas</a>
+            <a class="auginimas" href="auginimas.php">Auginimas</a>
+            <a class="skynimas" href="skynimas.php">Skynimas</a>
         </div>
             <?php if (isset($_SESSION['error'])): ?>
                 <?php if( 1 == $_SESSION['error']): ?>
@@ -83,5 +81,14 @@
                 <button class="nuimti-viska" type="submit" name="nuimti-viska">Nuimti visa agurku derliu</button>
             </form>
     </div>
+    <!-- <script src="./js/main.js" type="module"></script> -->
+    <script>
+        let allNav = document.querySelectorAll('a');
+        sessionStorage.setItem("navClicked", 2);
+        let isNavClicked = sessionStorage.getItem("navClicked");
+        if (isNavClicked) {
+            allNav[2].classList.add('clicked');
+        }
+    </script>
 </body>
 </html>

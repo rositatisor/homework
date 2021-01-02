@@ -44,18 +44,16 @@
     <title>Sodinimas</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/sodinimas.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <h1>Agurku sodas</h1>
-        <h3>Sodinimas</h3>
         <div class="nav">
-            <a href="sodinimas.php">Sodinimas</a>
-            <a href="auginimas.php">Auginimas</a>
-            <a href="skynimas.php">Skynimas</a>
+            <a class="sodinimas" href="sodinimas.php">Sodinimas</a>
+            <a class="auginimas" href="auginimas.php">Auginimas</a>
+            <a class="skynimas" href="skynimas.php">Skynimas</a>
         </div>
         <form action="" method="post">
             <?php foreach ($_SESSION['agurkai'] as $agurkas): ?>
@@ -71,5 +69,14 @@
             <button class="sodinti" type="submit" name="sodinti">Sodinti</button>
         </form>
     </div>
+    <!-- <script src="./js/main.js" type="module"></script> -->
+    <script>
+        let allNav = document.querySelectorAll('a');
+        sessionStorage.setItem("navClicked", 0);
+        let isNavClicked = sessionStorage.getItem("navClicked");
+        if (isNavClicked) {
+            allNav[0].classList.add('clicked');
+        }
+    </script>
 </body>
 </html>

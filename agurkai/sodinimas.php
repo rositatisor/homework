@@ -64,7 +64,7 @@
                     <p>Agurkas nr. <?= $agurkas['ID'] ?></p>
                     <p>Kiekis: <?= $agurkas['kiekis'] ?></p>
                     <!-- paspaudus ant Israuti mygtuko, i POST masyva irasomas 'rauti' => atitinkamoID elementas-->
-                    <button class="rauti" type="submit" name="rauti" value="<?= $agurkas['ID'] ?>">X</button>
+                    <button class="rauti" type="submit" name="rauti" value="<?= $agurkas['ID'] ?>">+</button>
                 </div>
             <?php endforeach ?>
             <!-- paspaudus ant Sodinti mygtuko, i POST masyva irasomas 'sodinti' elementas-->

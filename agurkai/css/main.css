@@ -5,6 +5,10 @@ body {
     color: #474747;
     /* background: linear-gradient(135deg, #CDDAC6 0%, #BCCCB2 60%, #8EA382 100%); */
 }
+button {
+    outline: none;
+    cursor: pointer;
+}
 .container {
     display: inline-block;
     position: relative;
@@ -80,31 +84,33 @@ body {
             margin: 0 0 15px; 
         }
         .items:last-of-type{
-            margin-bottom: 50px;
+            margin-bottom: 70px;
         }
         button.rauti {
             display: inline-block;
-            width: 20px;
+            width: 30px;
+            font-size: 24px;
             color: #474747;
             border: none;
-            font-weight: bold;
             background: none;
+            transform: rotate(45deg);
         }
             button.rauti:hover {
                 cursor: pointer;
             }
         button.sodinti {
             position: absolute;
+            height: 40px;
             width: 100%;
             bottom: 0;
             left: 0;
             font-size: 14px;
-            font-weight: bold;
-            height: 30px;
             line-height: 30px;
-            color: #fff;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #fffc;
             text-align: center;
             border: none;
-            border-radius: 0 0 8px 8px;
+            border-radius: 0 0 15px 15px;
             background: #8EA382;
         }

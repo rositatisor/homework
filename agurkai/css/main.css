@@ -1,7 +1,7 @@
 body {
     display: inline-block;
     height: 100%;
-    width: calc(100vw - 18px);
+    width: 100%;
     background: #d1ddc6;
     color: #474747;
 }
@@ -13,8 +13,8 @@ button {
     display: inline-block;
     position: relative;
     min-width: 600px;
-    max-width: 700px;
-    width: 39vw;
+    /* max-width: 700px; */
+    width: 40vw;
     margin: 10vh 30vw;
     /* transform: translate(25vw, 10vh); */
     border-radius: 25px;
@@ -100,6 +100,9 @@ button {
             } */
         .kiek {
             width: 40px;
+        }
+        form.nuimti-viska {
+            margin-bottom: 60px;
         }
         button.rauti {
             display: inline-block;

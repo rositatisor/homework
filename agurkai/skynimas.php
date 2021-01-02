@@ -79,7 +79,7 @@
                     </div>
                 </form>
             <?php endforeach ?>
-            <form action="" method="post">
+            <form class="nuimti-viska" action="" method="post">
                 <button class="nuimti-viska" type="submit" name="nuimti-viska">Nuimti visa agurku derliu</button>
             </form>
     </div>

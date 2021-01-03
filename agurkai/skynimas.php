@@ -69,11 +69,16 @@
                 <form action="" method="post">
                     <div class="items skynimas">
                         <img src="./img/cucumber-<?= $agurkas['img-path'] ?>.jpg" alt="Agurko nuotrauka">
-                        <!-- <p>Nr. <?= $agurkas['ID'] ?></p> -->
-                        <p>Galima skinti: <span style="font-weight: 600"><?= $agurkas['kiekis'] ?></span></p>
-                        <input class="kiek" type="text" name="kiek">
-                        <button class="skinti" type="submit" name="skinti" value="<?= $agurkas['ID'] ?>">Skinti</button>
-                        <button class="skinti-visus" type="submit" name="skinti-visus" value="<?= $agurkas['ID'] ?>">Skinti visus</button>
+                            <?php if($agurkas['kiekis'] == 0): ?>
+                                <p>Agurkas nr. <?= $agurkas['ID'] ?></p>
+                                <p>Kiekis: <span><?= $agurkas['kiekis'] ?></span></p>
+                                <p>Nėra ko skinti.</p>
+                            <?php else: ?>
+                                <p>Galima skinti: <span style="font-weight: 600"><?= $agurkas['kiekis'] ?></span></p>
+                                <input class="kiek" type="text" name="kiek">
+                                <button class="skinti" type="submit" name="skinti" value="<?= $agurkas['ID'] ?>">Skinti</button>
+                                <button class="skinti-visus" type="submit" name="skinti-visus" value="<?= $agurkas['ID'] ?>">Skinti visus</button>
+                            <?php endif ?>
                     </div>
                 </form>
             <?php endforeach ?>

@@ -10,7 +10,7 @@
         foreach ($_SESSION['agurkai'] as $key => &$value) {
             $value['kiekis'] += $_POST['kiekis'][$value['ID']];
         }
-        header('Location: http://localhost/homework/agurkai/auginimas.php');
+        header('Location: http://localhost/homework/agurkai-oop/auginimas.php');
         exit;
     }
 ?>

@@ -14,7 +14,7 @@
                     break;
                 }
                 $value['kiekis'] -= $kiek;
-                header('Location: http://localhost/homework/agurkai/skynimas.php');
+                header('Location: http://localhost/homework/agurkai-oop/skynimas.php');
                 exit;
             }
         }
@@ -23,7 +23,7 @@
         foreach ($_SESSION['agurkai'] as &$value) {
             if($_POST['skinti-visus'] == $value['ID']){
                 $value['kiekis'] = 0;
-                header('Location: http://localhost/homework/agurkai/skynimas.php');
+                header('Location: http://localhost/homework/agurkai-oop/skynimas.php');
                 exit;
             }
         }
@@ -32,7 +32,7 @@
         foreach ($_SESSION['agurkai'] as &$value) {
             $value['kiekis'] = 0;
         }
-        header('Location: http://localhost/homework/agurkai/skynimas.php');
+        header('Location: http://localhost/homework/agurkai-oop/skynimas.php');
         exit;
     }
 ?>

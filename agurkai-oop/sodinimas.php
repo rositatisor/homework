@@ -1,26 +1,28 @@
 <?php
+    include __DIR__.'/Agurkas.php';
     session_start();
 
+
     if(!isset($_SESSION['agurkai'])) {
-        $_SESSION['agurkai'] = [];
+        $_SESSION['agurkai'] = new Agurkas;
         $_SESSION['agurku ID'] = 0;
     }
-    
+    // $agurkas = new Agurkas;
+    // _d($_SESSION);
+    // _dc($_SESSION);
+    // _d($agurkas);
+
     if(isset($_POST['sodinti'])) {
-        $_SESSION['agurkai'][] = [
-            'ID' => ++$_SESSION['agurku ID'],
-            'kiekis' => 0,
-            'img-path' => rand(1,6)
-        ];
-        header('Location: http://localhost/homework/agurkai/sodinimas.php');
+        $_SESSION['agurkai'][] = new Agurkas;
+        header('Location: http://localhost/homework/agurkai-oop/sodinimas.php');
         exit;
     }
     
     if(isset($_POST['rauti'])) {
         foreach ($_SESSION['agurkai'] as $key => $value) {
-            if($_POST['rauti'] == $value['ID']){
+            if($_POST['rauti'] == $value->id){
                 unset($_SESSION['agurkai'][$key]);
-                header('Location: http://localhost/homework/agurkai/sodinimas.php');
+                header('Location: http://localhost/homework/agurkai-oop/sodinimas.php');
                 exit;
             }
         }
@@ -48,10 +50,10 @@
         <form action="" method="post">
             <?php foreach ($_SESSION['agurkai'] as $agurkas): ?>
                 <div class="items">
-                    <img src="./img/cucumber-<?= $agurkas['img-path'] ?>.jpg" alt="Agurko nuotrauka">
-                    <p>Agurkas nr. <?= $agurkas['ID'] ?></p>
-                    <p>Kiekis: <?= $agurkas['kiekis'] ?></p>
-                    <button class="rauti" type="submit" name="rauti" value="<?= $agurkas['ID'] ?>">+</button>
+                    <img src="./img/cucumber-<?= $agurkas->imgPath?>.jpg" alt="Agurko nuotrauka">
+                    <p>Agurkas nr. <?= $agurkas->id ?></p>
+                    <p>Kiekis: <?= $agurkas->kiekis ?></p>
+                    <button class="rauti" type="submit" name="rauti" value="<?= $agurkas->id ?>">+</button>
                 </div>
             <?php endforeach ?>
             <button class="sodinti" type="submit" name="sodinti">Sodinti</button>

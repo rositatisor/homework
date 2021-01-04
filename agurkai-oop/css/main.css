@@ -1,0 +1,179 @@
+/* FIX: container and body width */
+/* TODO: responsive design */
+body {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    background: #d1ddc6;
+    color: #474747;
+}
+button {
+    outline: none;
+    cursor: pointer;
+}
+.container {
+    display: inline-block;
+    position: relative;
+    min-width: 600px;
+    /* max-width: 700px; */
+    width: 40vw;
+    margin: 10vh 20vw;
+    /* transform: translate(25vw, 10vh); */
+    border-radius: 25px;
+    background: #CDDAC6;
+    box-shadow:  20px  20px 24px #b9c4b2, 
+                -20px -20px 24px #e2f0da;
+    }
+    img {
+        display: inline-block;
+        height: 60px;
+        border-radius: 30px;
+    }
+    h1, 
+    h3 {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+    }
+        h1 {
+            margin: 25px 0 20px;
+        }
+        h3 {
+            margin: 0 0 20px;
+        }
+    .nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin: 0 0 30px; 
+    }
+        a {
+            display: inline-block;
+            width: 20%;
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+            margin-right: 10px;
+            color: #474747;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            background: #d8e6d1;
+            box-shadow:  5px  5px 15px #b9c4b2,
+                        -5px -5px 15px #e2f0da;
+        }
+            a:hover {
+                background: #c4d3bb;
+                background: linear-gradient(135deg, #e7f6e0, #c2cfbc);
+            }
+        a.clicked {
+            color: #474747;
+            background: #c4d3bb;
+            border: none;
+            box-shadow: inset  5px  5px 6px #a9b5a1,
+                        inset -5px -5px 6px #dff1d5;
+        }
+    p.error {
+        color: #bf0000;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    form {
+        display: inline-block;
+        width: 64%;
+        margin: 0 18% 0 18%;
+        font-size: 14px;
+    }
+        .items {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin: 0 0 10px; 
+        }
+            .items:last-of-type{
+                margin-bottom: 70px;
+            }
+            .items.skynimas:last-of-type{
+                margin-bottom: 10px;
+            }
+        .kiek {
+            width: 40px;
+            outline: none;
+            border: 1px solid grey;
+            border-radius: 3px;
+            padding: 0 3px 0 3px;
+        }
+        .kiek-augs {
+            color: #5C6B54;
+            font-size: larger;
+            font-weight: 500;
+        }
+        form.nuimti-viska {
+            margin-bottom: 60px;
+        }
+        button.skinti,
+        button.skinti-visus {
+            display: inline-block;
+            width: 12%;
+            height: 18px;
+            color: #474747;
+            text-align: center;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            background: #F6F4F5;
+            box-shadow:  5px  5px 15px #b9c4b2,
+                        -5px -5px 15px #e2f0da;
+        }
+            button.skinti:hover{
+                background: #fff;
+            }
+        button.skinti-visus {
+            background: #8EA382;
+            color: #fffc;
+            box-shadow:  5px  5px 15px #b9c4b2,
+                        -5px -5px 15px #e2f0da;
+            width: 22%;
+        }
+            button.skinti-visus:hover {
+                background: #c4d3bb;
+            }
+        button.rauti {
+            display: inline-block;
+            width: 30px;
+            font-size: 24px;
+            color: #474747;
+            border: none;
+            background: none;
+            transform: rotate(45deg);
+        }
+            button.rauti:hover {
+                cursor: pointer;
+            }
+        button.sodinti,
+        button.auginti,
+        button.nuimti-viska {
+            position: absolute;
+            height: 40px;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            text-transform: uppercase;
+            font-size: 14px;
+            line-height: 30px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            color: #fffc;
+            text-align: center;
+            border: none;
+            border-radius: 0 0 15px 15px;
+            background: #8EA382;
+        }
+            button.sodinti:hover,
+            button.auginti:hover,
+            button.nuimti-viska:hover {
+                background: #80956E;
+            }

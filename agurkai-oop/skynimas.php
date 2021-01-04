@@ -1,12 +1,10 @@
 <?php
     session_start();
 
-    // pirma karta atejus sukuriam agurku masyva ir nustatome pradini ID
     if(!isset($_SESSION['agurkai'])) {
         $_SESSION['agurkai'] = [];
         $_SESSION['agurku ID'] = 0;
     }
-    // skynti vartotojui irasius kieki
     if(isset($_POST['skinti'])) {
         foreach ($_SESSION['agurkai'] as &$value) {
             if($_POST['skinti'] == $value['ID']){
@@ -21,7 +19,6 @@
             }
         }
     }
-    // skinti-visus 
     if(isset($_POST['skinti-visus'])) {
         foreach ($_SESSION['agurkai'] as &$value) {
             if($_POST['skinti-visus'] == $value['ID']){
@@ -31,7 +28,6 @@
             }
         }
     }
-    // nuimti visa derliu
     if(isset($_POST['nuimti-viska'])) {
         foreach ($_SESSION['agurkai'] as &$value) {
             $value['kiekis'] = 0;

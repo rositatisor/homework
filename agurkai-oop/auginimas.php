@@ -1,20 +1,15 @@
 <?php
     session_start();
 
-    // pirma karta atejus sukuriam agurku masyva ir nustatome pradini ID
     if(!isset($_SESSION['agurkai'])) {
         $_SESSION['agurkai'] = [];
         $_SESSION['agurku ID'] = 0;
     }
 
-    // auginimas
-    // jeigu buvo paspaustas Auginti mygtukas, pasodiname atitinkama kieki agurku
     if(isset($_POST['auginti'])) {
         foreach ($_SESSION['agurkai'] as $key => &$value) {
-            // kiekvienam agurku ID pasodiname agurku tiek, kiek POST masyve nurodyta value
             $value['kiekis'] += $_POST['kiekis'][$value['ID']];
         }
-        // peradresuojame i GET
         header('Location: http://localhost/homework/agurkai/auginimas.php');
         exit;
     }
@@ -42,15 +37,12 @@
                 <div class="items">
                     <img src="./img/cucumber-<?= $agurkas['img-path'] ?>.jpg" alt="Agurko nuotrauka">
                     <p>Agurkas nr. <?= $agurkas['ID'] ?></p>
-                    <!-- is anksto sugeneruojame skaiciu, kiek kiekvienas agurkas turetu paaugti -->
                     <?php $kiekis = rand(2, 9) ?>
                     <p>Kiekis: <?= $agurkas['kiekis'] ?></p>
                     <p class="kiek-augs">+<?= $kiekis ?></p>
-                    <!-- kiekis[] - nurodo agurku ID, value - kiek bus uzauginta augurku -->
                     <input type="hidden" name="kiekis[<?= $agurkas['ID'] ?>]" value="<?= $kiekis ?>">
                 </div>
             <?php endforeach ?>
-            <!-- paspaudus ant Auginti mygtuko, i POST masyva irasomas 'auginti' elementas-->
             <button class="auginti" type="submit" name="auginti">Auginti</button>
         </form>
     </div>

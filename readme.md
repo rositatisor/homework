@@ -14,7 +14,7 @@ This repository is for educational porpuses only.
 5. Array part 2 (Masyvai II)
 6. Functions (Funkcijos)
 7. WEB (WEB mechanika)
-8. Agurku sodas
+8. OOP basics (Agurku sodas-oop)
 
 ### Authors
 [Rosita](https://github.com/rositatisor)

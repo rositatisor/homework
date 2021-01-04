@@ -1,4 +1,5 @@
 <?php
+    include __DIR__.'/Agurkas.php';
     session_start();
 
     if(!isset($_SESSION['agurkai'])) {
@@ -8,7 +9,7 @@
 
     if(isset($_POST['auginti'])) {
         foreach ($_SESSION['agurkai'] as $key => &$value) {
-            $value['kiekis'] += $_POST['kiekis'][$value['ID']];
+            $value->kiekis += $_POST['kiekis'][$value->id];
         }
         header('Location: http://localhost/homework/agurkai-oop/auginimas.php');
         exit;
@@ -35,12 +36,12 @@
         <form action="" method="post">
             <?php foreach ($_SESSION['agurkai'] as $agurkas): ?>
                 <div class="items">
-                    <img src="./img/cucumber-<?= $agurkas['img-path'] ?>.jpg" alt="Agurko nuotrauka">
-                    <p>Agurkas nr. <?= $agurkas['ID'] ?></p>
+                    <img src="./img/cucumber-<?= $agurkas->imgPath ?>.jpg" alt="Agurko nuotrauka">
+                    <p>Agurkas nr. <?= $agurkas->id ?></p>
                     <?php $kiekis = rand(2, 9) ?>
-                    <p>Kiekis: <?= $agurkas['kiekis'] ?></p>
+                    <p>Kiekis: <?= $agurkas->kiekis ?></p>
                     <p class="kiek-augs">+<?= $kiekis ?></p>
-                    <input type="hidden" name="kiekis[<?= $agurkas['ID'] ?>]" value="<?= $kiekis ?>">
+                    <input type="hidden" name="kiekis[<?= $agurkas->id ?>]" value="<?= $kiekis ?>">
                 </div>
             <?php endforeach ?>
             <button class="auginti" type="submit" name="auginti">Auginti</button>

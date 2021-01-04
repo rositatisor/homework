@@ -4,16 +4,17 @@
 
 
     if(!isset($_SESSION['agurkai'])) {
-        $_SESSION['agurkai'] = new Agurkas;
+        $_SESSION['agurkai'] = [];
         $_SESSION['agurku ID'] = 0;
     }
     // $agurkas = new Agurkas;
-    // _d($_SESSION);
+    _d($_SESSION);
     // _dc($_SESSION);
     // _d($agurkas);
 
     if(isset($_POST['sodinti'])) {
-        $_SESSION['agurkai'][] = new Agurkas;
+        $_SESSION['agurkai'][] = new Agurkas(++$_SESSION['agurku ID']);
+        // ++$_SESSION['agurku ID'];
         header('Location: http://localhost/homework/agurkai-oop/sodinimas.php');
         exit;
     }

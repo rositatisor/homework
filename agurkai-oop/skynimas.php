@@ -1,4 +1,5 @@
 <?php
+    include __DIR__.'/Agurkas.php';
     session_start();
 
     if(!isset($_SESSION['agurkai'])) {
@@ -7,13 +8,13 @@
     }
     if(isset($_POST['skinti'])) {
         foreach ($_SESSION['agurkai'] as &$value) {
-            if($_POST['skinti'] == $value['ID']){
+            if($_POST['skinti'] == $value->id){
                 $kiek = (int) $_POST['kiek'];
-                if($value['kiekis'] < $kiek || $kiek < 0) {
+                if($value->kiekis < $kiek || $kiek < 0) {
                     $_SESSION['error'] = 1;
                     break;
                 }
-                $value['kiekis'] -= $kiek;
+                $value->kiekis -= $kiek;
                 header('Location: http://localhost/homework/agurkai-oop/skynimas.php');
                 exit;
             }
@@ -21,8 +22,8 @@
     }
     if(isset($_POST['skinti-visus'])) {
         foreach ($_SESSION['agurkai'] as &$value) {
-            if($_POST['skinti-visus'] == $value['ID']){
-                $value['kiekis'] = 0;
+            if($_POST['skinti-visus'] == $value->id){
+                $value->kiekis = 0;
                 header('Location: http://localhost/homework/agurkai-oop/skynimas.php');
                 exit;
             }
@@ -30,7 +31,7 @@
     }
     if(isset($_POST['nuimti-viska'])) {
         foreach ($_SESSION['agurkai'] as &$value) {
-            $value['kiekis'] = 0;
+            $value->kiekis = 0;
         }
         header('Location: http://localhost/homework/agurkai-oop/skynimas.php');
         exit;
@@ -64,16 +65,16 @@
             <!-- <div class="items"> -->
                 <form action="" method="post">
                     <div class="items skynimas">
-                        <img src="./img/cucumber-<?= $agurkas['img-path'] ?>.jpg" alt="Agurko nuotrauka">
-                            <?php if($agurkas['kiekis'] == 0): ?>
-                                <p>Agurkas nr. <?= $agurkas['ID'] ?></p>
-                                <p>Kiekis: <span><?= $agurkas['kiekis'] ?></span></p>
+                        <img src="./img/cucumber-<?= $agurkas->imgPath?>.jpg" alt="Agurko nuotrauka">
+                            <?php if($agurkas->kiekis == 0): ?>
+                                <p>Agurkas nr. <?= $agurkas->id ?></p>
+                                <p>Kiekis: <span><?= $agurkas->kiekis ?></span></p>
                                 <p>Nėra ko skinti.</p>
                             <?php else: ?>
-                                <p>Galima skinti: <span style="font-weight: 600"><?= $agurkas['kiekis'] ?></span></p>
+                                <p>Galima skinti: <span style="font-weight: 600"><?= $agurkas->kiekis ?></span></p>
                                 <input class="kiek" type="text" name="kiek">
-                                <button class="skinti" type="submit" name="skinti" value="<?= $agurkas['ID'] ?>">Skinti</button>
-                                <button class="skinti-visus" type="submit" name="skinti-visus" value="<?= $agurkas['ID'] ?>">Skinti visus</button>
+                                <button class="skinti" type="submit" name="skinti" value="<?= $agurkas->id ?>">Skinti</button>
+                                <button class="skinti-visus" type="submit" name="skinti-visus" value="<?= $agurkas->id ?>">Skinti visus</button>
                             <?php endif ?>
                     </div>
                 </form>

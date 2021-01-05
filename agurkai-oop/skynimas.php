@@ -36,6 +36,7 @@
         header('Location: http://localhost/homework/agurkai-oop/skynimas.php');
         exit;
     }
+    // $_SESSION['agurkai'] = Agurkas::nuimtiVisaDerliu($_SESSION['agurkai']);
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,6 +1,6 @@
 <?php
-    include __DIR__.'/Agurkas.php';
     session_start();
+    include __DIR__.'/Agurkas.php';
 
     if(!isset($_SESSION['agurkai'])) {
         $_SESSION['agurkai'] = [];
@@ -8,8 +8,11 @@
     }
 
     if(isset($_POST['auginti'])) {
-        foreach ($_SESSION['agurkai'] as $key => &$value) {
-            $value->kiekis += $_POST['kiekis'][$value->id];
+        foreach ($_SESSION['agurkai'] as $key => $value) {
+            $value = unserialize($value);
+            $value->addAgurkas($_POST['kiekis'][$value->id]);
+            $value = serialize($value);
+            $_SESSION['agurkai'][$key] = $value;
         }
         header('Location: http://localhost/homework/agurkai-oop/auginimas.php');
         exit;
@@ -35,6 +38,7 @@
         </div>
         <form action="" method="post">
             <?php foreach ($_SESSION['agurkai'] as $agurkas): ?>
+                <?php $agurkas = unserialize($agurkas) ?>
                 <div class="items">
                     <img src="./img/cucumber-<?= $agurkas->imgPath ?>.jpg" alt="Agurko nuotrauka">
                     <p>Agurkas nr. <?= $agurkas->id ?></p>

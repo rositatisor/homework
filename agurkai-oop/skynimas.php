@@ -3,13 +3,13 @@
     include __DIR__.'/Agurkas.php';
     include __DIR__.'/Zirnis.php';
 
-    if(!isset($_SESSION['agurkai'])) {
-        $_SESSION['agurkai'] = [];
-        $_SESSION['zirniai'] = [];
+    if(!isset($_SESSION['darzoves'])) {
+        $_SESSION['darzoves'] = [];
         $_SESSION['darzoviu id'] = 0;
     }
+
     if(isset($_POST['skinti'])) {
-        foreach ($_SESSION['agurkai'] as $key => $value) {
+        foreach ($_SESSION['darzoves'] as $key => $value) {
             $value = unserialize($value);
             if($_POST['skinti'] == $value->id){
 
@@ -20,26 +20,28 @@
                 }
                 $value->kiekis -= $kiek;
                 $value = serialize($value);
-                $_SESSION['agurkai'][$key] = $value;
+                $_SESSION['darzoves'][$key] = $value;
                 header('Location: http://localhost/homework/agurkai-oop/skynimas.php');
                 exit;
             }
         }
     }
+
     if(isset($_POST['skinti-visus'])) {
-        foreach ($_SESSION['agurkai'] as $key => $value) {
+        foreach ($_SESSION['darzoves'] as $key => $value) {
             $value = unserialize($value);
             if($_POST['skinti-visus'] == $value->id){
                 $value->nuskintiVisus();
                 $value = serialize($value);
-                $_SESSION['agurkai'][$key] = $value;
+                $_SESSION['darzoves'][$key] = $value;
                 header('Location: http://localhost/homework/agurkai-oop/skynimas.php');
                 exit;
             }
         }
     }
+
     if(isset($_POST['nuimti-viska'])) {
-        $_SESSION['agurkai'] = Agurkas::nuimtiVisaDerliu($_SESSION['agurkai']);
+        $_SESSION['darzoves'] = Agurkas::nuimtiVisaDerliu($_SESSION['darzoves']);
         header('Location: http://localhost/homework/agurkai-oop/skynimas.php');
         exit;
     }
@@ -68,23 +70,38 @@
                 <?php endif ?>
                 <?php unset($_SESSION['error']); ?>
             <?php endif ?>
-            <?php foreach ($_SESSION['agurkai'] as $agurkas): ?>
-            <!-- <div class="items"> -->
-                <?php $agurkas = unserialize($agurkas) ?>
+            <?php foreach ($_SESSION['darzoves'] as $darzove): ?>
                 <form action="" method="post">
+                    <?php $darzove = unserialize($darzove) ?>
+                    <?php if ($darzove instanceof Agurkas): ?>
                     <div class="items skynimas">
-                        <img src="./img/cucumber-<?= $agurkas->imgPath?>.jpg" alt="Agurko nuotrauka">
-                            <?php if($agurkas->kiekis == 0): ?>
-                                <p>Agurkas nr. <?= $agurkas->id ?></p>
-                                <p>Kiekis: <span><?= $agurkas->kiekis ?></span></p>
+                        <img src="./img/cucumber-<?= $darzove->imgPath?>.jpg" alt="Agurko nuotrauka">
+                            <?php if($darzove->kiekis == 0): ?>
+                                <p>Agurkas nr. <?= $darzove->id ?></p>
+                                <p>Kiekis: <span><?= $darzove->kiekis ?></span></p>
                                 <p>Nėra ko skinti.</p>
                             <?php else: ?>
-                                <p>Galima skinti: <span style="font-weight: 600"><?= $agurkas->kiekis ?></span></p>
+                                <p>Galima skinti: <span style="font-weight: 600"><?= $darzove->kiekis ?></span></p>
                                 <input class="kiek" type="text" name="kiek">
-                                <button class="skinti" type="submit" name="skinti" value="<?= $agurkas->id ?>">Skinti</button>
-                                <button class="skinti-visus" type="submit" name="skinti-visus" value="<?= $agurkas->id ?>">Skinti visus</button>
+                                <button class="skinti" type="submit" name="skinti" value="<?= $darzove->id ?>">Skinti</button>
+                                <button class="skinti-visus" type="submit" name="skinti-visus" value="<?= $darzove->id ?>">Skinti visus</button>
                             <?php endif ?>
                     </div>
+                    <?php else: ?>
+                    <div class="items skynimas">
+                        <img src="./img/pea-<?= $darzove->imgPath?>.jpg" alt="Agurko nuotrauka">
+                            <?php if($darzove->kiekis == 0): ?>
+                                <p>Žirnis nr. <?= $darzove->id ?></p>
+                                <p>Kiekis: <span><?= $darzove->kiekis ?></span></p>
+                                <p>Nėra ko skinti.</p>
+                            <?php else: ?>
+                                <p>Galima skinti: <span style="font-weight: 600"><?= $darzove->kiekis ?></span></p>
+                                <input class="kiek" type="text" name="kiek">
+                                <button class="skinti" type="submit" name="skinti" value="<?= $darzove->id ?>">Skinti</button>
+                                <button class="skinti-visus" type="submit" name="skinti-visus" value="<?= $darzove->id ?>">Skinti visus</button>
+                            <?php endif ?>
+                    </div>
+                    <?php endif ?> 
                 </form>
             <?php endforeach ?>
             <form class="nuimti-viska" action="" method="post">

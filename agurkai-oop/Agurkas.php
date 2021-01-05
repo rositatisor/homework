@@ -21,6 +21,10 @@ class Agurkas {
         $this->kiekis = $this->kiekis + $addAgurkas;
     }
 
+    public function kiekAugti() {
+        return rand(2, 9);
+    }
+    
     public function nuskintiVisus() {
         $this->kiekis = 0;
     }

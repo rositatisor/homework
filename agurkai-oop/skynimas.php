@@ -58,7 +58,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Agurku sodas</h1>
+        <h1>Daržovių sodas</h1>
         <div class="nav">
             <a class="sodinimas" href="sodinimas.php">Sodinimas</a>
             <a class="auginimas" href="auginimas.php">Auginimas</a>
@@ -105,7 +105,7 @@
                 </form>
             <?php endforeach ?>
             <form class="nuimti-viska" action="" method="post">
-                <button class="nuimti-viska" type="submit" name="nuimti-viska">Nuimti visa agurku derliu</button>
+                <button class="nuimti-viska" type="submit" name="nuimti-viska">Nuimti visą derlių</button>
             </form>
     </div>
     <!-- <script src="./js/main.js" type="module"></script> -->

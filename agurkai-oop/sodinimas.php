@@ -49,7 +49,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Agurkų sodas</h1>
+        <h1>Daržovių sodas</h1>
         <div class="nav">
             <a class="sodinimas" href="sodinimas.php">Sodinimas</a>
             <a class="auginimas" href="auginimas.php">Auginimas</a>

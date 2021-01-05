@@ -20,6 +20,9 @@ class Zirnis {
     public function addZirnis($addZirnis) {
         $this->kiekis = $this->kiekis + $addZirnis;
     }
+    public function kiekAugti() {
+        return rand(1, 3);
+    }
 
     public function nuskintiVisus() {
         $this->kiekis = 0;

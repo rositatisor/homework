@@ -36,7 +36,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Agurku sodas</h1>
+        <h1>Daržovių sodas</h1>
         <div class="nav">
             <a class="sodinimas" href="sodinimas.php">Sodinimas</a>
             <a class="auginimas" href="auginimas.php">Auginimas</a>
@@ -49,21 +49,19 @@
                         <div class="items">
                             <img src="./img/cucumber-<?= $darzove->imgPath ?>.jpg" alt="Agurko nuotrauka">
                             <p>Agurkas nr. <?= $darzove->id ?></p>
-                            <?php $kiekis = rand(2, 9) ?>
                             <p>Kiekis: <?= $darzove->kiekis ?></p>
-                            <p class="kiek-augs">+<?= $kiekis ?></p>
+                            <p class="kiek-augs">+<?= $kiekis = $darzove->kiekAugti() ?></p>
                             <input type="hidden" name="kiekis[<?= $darzove->id ?>]" value="<?= $kiekis ?>">
                         </div>
                     <?php else: ?>
                         <div class="items">
                             <img src="./img/pea-<?= $darzove->imgPath ?>.jpg" alt="Agurko nuotrauka">
                             <p>Žirnis nr. <?= $darzove->id ?></p>
-                            <?php $kiekis = rand(1, 3) ?>
                             <p>Kiekis: <?= $darzove->kiekis ?></p>
-                            <p class="kiek-augs">+<?= $kiekis ?></p>
+                            <p class="kiek-augs">+<?= $kiekis = $darzove->kiekAugti() ?></p>
                             <input type="hidden" name="kiekis[<?= $darzove->id ?>]" value="<?= $kiekis ?>">
                         </div>
-                <?php endif ?>
+                    <?php endif ?>
             <?php endforeach ?>
             <button class="auginti" type="submit" name="auginti">Auginti</button>
         </form>

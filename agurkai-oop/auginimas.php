@@ -54,7 +54,7 @@
                             <p class="kiek-augs">+<?= $kiekis ?></p>
                             <input type="hidden" name="kiekis[<?= $darzove->id ?>]" value="<?= $kiekis ?>">
                         </div>
-                        <?php else: ?>
+                    <?php else: ?>
                         <div class="items">
                             <img src="./img/pea-<?= $darzove->imgPath ?>.jpg" alt="Agurko nuotrauka">
                             <p>Žirnis nr. <?= $darzove->id ?></p>

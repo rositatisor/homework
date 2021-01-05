@@ -3,18 +3,22 @@
     include __DIR__.'/Agurkas.php';
     include __DIR__.'/Zirnis.php';
 
-    if(!isset($_SESSION['agurkai'])) {
-        $_SESSION['agurkai'] = [];
-        $_SESSION['zirniai'] = [];
+    if(!isset($_SESSION['darzoves'])) {
+        $_SESSION['darzoves'] = [];
         $_SESSION['darzoviu id'] = 0;
     }
 
     if(isset($_POST['auginti'])) {
-        foreach ($_SESSION['agurkai'] as $key => $value) {
+        foreach ($_SESSION['darzoves'] as $key => $value) {
             $value = unserialize($value);
-            $value->addAgurkas($_POST['kiekis'][$value->id]);
+            //FIX: panaikinti IF perkeliant add metoda i tevine Class
+                if ($value instanceof Agurkas) {
+                    $value->addAgurkas($_POST['kiekis'][$value->id]);
+                } else {
+                    $value->addZirnis($_POST['kiekis'][$value->id]);
+                }
             $value = serialize($value);
-            $_SESSION['agurkai'][$key] = $value;
+            $_SESSION['darzoves'][$key] = $value;
         }
         header('Location: http://localhost/homework/agurkai-oop/auginimas.php');
         exit;
@@ -39,16 +43,27 @@
             <a class="skynimas" href="skynimas.php">Skynimas</a>
         </div>
         <form action="" method="post">
-            <?php foreach ($_SESSION['agurkai'] as $agurkas): ?>
-                <?php $agurkas = unserialize($agurkas) ?>
-                <div class="items">
-                    <img src="./img/cucumber-<?= $agurkas->imgPath ?>.jpg" alt="Agurko nuotrauka">
-                    <p>Agurkas nr. <?= $agurkas->id ?></p>
-                    <?php $kiekis = rand(2, 9) ?>
-                    <p>Kiekis: <?= $agurkas->kiekis ?></p>
-                    <p class="kiek-augs">+<?= $kiekis ?></p>
-                    <input type="hidden" name="kiekis[<?= $agurkas->id ?>]" value="<?= $kiekis ?>">
-                </div>
+            <?php foreach ($_SESSION['darzoves'] as $darzove): ?>
+                <?php $darzove = unserialize($darzove) ?>
+                    <?php if ($darzove instanceof Agurkas): ?>
+                        <div class="items">
+                            <img src="./img/cucumber-<?= $darzove->imgPath ?>.jpg" alt="Agurko nuotrauka">
+                            <p>Agurkas nr. <?= $darzove->id ?></p>
+                            <?php $kiekis = rand(2, 9) ?>
+                            <p>Kiekis: <?= $darzove->kiekis ?></p>
+                            <p class="kiek-augs">+<?= $kiekis ?></p>
+                            <input type="hidden" name="kiekis[<?= $darzove->id ?>]" value="<?= $kiekis ?>">
+                        </div>
+                        <?php else: ?>
+                        <div class="items">
+                            <img src="./img/pea-<?= $darzove->imgPath ?>.jpg" alt="Agurko nuotrauka">
+                            <p>Žirnis nr. <?= $darzove->id ?></p>
+                            <?php $kiekis = rand(1, 3) ?>
+                            <p>Kiekis: <?= $darzove->kiekis ?></p>
+                            <p class="kiek-augs">+<?= $kiekis ?></p>
+                            <input type="hidden" name="kiekis[<?= $darzove->id ?>]" value="<?= $kiekis ?>">
+                        </div>
+                <?php endif ?>
             <?php endforeach ?>
             <button class="auginti" type="submit" name="auginti">Auginti</button>
         </form>

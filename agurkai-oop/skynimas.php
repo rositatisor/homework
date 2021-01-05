@@ -7,36 +7,40 @@
         $_SESSION['agurku ID'] = 0;
     }
     if(isset($_POST['skinti'])) {
-        foreach ($_SESSION['agurkai'] as &$value) {
+        foreach ($_SESSION['agurkai'] as $key => $value) {
+            $value = unserialize($value);
             if($_POST['skinti'] == $value->id){
+
                 $kiek = (int) $_POST['kiek'];
                 if($value->kiekis < $kiek || $kiek < 0) {
                     $_SESSION['error'] = 1;
                     break;
                 }
                 $value->kiekis -= $kiek;
+                $value = serialize($value);
+                $_SESSION['agurkai'][$key] = $value;
                 header('Location: http://localhost/homework/agurkai-oop/skynimas.php');
                 exit;
             }
         }
     }
     if(isset($_POST['skinti-visus'])) {
-        foreach ($_SESSION['agurkai'] as &$value) {
+        foreach ($_SESSION['agurkai'] as $key => $value) {
+            $value = unserialize($value);
             if($_POST['skinti-visus'] == $value->id){
-                $value->kiekis = 0;
+                $value->nuskintiVisus();
+                $value = serialize($value);
+                $_SESSION['agurkai'][$key] = $value;
                 header('Location: http://localhost/homework/agurkai-oop/skynimas.php');
                 exit;
             }
         }
     }
     if(isset($_POST['nuimti-viska'])) {
-        foreach ($_SESSION['agurkai'] as &$value) {
-            $value->kiekis = 0;
-        }
+        $_SESSION['agurkai'] = Agurkas::nuimtiVisaDerliu($_SESSION['agurkai']);
         header('Location: http://localhost/homework/agurkai-oop/skynimas.php');
         exit;
     }
-    // $_SESSION['agurkai'] = Agurkas::nuimtiVisaDerliu($_SESSION['agurkai']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,8 +66,9 @@
                 <?php endif ?>
                 <?php unset($_SESSION['error']); ?>
             <?php endif ?>
-            <?php foreach ($_SESSION['agurkai'] as $key => $agurkas): ?>
+            <?php foreach ($_SESSION['agurkai'] as $agurkas): ?>
             <!-- <div class="items"> -->
+                <?php $agurkas = unserialize($agurkas) ?>
                 <form action="" method="post">
                     <div class="items skynimas">
                         <img src="./img/cucumber-<?= $agurkas->imgPath?>.jpg" alt="Agurko nuotrauka">

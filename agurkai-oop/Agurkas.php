@@ -21,7 +21,7 @@ class Agurkas {
         $this->kiekis = $this->kiekis + $addAgurkas;
     }
 
-    public function nuskintiVisus(){
+    public function nuskintiVisus() {
         $this->kiekis = 0;
     }
 

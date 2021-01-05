@@ -1,4 +1,5 @@
 ![Homework](https://img.shields.io/badge/PHP-homework-blue)
+![HitCount](http://hits.dwyl.com/rositatisor/homework.svg)
 ![Watchers](https://img.shields.io/github/watchers/rositatisor/homework?style=social)
 
 # PHP homework

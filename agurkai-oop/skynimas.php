@@ -1,10 +1,12 @@
 <?php
-    include __DIR__.'/Agurkas.php';
     session_start();
+    include __DIR__.'/Agurkas.php';
+    include __DIR__.'/Zirnis.php';
 
     if(!isset($_SESSION['agurkai'])) {
         $_SESSION['agurkai'] = [];
-        $_SESSION['agurku ID'] = 0;
+        $_SESSION['zirniai'] = [];
+        $_SESSION['darzoviu id'] = 0;
     }
     if(isset($_POST['skinti'])) {
         foreach ($_SESSION['agurkai'] as $key => $value) {

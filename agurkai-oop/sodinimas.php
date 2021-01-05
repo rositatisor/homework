@@ -1,26 +1,35 @@
 <?php
     session_start();
     include __DIR__.'/Agurkas.php';
+    include __DIR__.'/Zirnis.php';
     
-    if(!isset($_SESSION['agurkai'])) {
-        $_SESSION['agurkai'] = [];
-        $_SESSION['agurku ID'] = 0;
+    if(!isset($_SESSION['darzoves'])) {
+        $_SESSION['darzoves'] = [];
+        $_SESSION['darzoviu id'] = 0;
     }
+
     _d($_SESSION);
 
-    if(isset($_POST['sodinti'])) {
-        $agurkasObj = new Agurkas($_SESSION['agurku ID']);
-        $_SESSION['agurku ID']++;
-        $_SESSION['agurkai'][] = serialize($agurkasObj);
+    if(isset($_POST['sodinti-agurka'])) {
+        $agurkasObj = new Agurkas($_SESSION['darzoviu id']);
+        $_SESSION['darzoviu id']++;
+        $_SESSION['darzoves'][] = serialize($agurkasObj);
+        header('Location: http://localhost/homework/agurkai-oop/sodinimas.php');
+        exit;
+    }
+    if(isset($_POST['sodinti-zirni'])) {
+        $zirnisObj = new Zirnis($_SESSION['darzoviu id']);
+        $_SESSION['darzoviu id']++;
+        $_SESSION['darzoves'][] = serialize($zirnisObj);
         header('Location: http://localhost/homework/agurkai-oop/sodinimas.php');
         exit;
     }
     
     if(isset($_POST['rauti'])) {
-        foreach ($_SESSION['agurkai'] as $key => $value) {
+        foreach ($_SESSION['darzoves'] as $key => $value) {
             $value = unserialize($value);
             if($_POST['rauti'] == $value->id){
-                unset($_SESSION['agurkai'][$key]);
+                unset($_SESSION['darzoves'][$key]);
                 header('Location: http://localhost/homework/agurkai-oop/sodinimas.php');
                 exit;
             }
@@ -40,23 +49,33 @@
 </head>
 <body>
     <div class="container">
-        <h1>Agurku sodas</h1>
+        <h1>Agurkų sodas</h1>
         <div class="nav">
             <a class="sodinimas" href="sodinimas.php">Sodinimas</a>
             <a class="auginimas" href="auginimas.php">Auginimas</a>
             <a class="skynimas" href="skynimas.php">Skynimas</a>
         </div>
         <form action="" method="post">
-            <?php foreach ($_SESSION['agurkai'] as $agurkas): ?>
-                <?php $agurkas = unserialize($agurkas) ?>
-                <div class="items">
-                    <img src="./img/cucumber-<?= $agurkas->imgPath?>.jpg" alt="Agurko nuotrauka">
-                    <p>Agurkas nr. <?= $agurkas->id ?></p>
-                    <p>Kiekis: <?= $agurkas->kiekis ?></p>
-                    <button class="rauti" type="submit" name="rauti" value="<?= $agurkas->id ?>">+</button>
-                </div>
+            <?php foreach ($_SESSION['darzoves'] as $darzove): ?>
+                <?php $darzove = unserialize($darzove) ?>
+                    <?php if ($darzove instanceof Agurkas): ?>
+                        <div class="items">
+                            <img src="./img/cucumber-<?= $darzove->imgPath?>.jpg" alt="Agurko nuotrauka">
+                            <p>Agurkas nr. <?= $darzove->id ?></p>
+                            <p>Kiekis: <?= $darzove->kiekis ?></p>
+                            <button class="rauti" type="submit" name="rauti" value="<?= $darzove->id ?>">+</button>
+                        </div>
+                        <?php else: ?>
+                            <div class="items">
+                                <img src="./img/pea-<?= $darzove->imgPath?>.jpg" alt="Agurko nuotrauka">
+                                <p>Žirnis nr. <?= $darzove->id ?></p>
+                                <p>Kiekis: <?= $darzove->kiekis ?></p>
+                                <button class="rauti" type="submit" name="rauti" value="<?= $darzove->id ?>">+</button>
+                            </div>
+                    <?php endif ?>
             <?php endforeach ?>
-            <button class="sodinti" type="submit" name="sodinti">Sodinti</button>
+                        <button class="sodinti agurka" type="submit" name="sodinti-agurka">Sodinti agurką</button>
+                        <button class="sodinti zirni" type="submit" name="sodinti-zirni">Sodinti žirnį</button>
         </form>
     </div>
     <!-- <script src="./js/main.js" type="module"></script> -->

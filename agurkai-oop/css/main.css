@@ -159,8 +159,8 @@ button {
             position: absolute;
             height: 40px;
             width: 100%;
-            bottom: 0;
             left: 0;
+            bottom: 0;
             text-transform: uppercase;
             font-size: 14px;
             line-height: 30px;
@@ -172,8 +172,20 @@ button {
             border-radius: 0 0 15px 15px;
             background: #8EA382;
         }
-            button.sodinti:hover,
-            button.auginti:hover,
-            button.nuimti-viska:hover {
-                background: #80956E;
+            button.sodinti.agurka {
+                width: 50%;
+                border-radius: 0 0 0 15px;
+                border-right: 1px solid #CDDAC6;
             }
+            button.sodinti.zirni {
+                width: 50%;
+                left: unset;
+                right: 0;
+                border-radius: 0 0 15px 0;
+                border-left: 1px solid #CDDAC6;
+            }
+        button.sodinti:hover,
+        button.auginti:hover,
+        button.nuimti-viska:hover {
+            background: #80956E;
+        }

@@ -1,26 +1,24 @@
 <?php
-    include __DIR__.'/Agurkas.php';
     session_start();
-
-
+    include __DIR__.'/Agurkas.php';
+    
     if(!isset($_SESSION['agurkai'])) {
         $_SESSION['agurkai'] = [];
         $_SESSION['agurku ID'] = 0;
     }
-    // $agurkas = new Agurkas;
     _d($_SESSION);
-    // _dc($_SESSION);
-    // _d($agurkas);
 
     if(isset($_POST['sodinti'])) {
-        $_SESSION['agurkai'][] = new Agurkas(++$_SESSION['agurku ID']);
-        // ++$_SESSION['agurku ID'];
+        $agurkasObj = new Agurkas($_SESSION['agurku ID']);
+        $_SESSION['agurku ID']++;
+        $_SESSION['agurkai'][] = serialize($agurkasObj);
         header('Location: http://localhost/homework/agurkai-oop/sodinimas.php');
         exit;
     }
     
     if(isset($_POST['rauti'])) {
         foreach ($_SESSION['agurkai'] as $key => $value) {
+            $value = unserialize($value);
             if($_POST['rauti'] == $value->id){
                 unset($_SESSION['agurkai'][$key]);
                 header('Location: http://localhost/homework/agurkai-oop/sodinimas.php');
@@ -50,6 +48,7 @@
         </div>
         <form action="" method="post">
             <?php foreach ($_SESSION['agurkai'] as $agurkas): ?>
+                <?php $agurkas = unserialize($agurkas) ?>
                 <div class="items">
                     <img src="./img/cucumber-<?= $agurkas->imgPath?>.jpg" alt="Agurko nuotrauka">
                     <p>Agurkas nr. <?= $agurkas->id ?></p>

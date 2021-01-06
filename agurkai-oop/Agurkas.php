@@ -1,6 +1,6 @@
 <?php
 
-class Agurkas {
+class Agurkas extends Darzove{
     private $kiekis, $id, $imgPath;
 
      public function __construct($id) {
@@ -17,25 +17,7 @@ class Agurkas {
         $this->$propertyName = $value;
     }
 
-    public function addAgurkas($addAgurkas) {
-        $this->kiekis = $this->kiekis + $addAgurkas;
-    }
-
     public function kiekAugti() {
         return rand(2, 9);
-    }
-    
-    public function nuskintiVisus() {
-        $this->kiekis = 0;
-    }
-
-    public static function nuimtiVisaDerliu($allAgurkai) {
-        foreach ($allAgurkai as $key => $agurkas) {
-            $agurkas = unserialize($agurkas);
-            $agurkas->nuskintiVisus();
-            $agurkas = serialize($agurkas);
-            $allAgurkai[$key] = $agurkas;
-        }
-        return $allAgurkai;
     }
 }

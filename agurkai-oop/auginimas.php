@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include __DIR__.'/Darzove.php';
     include __DIR__.'/Agurkas.php';
     include __DIR__.'/Zirnis.php';
 
@@ -13,9 +14,9 @@
             $value = unserialize($value);
             //FIX: panaikinti IF perkeliant add metoda i tevine Class
                 if ($value instanceof Agurkas) {
-                    $value->addAgurkas($_POST['kiekis'][$value->id]);
+                    $value->augintiDarzove($_POST['kiekis'][$value->id]);
                 } else {
-                    $value->addZirnis($_POST['kiekis'][$value->id]);
+                    $value->augintiDarzove($_POST['kiekis'][$value->id]);
                 }
             $value = serialize($value);
             $_SESSION['darzoves'][$key] = $value;

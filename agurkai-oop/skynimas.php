@@ -5,10 +5,7 @@
     include __DIR__.'/Agurkas.php';
     include __DIR__.'/Zirnis.php';
 
-    if(!isset($_SESSION['darzoves'])) {
-        $_SESSION['darzoves'] = [];
-        $_SESSION['darzoviu id'] = 0;
-    }
+    App::setSession();
 
     if(isset($_POST['skinti'])) {
         foreach ($_SESSION['darzoves'] as $key => $value) {

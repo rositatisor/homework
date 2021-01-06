@@ -5,20 +5,12 @@
     include __DIR__.'/Agurkas.php';
     include __DIR__.'/Zirnis.php';
 
-    if(!isset($_SESSION['darzoves'])) {
-        $_SESSION['darzoves'] = [];
-        $_SESSION['darzoviu id'] = 0;
-    }
+    App::setSession();
 
     if(isset($_POST['auginti'])) {
         foreach ($_SESSION['darzoves'] as $key => $value) {
             $value = unserialize($value);
-            //FIX: panaikinti IF perkeliant add metoda i tevine Class
-                if ($value instanceof Agurkas) {
-                    $value->augintiDarzove($_POST['kiekis'][$value->id]);
-                } else {
-                    $value->augintiDarzove($_POST['kiekis'][$value->id]);
-                }
+            $value->augintiDarzove($_POST['kiekis'][$value->id]);
             $value = serialize($value);
             $_SESSION['darzoves'][$key] = $value;
         }

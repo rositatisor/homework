@@ -5,34 +5,21 @@
     include __DIR__.'/Agurkas.php';
     include __DIR__.'/Zirnis.php';
     
-    if(!isset($_SESSION['darzoves'])) {
-        $_SESSION['darzoves'] = [];
-        $_SESSION['darzoviu id'] = 0;
-    }
-
-    _d($_SESSION);
+    App::setSession();
 
     if(isset($_POST['sodinti-agurka'])) {
-        $agurkasObj = new Agurkas($_SESSION['darzoviu id']);
-        $_SESSION['darzoviu id']++;
-        $_SESSION['darzoves'][] = serialize($agurkasObj);
+        App::plantAgurkas();
         App::redirect('sodinimas');
     }
+
     if(isset($_POST['sodinti-zirni'])) {
-        $zirnisObj = new Zirnis($_SESSION['darzoviu id']);
-        $_SESSION['darzoviu id']++;
-        $_SESSION['darzoves'][] = serialize($zirnisObj);
+        App::plantZirnis();
         App::redirect('sodinimas');
     }
     
     if(isset($_POST['rauti'])) {
-        foreach ($_SESSION['darzoves'] as $key => $value) {
-            $value = unserialize($value);
-            if($_POST['rauti'] == $value->id){
-                unset($_SESSION['darzoves'][$key]);
-                App::redirect('sodinimas');
-            }
-        }
+        App::remove();
+        App::redirect('sodinimas');
     }
 ?>
 <!DOCTYPE html>

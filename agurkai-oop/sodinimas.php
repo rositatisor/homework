@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include __DIR__.'/App.php';
     include __DIR__.'/Darzove.php';
     include __DIR__.'/Agurkas.php';
     include __DIR__.'/Zirnis.php';
@@ -15,15 +16,13 @@
         $agurkasObj = new Agurkas($_SESSION['darzoviu id']);
         $_SESSION['darzoviu id']++;
         $_SESSION['darzoves'][] = serialize($agurkasObj);
-        header('Location: http://localhost/homework/agurkai-oop/sodinimas.php');
-        exit;
+        App::redirect('sodinimas');
     }
     if(isset($_POST['sodinti-zirni'])) {
         $zirnisObj = new Zirnis($_SESSION['darzoviu id']);
         $_SESSION['darzoviu id']++;
         $_SESSION['darzoves'][] = serialize($zirnisObj);
-        header('Location: http://localhost/homework/agurkai-oop/sodinimas.php');
-        exit;
+        App::redirect('sodinimas');
     }
     
     if(isset($_POST['rauti'])) {
@@ -31,8 +30,7 @@
             $value = unserialize($value);
             if($_POST['rauti'] == $value->id){
                 unset($_SESSION['darzoves'][$key]);
-                header('Location: http://localhost/homework/agurkai-oop/sodinimas.php');
-                exit;
+                App::redirect('sodinimas');
             }
         }
     }

@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include __DIR__.'/App.php';
     include __DIR__.'/Darzove.php';
     include __DIR__.'/Agurkas.php';
     include __DIR__.'/Zirnis.php';
@@ -22,8 +23,7 @@
                 $value->kiekis -= $kiek;
                 $value = serialize($value);
                 $_SESSION['darzoves'][$key] = $value;
-                header('Location: http://localhost/homework/agurkai-oop/skynimas.php');
-                exit;
+                App::redirect('skynimas');
             }
         }
     }
@@ -35,16 +35,14 @@
                 $value->nuskintiVisus();
                 $value = serialize($value);
                 $_SESSION['darzoves'][$key] = $value;
-                header('Location: http://localhost/homework/agurkai-oop/skynimas.php');
-                exit;
+                App::redirect('skynimas');
             }
         }
     }
 
     if(isset($_POST['nuimti-viska'])) {
         $_SESSION['darzoves'] = Agurkas::nuimtiVisaDerliu($_SESSION['darzoves']);
-        header('Location: http://localhost/homework/agurkai-oop/skynimas.php');
-        exit;
+        App::redirect('skynimas');
     }
 ?>
 <!DOCTYPE html>

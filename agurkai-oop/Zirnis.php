@@ -1,6 +1,6 @@
 <?php
 
-class Zirnis extends Darzove{
+class Zirnis extends Darzove {
     private $kiekis, $id, $imgPath;
 
      public function __construct($id) {

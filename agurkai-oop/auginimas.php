@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include __DIR__.'/App.php';
     include __DIR__.'/Darzove.php';
     include __DIR__.'/Agurkas.php';
     include __DIR__.'/Zirnis.php';
@@ -21,8 +22,7 @@
             $value = serialize($value);
             $_SESSION['darzoves'][$key] = $value;
         }
-        header('Location: http://localhost/homework/agurkai-oop/auginimas.php');
-        exit;
+        App::redirect('auginimas');
     }
 ?>
 <!DOCTYPE html>

@@ -8,12 +8,7 @@
     App::setSession();
 
     if(isset($_POST['auginti'])) {
-        foreach ($_SESSION['darzoves'] as $key => $value) {
-            $value = unserialize($value);
-            $value->augintiDarzove($_POST['kiekis'][$value->id]);
-            $value = serialize($value);
-            $_SESSION['darzoves'][$key] = $value;
-        }
+        App::grow();
         App::redirect('auginimas');
     }
 ?>

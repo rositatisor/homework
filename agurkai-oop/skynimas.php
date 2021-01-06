@@ -8,37 +8,17 @@
     App::setSession();
 
     if(isset($_POST['skinti'])) {
-        foreach ($_SESSION['darzoves'] as $key => $value) {
-            $value = unserialize($value);
-            if($_POST['skinti'] == $value->id){
-
-                $kiek = (int) $_POST['kiek'];
-                if($value->kiekis < $kiek || $kiek < 0) {
-                    $_SESSION['error'] = 1;
-                    break;
-                }
-                $value->kiekis -= $kiek;
-                $value = serialize($value);
-                $_SESSION['darzoves'][$key] = $value;
-                App::redirect('skynimas');
-            }
-        }
+        App::harvest();
+        App::redirect('skynimas');
     }
-
+    
     if(isset($_POST['skinti-visus'])) {
-        foreach ($_SESSION['darzoves'] as $key => $value) {
-            $value = unserialize($value);
-            if($_POST['skinti-visus'] == $value->id){
-                $value->nuskintiVisus();
-                $value = serialize($value);
-                $_SESSION['darzoves'][$key] = $value;
-                App::redirect('skynimas');
-            }
-        }
+        App::harvestOne();
+        App::redirect('skynimas');
     }
 
     if(isset($_POST['nuimti-viska'])) {
-        $_SESSION['darzoves'] = Agurkas::nuimtiVisaDerliu($_SESSION['darzoves']);
+        App::harvestAll();
         App::redirect('skynimas');
     }
 ?>

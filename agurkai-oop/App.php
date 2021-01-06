@@ -9,6 +9,11 @@ class App {
         }
     }
 
+    public static function save($value, $key) {
+        $value = serialize($value);
+        $_SESSION['darzoves'][$key] = $value;
+    }
+
     public static function plantAgurkas() {
         $agurkasObj = new Agurkas($_SESSION['darzoviu id']);
         $_SESSION['darzoviu id']++;
@@ -34,9 +39,7 @@ class App {
         foreach ($_SESSION['darzoves'] as $key => $value) {
             $value = unserialize($value);
             $value->augintiDarzove($_POST['kiekis'][$value->id]);
-            // TODO: dvi eilutes žemiau iškelti į kitą metodą
-            $value = serialize($value);
-            $_SESSION['darzoves'][$key] = $value;
+            self::save($value, $key);
         }
     }
 
@@ -51,8 +54,7 @@ class App {
                     break;
                 }
                 $value->kiekis -= $kiek;
-                $value = serialize($value);
-                $_SESSION['darzoves'][$key] = $value;
+                self::save($value, $key);
             }
         }
     }
@@ -62,18 +64,16 @@ class App {
             $value = unserialize($value);
             if($_POST['skinti-visus'] == $value->id){
                 $value->nuskintiVisus();
-                $value = serialize($value);
-                $_SESSION['darzoves'][$key] = $value;
+                self::save($value, $key);
             }
         }
     }
 
     public static function harvestAll() {
-        foreach ($_SESSION['darzoves'] as $key => $agurkas) {
-            $agurkas = unserialize($agurkas);
-            $agurkas->nuskintiVisus();
-            $agurkas = serialize($agurkas);
-            $_SESSION['darzoves'][$key] = $agurkas;
+        foreach ($_SESSION['darzoves'] as $key => $value) {
+            $value = unserialize($value);
+            $value->nuskintiVisus();
+            self::save($value, $key);
         }
     }
 

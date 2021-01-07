@@ -1,6 +1,9 @@
 <?php
+namespace Cucumber;
 
-class Zirnis extends Darzove {
+use Veggies\Darzove;
+
+class Agurkas extends Darzove {
     private $kiekis, $id, $imgPath;
 
      public function __construct($id) {
@@ -18,6 +21,6 @@ class Zirnis extends Darzove {
     }
 
     public function kiekAugti() {
-        return rand(1, 3);
+        return rand(2, 9);
     }
 }

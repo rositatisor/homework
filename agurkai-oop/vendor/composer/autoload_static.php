@@ -6,6 +6,44 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit3a67d0351b6548fcfa19d65ea485362a
 {
+    public static $prefixLengthsPsr4 = array (
+        'V' => 
+        array (
+            'Veggies\\' => 8,
+        ),
+        'P' => 
+        array (
+            'Pea\\' => 4,
+        ),
+        'M' => 
+        array (
+            'Main\\' => 5,
+        ),
+        'C' => 
+        array (
+            'Cucumber\\' => 9,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Veggies\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/inc',
+        ),
+        'Pea\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/inc',
+        ),
+        'Main\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/inc',
+        ),
+        'Cucumber\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/inc',
+        ),
+    );
+
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
@@ -13,6 +51,8 @@ class ComposerStaticInit3a67d0351b6548fcfa19d65ea485362a
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit3a67d0351b6548fcfa19d65ea485362a::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit3a67d0351b6548fcfa19d65ea485362a::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit3a67d0351b6548fcfa19d65ea485362a::$classMap;
 
         }, null, ClassLoader::class);

@@ -5,7 +5,10 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "\\": ""
+            "Main\\": "inc",
+            "Cucumber\\": "inc",
+            "Pea\\": "inc",
+            "Veggies\\": "inc"
         }
     }
 }

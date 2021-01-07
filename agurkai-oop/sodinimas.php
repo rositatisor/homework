@@ -1,9 +1,9 @@
 <?php
     session_start();
-    include __DIR__.'/App.php';
-    include __DIR__.'/Darzove.php';
-    include __DIR__.'/Agurkas.php';
-    include __DIR__.'/Zirnis.php';
+    include __DIR__.'/vendor/autoload.php';
+
+    use Main\App;
+    use Cucumber\Agurkas;
     
     App::setSession();
 

@@ -1,0 +1,11 @@
+{
+    "name": "narku/agurkai-oop",
+    "description": "agurcikai",
+    "license": "MIT",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "\\": ""
+        }
+    }
+}

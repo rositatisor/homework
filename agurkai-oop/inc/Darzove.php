@@ -3,7 +3,7 @@ namespace Veggies;
 
 use Greenhouse\Siltnamis;
 
-class Darzove implements Siltnamis {
+abstract class Darzove implements Siltnamis {
 
     public function augintiDarzove($kiek) {
         $this->kiekis = $this->kiekis + $kiek;
@@ -12,4 +12,6 @@ class Darzove implements Siltnamis {
     public function nuskintiVisus() {
         $this->kiekis = 0;
     }
+
+    abstract public function kiekAugti();
 }

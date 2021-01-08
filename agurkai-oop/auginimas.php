@@ -3,6 +3,7 @@
     include __DIR__.'/vendor/autoload.php';
 
     use Main\App;
+    use Cucumber\Agurkas;
     
     App::setSession();
 

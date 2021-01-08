@@ -19,6 +19,10 @@ class ComposerStaticInit3a67d0351b6548fcfa19d65ea485362a
         array (
             'Main\\' => 5,
         ),
+        'G' => 
+        array (
+            'Greenhouse\\' => 11,
+        ),
         'C' => 
         array (
             'Cucumber\\' => 9,
@@ -35,6 +39,10 @@ class ComposerStaticInit3a67d0351b6548fcfa19d65ea485362a
             0 => __DIR__ . '/../..' . '/inc',
         ),
         'Main\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/inc',
+        ),
+        'Greenhouse\\' => 
         array (
             0 => __DIR__ . '/../..' . '/inc',
         ),

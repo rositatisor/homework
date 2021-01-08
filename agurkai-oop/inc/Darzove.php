@@ -1,7 +1,9 @@
 <?php
 namespace Veggies;
 
-class Darzove {
+use Greenhouse\Siltnamis;
+
+class Darzove implements Siltnamis {
 
     public function augintiDarzove($kiek) {
         $this->kiekis = $this->kiekis + $kiek;

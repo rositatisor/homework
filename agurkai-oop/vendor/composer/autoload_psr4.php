@@ -9,5 +9,6 @@ return array(
     'Veggies\\' => array($baseDir . '/inc'),
     'Pea\\' => array($baseDir . '/inc'),
     'Main\\' => array($baseDir . '/inc'),
+    'Greenhouse\\' => array($baseDir . '/inc'),
     'Cucumber\\' => array($baseDir . '/inc'),
 );

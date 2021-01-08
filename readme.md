@@ -17,8 +17,7 @@ This repository is for educational porpuses only.
 7. WEB (WEB mechanika)
 8. OOP basics (Agurku sodas-oop)
 
-<img width="620" alt="Capture" src="https://user-images.githubusercontent.com/70884246/103665114-b7e8ef80-4f7b-11eb-9365-4791f4ab806f.PNG">
-
+<img width="550" alt="Capture" src="https://user-images.githubusercontent.com/70884246/104020921-9af42c80-51c6-11eb-8749-78450105ea9e.PNG">
 
 ### Authors
 [Rosita](https://github.com/rositatisor)

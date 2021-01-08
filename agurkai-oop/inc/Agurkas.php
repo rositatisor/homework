@@ -6,7 +6,7 @@ use Veggies\Darzove;
 class Agurkas extends Darzove {
     private $kiekis, $id, $imgPath;
 
-     public function __construct($id) {
+    public function __construct($id) {
         $this->id = $id + 1;
         $this->imgPath = rand(1, 6);
         $this->kiekis = 0;

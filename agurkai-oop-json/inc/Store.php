@@ -40,6 +40,11 @@ class Store {
         return $id;        
     }
 
+    public function save($darzove, $key) {
+        $darzove = serialize($darzove);
+        $this->data['darzoves'][$key] = $darzove;
+    }
+
     public function addNewCucumber(Agurkas $agurkasObj) {
         $this->data['darzoves'][] = serialize($agurkasObj);
     }
@@ -70,17 +75,10 @@ class Store {
         foreach ($this->data['darzoves'] as $key => $darzove) {
             $darzove = unserialize($darzove);
             $darzove->augintiDarzove($_POST['kiekis'][$darzove->id]);
-            _d($darzove);
-            $darzove = serialize($darzove);
-            $this->data['darzoves'][$key] = $darzove;
+            self::save($darzove, $key);
         }
     }
-
-    // public function save($value, $key) {
-    //     $value = serialize($value);
-    //     $_SESSION['darzoves'][$key] = $value;
-    // }
-
+    
     public function harvest() {
         foreach ($this->data['darzoves'] as $key => $darzove) {
             $darzove = unserialize($darzove);
@@ -92,8 +90,7 @@ class Store {
                     break;
                 }
                 $darzove->kiekis -= $kiek;
-                $darzove = serialize($darzove);
-                $this->data['darzoves'][$key] = $darzove;
+                self::save($darzove, $key);
             }
         }
     }
@@ -103,8 +100,7 @@ class Store {
             $darzove = unserialize($darzove);
             if($_POST['skinti-visus'] == $darzove->id){
                 $darzove->nuskintiVisus();
-                $darzove = serialize($darzove);
-                $this->data['darzoves'][$key] = $darzove;
+                self::save($darzove, $key);
             }
         }
     }
@@ -113,8 +109,7 @@ class Store {
         foreach ($this->data['darzoves'] as $key => $darzove) {
             $darzove = unserialize($darzove);
             $darzove->nuskintiVisus();
-            $darzove = serialize($darzove);
-            $this->data['darzoves'][$key] = $darzove;
+            self::save($darzove, $key);
         }
     }
 

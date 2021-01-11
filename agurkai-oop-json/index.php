@@ -2,13 +2,13 @@
 
 define('DOOR_BELL', 'ring');
 define('INSTALL_FOLDER', '/homework/agurkai-oop-json/');
+define('URL', 'http://localhost/homework/agurkai-oop-json/');
 
 $uri = str_replace(INSTALL_FOLDER, '', $_SERVER['REQUEST_URI']);
 $uri = explode('/', $uri);
 
 include __DIR__.'/bootstrap.php';
 
-define('URL', 'http://localhost/homework/agurkai-oop-json/');
 define('DIR', __DIR__);
 
 

@@ -36,11 +36,11 @@
     <div class="container">
         <h1>Daržovių sodas</h1>
         <div class="nav">
-            <a class="sodinimas" href="sodinimas.php">Sodinimas</a>
-            <a class="auginimas" href="auginimas.php">Auginimas</a>
-            <a class="skynimas" href="skynimas.php">Skynimas</a>
+            <a class="sodinimas" href="sodinimas">Sodinimas</a>
+            <a class="auginimas" href="auginimas">Auginimas</a>
+            <a class="skynimas" href="skynimas">Skynimas</a>
         </div>
-        <form action="" method="post">
+        <form action="<?= URL.'sodinimas' ?>" method="post">
             <?php foreach ($_SESSION['darzoves'] as $darzove): ?>
                 <?php $darzove = unserialize($darzove) ?>
                     <?php if ($darzove instanceof Agurkas): ?>

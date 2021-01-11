@@ -35,9 +35,9 @@
     <div class="container">
         <h1>Daržovių sodas</h1>
         <div class="nav">
-            <a class="sodinimas" href="sodinimas.php">Sodinimas</a>
-            <a class="auginimas" href="auginimas.php">Auginimas</a>
-            <a class="skynimas" href="skynimas.php">Skynimas</a>
+            <a class="sodinimas" href="sodinimas">Sodinimas</a>
+            <a class="auginimas" href="auginimas">Auginimas</a>
+            <a class="skynimas" href="skynimas">Skynimas</a>
         </div>
             <?php if (isset($_SESSION['error'])): ?>
                 <?php if( 1 == $_SESSION['error']): ?>
@@ -46,7 +46,7 @@
                 <?php unset($_SESSION['error']); ?>
             <?php endif ?>
             <?php foreach ($_SESSION['darzoves'] as $darzove): ?>
-                <form action="" method="post">
+                <form action="<?= URL.'skynimas' ?>" method="post">
                     <?php $darzove = unserialize($darzove) ?>
                     <?php if ($darzove instanceof Agurkas): ?>
                     <div class="items skynimas">
@@ -79,7 +79,7 @@
                     <?php endif ?> 
                 </form>
             <?php endforeach ?>
-            <form class="nuimti-viska" action="" method="post">
+            <form class="nuimti-viska" action="<?= URL.'skynimas' ?>" method="post">
                 <button class="nuimti-viska" type="submit" name="nuimti-viska">Nuimti visą derlių</button>
             </form>
     </div>

@@ -3,8 +3,6 @@
     
     use Main\App;
     use Cucumber\Agurkas;
-    
-    App::setSession();
 
     if(isset($_POST['auginti'])) {
         App::grow();

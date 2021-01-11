@@ -1,23 +1,27 @@
 <?php
     defined('DOOR_BELL') || die('Priėjimas nepasiekiamas');
     
+    use Main\Store;
     use Main\App;
     use Cucumber\Agurkas;
-    
-    App::setSession();
+    use Pea\Zirnis;
+
+    $store = new Store('darzoves');
 
     if(isset($_POST['sodinti-agurka'])) {
-        App::plantAgurkas();
+        $agurkasObj = new Agurkas($store->getNewId());
+        $store->addNewCucumber($agurkasObj);
         App::redirect('sodinimas');
     }
 
     if(isset($_POST['sodinti-zirni'])) {
-        App::plantZirnis();
+        $zirnisObj = new Zirnis($store->getNewId());
+        $store->addNewPea($zirnisObj);
         App::redirect('sodinimas');
     }
     
     if(isset($_POST['rauti'])) {
-        App::remove();
+        $store->remove($_POST['rauti']);
         App::redirect('sodinimas');
     }
 ?>
@@ -41,8 +45,7 @@
             <a class="skynimas" href="skynimas">Skynimas</a>
         </div>
         <form action="<?= URL.'sodinimas' ?>" method="post">
-            <?php foreach ($_SESSION['darzoves'] as $darzove): ?>
-                <?php $darzove = unserialize($darzove) ?>
+            <?php foreach ($store->getAll() as $darzove): ?>
                     <?php if ($darzove instanceof Agurkas): ?>
                         <div class="items">
                             <img src="./img/cucumber-<?= $darzove->imgPath?>.jpg" alt="Agurko nuotrauka">

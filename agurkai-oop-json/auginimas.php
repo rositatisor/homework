@@ -1,7 +1,6 @@
 <?php
-    session_start();
-    include __DIR__.'/vendor/autoload.php';
-
+    defined('DOOR_BELL') || die('Priėjimas nepasiekiamas');
+    
     use Main\App;
     use Cucumber\Agurkas;
     

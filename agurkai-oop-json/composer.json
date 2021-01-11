@@ -1,0 +1,15 @@
+{
+    "name": "narku/agurkai-oop",
+    "description": "agurcikai",
+    "license": "MIT",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Main\\": "inc",
+            "Cucumber\\": "inc",
+            "Pea\\": "inc",
+            "Veggies\\": "inc",
+            "Greenhouse\\": "inc"
+        }
+    }
+}

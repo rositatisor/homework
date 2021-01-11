@@ -1,21 +1,25 @@
 <?php
     defined('DOOR_BELL') || die('Priėjimas nepasiekiamas');
     
+    use Main\Store;
     use Main\App;
     use Cucumber\Agurkas;
+    use Pea\Zirnis;
+
+    $store = new Store('darzoves');
 
     if(isset($_POST['skinti'])) {
-        App::harvest();
+        $store->harvest();
         App::redirect('skynimas');
     }
     
     if(isset($_POST['skinti-visus'])) {
-        App::harvestOne();
+        $store->harvestOne();
         App::redirect('skynimas');
     }
 
     if(isset($_POST['nuimti-viska'])) {
-        App::harvestAll();
+        $store->harvestAll();
         App::redirect('skynimas');
     }
 ?>
@@ -43,9 +47,8 @@
                 <?php endif ?>
                 <?php unset($_SESSION['error']); ?>
             <?php endif ?>
-            <?php foreach ($_SESSION['darzoves'] as $darzove): ?>
+            <?php foreach ($store->getAll() as $darzove): ?>
                 <form action="<?= URL.'skynimas' ?>" method="post">
-                    <?php $darzove = unserialize($darzove) ?>
                     <?php if ($darzove instanceof Agurkas): ?>
                     <div class="items skynimas">
                         <img src="./img/cucumber-<?= $darzove->imgPath?>.jpg" alt="Agurko nuotrauka">

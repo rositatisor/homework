@@ -65,4 +65,57 @@ class Store {
             
         }
     }
+
+    public function grow() {
+        foreach ($this->data['darzoves'] as $key => $darzove) {
+            $darzove = unserialize($darzove);
+            $darzove->augintiDarzove($_POST['kiekis'][$darzove->id]);
+            _d($darzove);
+            $darzove = serialize($darzove);
+            $this->data['darzoves'][$key] = $darzove;
+        }
+    }
+
+    // public function save($value, $key) {
+    //     $value = serialize($value);
+    //     $_SESSION['darzoves'][$key] = $value;
+    // }
+
+    public function harvest() {
+        foreach ($this->data['darzoves'] as $key => $darzove) {
+            $darzove = unserialize($darzove);
+            if($_POST['skinti'] == $darzove->id){
+
+                $kiek = (int) $_POST['kiek'];
+                if($darzove->kiekis < $kiek || $kiek < 0) {
+                    $_SESSION['error'] = 1;
+                    break;
+                }
+                $darzove->kiekis -= $kiek;
+                $darzove = serialize($darzove);
+                $this->data['darzoves'][$key] = $darzove;
+            }
+        }
+    }
+
+    public function harvestOne() {
+        foreach ($this->data['darzoves'] as $key => $darzove) {
+            $darzove = unserialize($darzove);
+            if($_POST['skinti-visus'] == $darzove->id){
+                $darzove->nuskintiVisus();
+                $darzove = serialize($darzove);
+                $this->data['darzoves'][$key] = $darzove;
+            }
+        }
+    }
+
+    public function harvestAll() {
+        foreach ($this->data['darzoves'] as $key => $darzove) {
+            $darzove = unserialize($darzove);
+            $darzove->nuskintiVisus();
+            $darzove = serialize($darzove);
+            $this->data['darzoves'][$key] = $darzove;
+        }
+    }
+
 }

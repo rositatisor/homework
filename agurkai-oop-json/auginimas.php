@@ -1,11 +1,15 @@
 <?php
     defined('DOOR_BELL') || die('Priėjimas nepasiekiamas');
     
+    use Main\Store;
     use Main\App;
     use Cucumber\Agurkas;
+    use Pea\Zirnis;
+
+    $store = new Store('darzoves');
 
     if(isset($_POST['auginti'])) {
-        App::grow();
+        $store->grow();
         App::redirect('auginimas');
     }
 ?>
@@ -28,8 +32,7 @@
             <a class="skynimas" href="skynimas">Skynimas</a>
         </div>
         <form action="<?= URL.'auginimas' ?>" method="post">
-            <?php foreach ($_SESSION['darzoves'] as $darzove): ?>
-                <?php $darzove = unserialize($darzove) ?>
+            <?php foreach ($store->getAll() as $darzove): ?>
                     <?php if ($darzove instanceof Agurkas): ?>
                         <div class="items">
                             <img src="./img/cucumber-<?= $darzove->imgPath ?>.jpg" alt="Agurko nuotrauka">

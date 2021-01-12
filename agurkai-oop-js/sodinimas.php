@@ -28,14 +28,34 @@
     $store = new Store('darzoves');
 
     if(isset($_POST['sodinti-agurka'])) {
-        $agurkasObj = new Agurkas($store->getNewId());
-        $store->addNewCucumber($agurkasObj);
-        App::redirect('sodinimas');
+        $kiekis = (int) $_POST['kiekis'];
+
+        if (0 > $kiekis || 4 < $kiekis) {
+            if (0 > $kiekis) $_SESSION['err'] = 1;
+            elseif(4 < $kiekis) $_SESSION['err'] = 2;
+            App::redirect('sodinimas');
+        }
+
+        foreach(range(1, $kiekis) as $_) {
+            $agurkasObj = new Agurkas($store->getNewId());
+            $store->addNewCucumber($agurkasObj);
+            App::redirect('sodinimas');
+        }
     }
 
     if(isset($_POST['sodinti-zirni'])) {
-        $zirnisObj = new Zirnis($store->getNewId());
-        $store->addNewPea($zirnisObj);
+        $kiekis = (int) $_POST['kiekis'];
+
+        if (0 > $kiekis || 4 < $kiekis) {
+            if (0 > $kiekis) $_SESSION['err'] = 1;
+            elseif(4 < $kiekis) $_SESSION['err'] = 2;
+        }
+        App::redirect('sodinimas');
+
+        foreach(range(1, $kiekis) as $_) {
+            $zirnisObj = new Zirnis($store->getNewId());
+            $store->addNewPea($zirnisObj);
+        }
         App::redirect('sodinimas');
     }
     
@@ -84,14 +104,16 @@
                             </div>
                     <?php endif ?>
             <?php endforeach ?>
-        <!-- <form action="" method="post"> -->
+        </form>
+        <form action="" method="post">
             <!-- TODO: perziureti-->
             <!-- <div style="text-align: center;"><?= $gautaInfo?></div> -->
-            <div id="atsakymas"></div>
+            <div id="atsakymasA"></div>
+            <div id="atsakymasZ"></div>
 
-            <input class="agurkas" type="text" name="agurko-sodinimas" id="cucumber">
+            <input class="agurkas" type="text" name="sodinti-agurka" id="cucumber">
             <button class="sodinti agurka" type="button">Sodinti agurką</button>
-            <input class="zirnis" type="text" name="zirnio-sodinimas" id="pea">
+            <input class="zirnis" type="text" name="sodinti-zirni" id="pea">
             <button class="sodinti zirni" type="button">Sodinti žirnį</button>
         </form>
     </div>

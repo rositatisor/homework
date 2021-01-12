@@ -7,10 +7,12 @@ body {
     background: #d1ddc6;
     color: #474747;
 }
+
 button {
     outline: none;
     cursor: pointer;
 }
+
 .container {
     display: inline-block;
     position: relative;
@@ -24,23 +26,28 @@ button {
     box-shadow:  20px  20px 24px #b9c4b2, 
                 -20px -20px 24px #e2f0da;
     }
+
     img {
         display: inline-block;
         height: 60px;
         border-radius: 30px;
     }
+
     h1, 
     h3 {
         display: inline-block;
         width: 100%;
         text-align: center;
     }
+
         h1 {
             margin: 25px 0 20px;
         }
+
         h3 {
             margin: 0 0 20px;
         }
+
     .nav {
         display: flex;
         justify-content: center;
@@ -48,6 +55,7 @@ button {
         width: 100%;
         margin: 0 0 30px; 
     }
+
         a {
             display: inline-block;
             width: 20%;
@@ -63,10 +71,12 @@ button {
             box-shadow:  5px  5px 15px #b9c4b2,
                         -5px -5px 15px #e2f0da;
         }
+
             a:hover {
                 background: #c4d3bb;
                 background: linear-gradient(135deg, #e7f6e0, #c2cfbc);
             }
+
         a.clicked {
             color: #474747;
             background: #c4d3bb;
@@ -74,6 +84,7 @@ button {
             box-shadow: inset  5px  5px 6px #a9b5a1,
                         inset -5px -5px 6px #dff1d5;
         }
+
     p.error {
         color: #bf0000;
         font-size: 14px;
@@ -81,12 +92,14 @@ button {
         text-align: center;
         margin-bottom: 20px;
     }
+
     form {
         display: inline-block;
         width: 64%;
         margin: 0 18% 0 18%;
         font-size: 14px;
     }
+    
         .items {
             display: flex;
             justify-content: space-between;
@@ -94,12 +107,17 @@ button {
             width: 100%;
             margin: 0 0 10px; 
         }
-            .items:last-of-type{
-                margin-bottom: 70px;
-            }
+
+            /* .items:last-of-type{
+                margin-bottom: 10px;
+            } */
+
+            /* BUG: auginti mygtukas per aukstai */
+
             .items.skynimas:last-of-type{
                 margin-bottom: 10px;
             }
+
         .kiek {
             width: 40px;
             outline: none;
@@ -107,14 +125,24 @@ button {
             border-radius: 3px;
             padding: 0 3px 0 3px;
         }
+
         .kiek-augs {
             color: #5C6B54;
             font-size: larger;
             font-weight: 500;
         }
+
         form.nuimti-viska {
             margin-bottom: 60px;
         }
+
+    input.agurkas,
+    input.zirnis {
+        display: inline-block;
+        float: left;
+        margin: 0 0 40px 0px;
+        width: 50%;
+    }
         button.skinti,
         button.skinti-visus {
             display: inline-block;
@@ -128,9 +156,11 @@ button {
             box-shadow:  5px  5px 15px #b9c4b2,
                         -5px -5px 15px #e2f0da;
         }
+
             button.skinti:hover{
                 background: #fff;
             }
+
         button.skinti-visus {
             background: #8EA382;
             color: #fffc;
@@ -138,9 +168,11 @@ button {
                         -5px -5px 15px #e2f0da;
             width: 22%;
         }
+
             button.skinti-visus:hover {
                 background: #c4d3bb;
             }
+
         button.rauti {
             display: inline-block;
             width: 30px;
@@ -150,9 +182,11 @@ button {
             background: none;
             transform: rotate(45deg);
         }
+
             button.rauti:hover {
                 cursor: pointer;
             }
+
         button.sodinti,
         button.auginti,
         button.nuimti-viska {
@@ -172,11 +206,13 @@ button {
             border-radius: 0 0 15px 15px;
             background: #8EA382;
         }
+
             button.sodinti.agurka {
                 width: 50%;
                 border-radius: 0 0 0 15px;
                 border-right: 1px solid #CDDAC6;
             }
+
             button.sodinti.zirni {
                 width: 50%;
                 left: unset;
@@ -184,6 +220,7 @@ button {
                 border-radius: 0 0 15px 0;
                 border-left: 1px solid #CDDAC6;
             }
+
         button.sodinti:hover,
         button.auginti:hover,
         button.nuimti-viska:hover {

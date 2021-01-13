@@ -4,22 +4,22 @@ const placeCucumber = document.querySelector('#atsakymasA');
 const placePea = document.querySelector('#atsakymasZ');
 const errorMsg = document.querySelector('#error');
 
-const addNewList = () => {
-    const darzoves = document.querySelectorAll('.items');
-    console.log(darzoves);
+const addNewListC = () => {
+    const darzoves = document.querySelectorAll('.items.cucumber');
+    // console.log(darzoves);
     darzoves.forEach(darzoves => {
-        console.log(darzoves);
+        // console.log(darzoves);
         darzoves.querySelector('[type=button]').addEventListener('click', () => {
-            const id = darzoves.querySelector('[name=rauti]').value;
+            const id = darzoves.querySelector('[name=rauti-agurka]').value;
             axios.post(apiUrl, {
                 id: id,
-                rauti: 1
+                'rauti-agurka': 1
             })
                 .then(function (response) {
                     console.log(response.data);
                     list.innerHTML = response.data.list;
                     errorMsg.innerHTML = '';
-                    addNewList();
+                    addNewListC();
                 })
                 .catch(function (error) {
                     console.log(error.response.data.msg);
@@ -31,13 +31,54 @@ const addNewList = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     axios.post(apiUrl, {
-        list: 1,
+        listC: 1,
     })
         .then(function (response) {
             console.log(response.data);
             list.innerHTML = response.data.list;
             errorMsg.innerHTML = '';
-            addNewList();
+            addNewListC();
+        })
+        .catch(function (error) {
+            console.log(error.response.data.msg);
+            errorMsg.innerHTML = error.response.data.msg;
+        });
+})
+
+const addNewListP = () => {
+    const darzoves = document.querySelectorAll('.items.pea');
+    // console.log(darzoves);
+    darzoves.forEach(darzoves => {
+        // console.log(darzoves);
+        darzoves.querySelector('[type=button]').addEventListener('click', () => {
+            const id = darzoves.querySelector('[name=rauti-zirni]').value;
+            axios.post(apiUrl, {
+                id: id,
+                'rauti-zirni': 1
+            })
+                .then(function (response) {
+                    console.log(response.data);
+                    list.innerHTML = response.data.list;
+                    errorMsg.innerHTML = '';
+                    addNewListP();
+                })
+                .catch(function (error) {
+                    console.log(error.response.data.msg);
+                    errorMsg.innerHTML = error.response.data.msg;
+                });
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    axios.post(apiUrl, {
+        listP: 1,
+    })
+        .then(function (response) {
+            console.log(response.data);
+            list.innerHTML = response.data.list;
+            errorMsg.innerHTML = '';
+            addNewListP();
         })
         .catch(function (error) {
             console.log(error.response.data.msg);
@@ -53,12 +94,12 @@ buttonCucumber.addEventListener('click', () => {
         'sodinti-agurka': 1
     })
         .then(function (response) {
-            console.log(response.data);
+            // console.log(response.data);
             placeCucumber.innerHTML = response.data.list;
             errorMsg.innerHTML = '';
         })
         .catch(function (error) {
-            console.log(error.response.data.msg);
+            // console.log(error.response.data.msg);
             errorMsg.innerHTML = error.response.data.msg;
         });
 });
@@ -71,12 +112,12 @@ buttonPea.addEventListener('click', () => {
         'sodinti-zirni': 1
     })
         .then(function (response) {
-            console.log(response.data);
+            // console.log(response.data);
             placePea.innerHTML = response.data.list;
             errorMsg.innerHTML = '';
         })
         .catch(function (error) {
-            console.log(error.response.data.msg);
+            // console.log(error.response.data.msg);
             errorMsg.innerHTML = error.response.data.msg;
         });
 });

@@ -1,6 +1,49 @@
 const buttonCucumber = document.querySelector('.sodinti.agurka');
+const buttonPea = document.querySelector('.sodinti.zirni');
 const placeCucumber = document.querySelector('#atsakymasA');
+const placePea = document.querySelector('#atsakymasZ');
 const errorMsg = document.querySelector('#error');
+
+const addNewList = () => {
+    const darzoves = document.querySelectorAll('.items');
+    console.log(darzoves);
+    darzoves.forEach(darzoves => {
+        console.log(darzoves);
+        darzoves.querySelector('[type=button]').addEventListener('click', () => {
+            const id = darzoves.querySelector('[name=rauti]').value;
+            axios.post(apiUrl, {
+                id: id,
+                rauti: 1
+            })
+                .then(function (response) {
+                    console.log(response.data);
+                    list.innerHTML = response.data.list;
+                    errorMsg.innerHTML = '';
+                    addNewList();
+                })
+                .catch(function (error) {
+                    console.log(error.response.data.msg);
+                    errorMsg.innerHTML = error.response.data.msg;
+                });
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    axios.post(apiUrl, {
+        list: 1,
+    })
+        .then(function (response) {
+            console.log(response.data);
+            list.innerHTML = response.data.list;
+            errorMsg.innerHTML = '';
+            addNewList();
+        })
+        .catch(function (error) {
+            console.log(error.response.data.msg);
+            errorMsg.innerHTML = error.response.data.msg;
+        });
+})
 
 buttonCucumber.addEventListener('click', () => {
     const count = document.querySelector('#cucumber').value;
@@ -19,9 +62,6 @@ buttonCucumber.addEventListener('click', () => {
             errorMsg.innerHTML = error.response.data.msg;
         });
 });
-
-const buttonPea = document.querySelector('.sodinti.zirni');
-const placePea = document.querySelector('#atsakymasZ');
 
 buttonPea.addEventListener('click', () => {
     const count = document.querySelector('#pea').value;

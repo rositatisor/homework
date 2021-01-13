@@ -12,7 +12,21 @@
         $rawData = file_get_contents("php://input");
         $rawData = json_decode($rawData, 1);
         
-        if (isset($rawData['sodinti-agurka'])) {
+        if (isset($rawData['list'])) {
+            ob_start();
+            include __DIR__.'/list-cucumber.php';
+            include __DIR__.'/list-pea.php';
+            $out = ob_get_contents();
+            ob_end_clean();
+            $json = ['list' => $out];
+            $json = json_encode($json);
+            header('Content-type: application/json');
+            http_response_code(200);
+            echo $json;
+            die;
+        }
+
+        elseif (isset($rawData['sodinti-agurka'])) {
             $kiekis = $rawData['kiekis'];
 
             if (0 > $kiekis || 4 < $kiekis) {
@@ -45,7 +59,9 @@
             echo $json;
             die;
 
-        } elseif (isset($rawData['sodinti-zirni'])) {
+        } 
+        
+        elseif (isset($rawData['sodinti-zirni'])) {
             $kiekis = $rawData['kiekis'];
 
             if (0 > $kiekis || 4 < $kiekis) {
@@ -78,11 +94,22 @@
             echo $json;
             die;
             }
-        }
 
-    if(isset($_POST['rauti'])) {
-        $store->remove($_POST['rauti']);
-        App::redirect('sodinimas');
+        elseif(isset($rawData['rauti'])) {
+            $store->remove($rawData['id']);
+
+            ob_start();
+            include __DIR__.'/list-cucumber.php';
+            include __DIR__.'/list-pea.php';
+            $out = ob_get_contents();
+            ob_end_clean();
+            $json = ['list' => $out];
+            $json = json_encode($json);
+            header('Content-type: application/json');
+            http_response_code(200);
+            echo $json;
+            die;
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -107,31 +134,11 @@
             <a class="auginimas" href="auginimas">Auginimas</a>
             <a class="skynimas" href="skynimas">Skynimas</a>
         </div>
-        <form action="<?= URL.'sodinimas' ?>" method="post">
-            <?php foreach ($store->getAll() as $darzove): ?>
-                    <?php if ($darzove instanceof Agurkas): ?>
-                        <div class="items">
-                            <img src="./img/cucumber-<?= $darzove->imgPath?>.jpg" alt="Agurko nuotrauka">
-                            <p>Agurkas nr. <?= $darzove->id ?></p>
-                            <p>Kiekis: <?= $darzove->kiekis ?></p>
-                            <button class="rauti" type="submit" name="rauti" value="<?= $darzove->id ?>">+</button>
-                        </div>
-                        <?php else: ?>
-                            <div class="items">
-                                <img src="./img/pea-<?= $darzove->imgPath?>.jpg" alt="Agurko nuotrauka">
-                                <p>Žirnis nr. <?= $darzove->id ?></p>
-                                <p>Kiekis: <?= $darzove->kiekis ?></p>
-                                <button class="rauti" type="submit" name="rauti" value="<?= $darzove->id ?>">+</button>
-                            </div>
-                    <?php endif ?>
-            <?php endforeach ?>
-        </form>
-        <form action="http://localhost/homework/agurkai/sodinimas.php" method="post">
-            <!-- TODO: perziureti-->
-            <!-- <div style="text-align: center;"><?= $gautaInfo?></div> -->
+        <form action="http://localhost/homework/agurkai/sodinimas" method="post">
             <div id="error"></div>
             <div id="atsakymasA"></div>
             <div id="atsakymasZ"></div>
+            <div id="list"></div>
 
             <input class="agurkas" type="text" name="sodinti-agurka" id="cucumber">
             <button class="sodinti agurka" type="button">Sodinti agurką</button>

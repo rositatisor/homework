@@ -11,11 +11,9 @@
     if ('POST' == $_SERVER['REQUEST_METHOD']) {
         $rawData = file_get_contents("php://input");
         $rawData = json_decode($rawData, 1);
-        _d($rawData);
         
         if (isset($rawData['sodinti-agurka'])) {
             $kiekis = $rawData['kiekis'];
-            _d($kiekis);
 
             if (0 > $kiekis || 4 < $kiekis) {
                 if (0 > $kiekis) $error = 1;
@@ -37,7 +35,40 @@
                 $store->addNewCucumber($agurkasObj);
             }
             ob_start();
-            include __DIR__.'/list.php';
+            include __DIR__.'/list-cucumber.php';
+            $out = ob_get_contents();
+            ob_end_clean();
+            $json = ['list' => $out];
+            $json = json_encode($json);
+            header('Content-type: application/json');
+            http_response_code(201);
+            echo $json;
+            die;
+
+        } elseif (isset($rawData['sodinti-zirni'])) {
+            $kiekis = $rawData['kiekis'];
+
+            if (0 > $kiekis || 4 < $kiekis) {
+                if (0 > $kiekis) $error = 1;
+                elseif(4 < $kiekis) $error = 2;
+                ob_start();
+                include __DIR__.'/error.php';
+                $out = ob_get_contents();
+                ob_end_clean();
+                $json = ['msg' => $out];
+                $json = json_encode($json);
+                header('Content-type: application/json');
+                http_response_code(400);
+                echo $json;
+                die;
+            }
+
+            foreach(range(1, $kiekis) as $_) {
+                $zirnisObj = new Zirnis($store->getNewId());
+                $store->addNewPea($zirnisObj);
+            }
+            ob_start();
+            include __DIR__.'/list-pea.php';
             $out = ob_get_contents();
             ob_end_clean();
             $json = ['list' => $out];

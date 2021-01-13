@@ -6,59 +6,49 @@
     use Cucumber\Agurkas;
     use Pea\Zirnis;
 
-    $gautaInfo = 'Informacija nerasta';
-
-    if(!empty($_POST)) {
-        $gautaInfo = $_POST['info'];
-    } 
-    elseif ('POST' == $_SERVER['REQUEST_METHOD']) {
-        $rawData = file_get_contents("php://input");
-        $rawData = json_decode($rawData);
-
-        $answer = '<h1 style="color:red">'.$rawData->input.'</h1>';
-
-        $json= ['ans' => $answer, 'msg' => 'linkejimai is serverio'];
-        $json = json_encode($json);
-        header('Content-type: application/json');
-        
-        echo $json;
-        die;
-    }
-
     $store = new Store('darzoves');
 
-    if(isset($_POST['sodinti-agurka'])) {
-        $kiekis = (int) $_POST['kiekis'];
+    if ('POST' == $_SERVER['REQUEST_METHOD']) {
+        $rawData = file_get_contents("php://input");
+        $rawData = json_decode($rawData, 1);
+        _d($rawData);
+        
+        if (isset($rawData['sodinti-agurka'])) {
+            $kiekis = $rawData['kiekis'];
+            _d($kiekis);
 
-        if (0 > $kiekis || 4 < $kiekis) {
-            if (0 > $kiekis) $_SESSION['err'] = 1;
-            elseif(4 < $kiekis) $_SESSION['err'] = 2;
-            App::redirect('sodinimas');
+            if (0 > $kiekis || 4 < $kiekis) {
+                if (0 > $kiekis) $error = 1;
+                elseif(4 < $kiekis) $error = 2;
+                ob_start();
+                include __DIR__.'/error.php';
+                $out = ob_get_contents();
+                ob_end_clean();
+                $json = ['msg' => $out];
+                $json = json_encode($json);
+                header('Content-type: application/json');
+                http_response_code(400);
+                echo $json;
+                die;
+            }
+
+            foreach(range(1, $kiekis) as $_) {
+                $agurkasObj = new Agurkas($store->getNewId());
+                $store->addNewCucumber($agurkasObj);
+            }
+            ob_start();
+            include __DIR__.'/list.php';
+            $out = ob_get_contents();
+            ob_end_clean();
+            $json = ['list' => $out];
+            $json = json_encode($json);
+            header('Content-type: application/json');
+            http_response_code(201);
+            echo $json;
+            die;
+            }
         }
 
-        foreach(range(1, $kiekis) as $_) {
-            $agurkasObj = new Agurkas($store->getNewId());
-            $store->addNewCucumber($agurkasObj);
-            App::redirect('sodinimas');
-        }
-    }
-
-    if(isset($_POST['sodinti-zirni'])) {
-        $kiekis = (int) $_POST['kiekis'];
-
-        if (0 > $kiekis || 4 < $kiekis) {
-            if (0 > $kiekis) $_SESSION['err'] = 1;
-            elseif(4 < $kiekis) $_SESSION['err'] = 2;
-        }
-        App::redirect('sodinimas');
-
-        foreach(range(1, $kiekis) as $_) {
-            $zirnisObj = new Zirnis($store->getNewId());
-            $store->addNewPea($zirnisObj);
-        }
-        App::redirect('sodinimas');
-    }
-    
     if(isset($_POST['rauti'])) {
         $store->remove($_POST['rauti']);
         App::redirect('sodinimas');
@@ -105,9 +95,10 @@
                     <?php endif ?>
             <?php endforeach ?>
         </form>
-        <form action="" method="post">
+        <form action="http://localhost/homework/agurkai/sodinimas.php" method="post">
             <!-- TODO: perziureti-->
             <!-- <div style="text-align: center;"><?= $gautaInfo?></div> -->
+            <div id="error"></div>
             <div id="atsakymasA"></div>
             <div id="atsakymasZ"></div>
 

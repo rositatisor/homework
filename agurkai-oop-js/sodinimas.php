@@ -28,9 +28,10 @@
         elseif (isset($rawData['sodinti-agurka'])) {
             $kiekis = $rawData['kiekis'];
 
-            if (0 > $kiekis || 4 < $kiekis) {
-                if (0 > $kiekis) $error = 1;
-                elseif(4 < $kiekis) $error = 2;
+            if (0 >= $kiekis || 4 < $kiekis) {
+                if (0 == $kiekis) $error = 0;
+                elseif (0 > $kiekis) $error = 1;
+                elseif (4 < $kiekis) $error = 2;
                 ob_start();
                 include __DIR__.'/error.php';
                 $out = ob_get_contents();
@@ -63,8 +64,9 @@
         elseif (isset($rawData['sodinti-zirni'])) {
             $kiekis = $rawData['kiekis'];
 
-            if (0 > $kiekis || 4 < $kiekis) {
-                if (0 > $kiekis) $error = 1;
+            if (0 >= $kiekis || 4 < $kiekis) {
+                if (0 == $kiekis) $error = 0;
+                elseif (0 > $kiekis) $error = 1;
                 elseif(4 < $kiekis) $error = 2;
                 ob_start();
                 include __DIR__.'/error.php';
@@ -94,22 +96,7 @@
             die;
         }
 
-        elseif(isset($rawData['rauti-agurka'])) {
-            $store->remove($rawData['id']);
-
-            ob_start();
-            include __DIR__.'/list.php';
-            $out = ob_get_contents();
-            ob_end_clean();
-            $json = ['list' => $out];
-            $json = json_encode($json);
-            header('Content-type: application/json');
-            http_response_code(200);
-            echo $json;
-            die;
-        }
-
-        elseif(isset($rawData['rauti-zirni'])) {
+        elseif(isset($rawData['rauti'])) {
             $store->remove($rawData['id']);
 
             ob_start();
@@ -150,7 +137,7 @@
         <form action="" method="post">
             <div id="error"></div>
             <div id="list"></div>
-            
+
             <input class="agurkas" type="text" name="sodinti-agurka" id="cucumber">
             <button class="sodinti agurka" type="button">Sodinti agurką</button>
             <input class="zirnis" type="text" name="sodinti-zirni" id="pea">

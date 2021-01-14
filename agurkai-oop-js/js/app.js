@@ -11,8 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log(response.data);
             listPlace.innerHTML = response.data.list;
             errorMsg.innerHTML = '';
-            addNewListC();
-            addNewListP();
+            addNewList();
         })
         .catch(function (error) {
             console.log(error.response.data.msg);
@@ -20,46 +19,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 })
 
-const addNewListC = () => {
-    const darzoves = document.querySelectorAll('.items.cucumber');
+const addNewList = () => {
+    const darzoves = document.querySelectorAll('.items');
     console.log(darzoves);
     darzoves.forEach(darzoves => {
         console.log(darzoves);
         darzoves.querySelector('[type=button]').addEventListener('click', () => {
-            const id = darzoves.querySelector('[name=rauti-agurka]').value;
+            const id = darzoves.querySelector('[name=rauti]').value;
             axios.post(apiUrl, {
                 id: id,
-                'rauti-agurka': 1
+                'rauti': 1
             })
                 .then(function (response) {
                     console.log(response.data);
                     listPlace.innerHTML = response.data.list;
                     errorMsg.innerHTML = '';
-                    addNewListC();
-                })
-                .catch(function (error) {
-                    console.log(error.response.data.msg);
-                    errorMsg.innerHTML = error.response.data.msg;
-                });
-        });
-    });
-}
-
-const addNewListP = () => {
-    const darzoves = document.querySelectorAll('.items.pea');
-    darzoves.forEach(darzoves => {
-        console.log(darzoves);
-        darzoves.querySelector('[type=button]').addEventListener('click', () => {
-            const id = darzoves.querySelector('[name=rauti-zirni]').value;
-            axios.post(apiUrl, {
-                id: id,
-                'rauti-zirni': 1
-            })
-                .then(function (response) {
-                    console.log(response.data);
-                    listPlace.innerHTML = response.data.list;
-                    errorMsg.innerHTML = '';
-                    addNewListP();
+                    addNewList();
                 })
                 .catch(function (error) {
                     console.log(error.response.data.msg);
@@ -79,7 +54,7 @@ buttonCucumber.addEventListener('click', () => {
             console.log(response.data);
             listPlace.innerHTML = response.data.list;
             errorMsg.innerHTML = '';
-            addNewListC();
+            addNewList();
         })
         .catch(function (error) {
             console.log(error.response.data.msg);
@@ -97,7 +72,7 @@ buttonPea.addEventListener('click', () => {
             console.log(response.data);
             listPlace.innerHTML = response.data.list;
             errorMsg.innerHTML = '';
-            addNewListP();
+            addNewList();
         })
         .catch(function (error) {
             console.log(error.response.data.msg);

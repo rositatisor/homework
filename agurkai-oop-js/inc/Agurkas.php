@@ -4,12 +4,13 @@ namespace Cucumber;
 use Veggies\Darzove;
 
 class Agurkas extends Darzove {
-    private $kiekis, $id, $imgPath;
+    private $kiekis, $id, $imgPath, $name;
 
     public function __construct($id) {
         $this->id = $id + 1;
         $this->imgPath = rand(1, 6);
         $this->kiekis = 0;
+        $this->name = 'Agurkas';
     }
 
     public function __get($propertyName) {

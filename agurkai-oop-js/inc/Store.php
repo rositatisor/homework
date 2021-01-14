@@ -67,7 +67,6 @@ class Store {
             if($darzove->id == $id) {
                 unset($this->data['darzoves'][$key]);
             }
-            
         }
     }
 

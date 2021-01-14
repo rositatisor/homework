@@ -6,9 +6,9 @@ const errorMsg = document.querySelector('#error');
 
 const addNewListC = () => {
     const darzoves = document.querySelectorAll('.items.cucumber');
-    // console.log(darzoves);
+    console.log(darzoves);
     darzoves.forEach(darzoves => {
-        // console.log(darzoves);
+        console.log(darzoves);
         darzoves.querySelector('[type=button]').addEventListener('click', () => {
             const id = darzoves.querySelector('[name=rauti-agurka]').value;
             axios.post(apiUrl, {
@@ -17,7 +17,7 @@ const addNewListC = () => {
             })
                 .then(function (response) {
                     console.log(response.data);
-                    list.innerHTML = response.data.list;
+                    placeCucumber.innerHTML = response.data.list;
                     errorMsg.innerHTML = '';
                     addNewListC();
                 })
@@ -31,13 +31,16 @@ const addNewListC = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     axios.post(apiUrl, {
-        listC: 1,
+        list: 1,
+        // listP: 1
     })
         .then(function (response) {
             console.log(response.data);
-            list.innerHTML = response.data.list;
+            placeCucumber.innerHTML = response.data.list;
+            // placePea.innerHTML = response.data.listP;
             errorMsg.innerHTML = '';
             addNewListC();
+            addNewListP();
         })
         .catch(function (error) {
             console.log(error.response.data.msg);
@@ -47,9 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 const addNewListP = () => {
     const darzoves = document.querySelectorAll('.items.pea');
-    // console.log(darzoves);
     darzoves.forEach(darzoves => {
-        // console.log(darzoves);
+        console.log(darzoves);
         darzoves.querySelector('[type=button]').addEventListener('click', () => {
             const id = darzoves.querySelector('[name=rauti-zirni]').value;
             axios.post(apiUrl, {
@@ -58,7 +60,7 @@ const addNewListP = () => {
             })
                 .then(function (response) {
                     console.log(response.data);
-                    list.innerHTML = response.data.list;
+                    placeCucumber.innerHTML = response.data.list;
                     errorMsg.innerHTML = '';
                     addNewListP();
                 })
@@ -70,54 +72,38 @@ const addNewListP = () => {
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    axios.post(apiUrl, {
-        listP: 1,
-    })
-        .then(function (response) {
-            console.log(response.data);
-            list.innerHTML = response.data.list;
-            errorMsg.innerHTML = '';
-            addNewListP();
-        })
-        .catch(function (error) {
-            console.log(error.response.data.msg);
-            errorMsg.innerHTML = error.response.data.msg;
-        });
-})
-
 buttonCucumber.addEventListener('click', () => {
     const count = document.querySelector('#cucumber').value;
-
     axios.post(apiUrl, {
         'kiekis': count,
         'sodinti-agurka': 1
     })
         .then(function (response) {
-            // console.log(response.data);
+            console.log(response.data);
             placeCucumber.innerHTML = response.data.list;
             errorMsg.innerHTML = '';
+            addNewListC();
         })
         .catch(function (error) {
-            // console.log(error.response.data.msg);
+            console.log(error.response.data.msg);
             errorMsg.innerHTML = error.response.data.msg;
         });
 });
 
 buttonPea.addEventListener('click', () => {
     const count = document.querySelector('#pea').value;
-
     axios.post(apiUrl, {
         'kiekis': count,
         'sodinti-zirni': 1
     })
         .then(function (response) {
-            // console.log(response.data);
-            placePea.innerHTML = response.data.list;
+            console.log(response.data);
+            placeCucumber.innerHTML = response.data.list;
             errorMsg.innerHTML = '';
+            addNewListP();
         })
         .catch(function (error) {
-            // console.log(error.response.data.msg);
+            console.log(error.response.data.msg);
             errorMsg.innerHTML = error.response.data.msg;
         });
 });

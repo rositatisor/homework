@@ -12,21 +12,9 @@
         $rawData = file_get_contents("php://input");
         $rawData = json_decode($rawData, 1);
         
-        if (isset($rawData['listC'])) {
+        if (isset($rawData['list'])) {
             ob_start();
-            include __DIR__.'/list-cucumber.php';
-            $out = ob_get_contents();
-            ob_end_clean();
-            $json = ['list' => $out];
-            $json = json_encode($json);
-            header('Content-type: application/json');
-            http_response_code(200);
-            echo $json;
-            die;
-        }
-        elseif (isset($rawData['listP'])) {
-            ob_start();
-            include __DIR__.'/list-pea.php';
+            include __DIR__.'/list.php';
             $out = ob_get_contents();
             ob_end_clean();
             $json = ['list' => $out];
@@ -60,7 +48,7 @@
                 $store->addNewCucumber($agurkasObj);
             }
             ob_start();
-            include __DIR__.'/list-cucumber.php';
+            include __DIR__.'/list.php';
             $out = ob_get_contents();
             ob_end_clean();
             $json = ['list' => $out];
@@ -95,7 +83,7 @@
                 $store->addNewPea($zirnisObj);
             }
             ob_start();
-            include __DIR__.'/list-pea.php';
+            include __DIR__.'/list.php';
             $out = ob_get_contents();
             ob_end_clean();
             $json = ['list' => $out];
@@ -104,13 +92,13 @@
             http_response_code(201);
             echo $json;
             die;
-            }
+        }
 
         elseif(isset($rawData['rauti-agurka'])) {
             $store->remove($rawData['id']);
 
             ob_start();
-            include __DIR__.'/list-cucumber.php';
+            include __DIR__.'/list.php';
             $out = ob_get_contents();
             ob_end_clean();
             $json = ['list' => $out];
@@ -125,7 +113,7 @@
             $store->remove($rawData['id']);
 
             ob_start();
-            include __DIR__.'/list-pea.php';
+            include __DIR__.'/list.php';
             $out = ob_get_contents();
             ob_end_clean();
             $json = ['list' => $out];
@@ -159,11 +147,10 @@
             <a class="auginimas" href="auginimas">Auginimas</a>
             <a class="skynimas" href="skynimas">Skynimas</a>
         </div>
-        <form action="http://localhost/homework/agurkai/sodinimas" method="post">
+        <form action="" method="post">
             <div id="error"></div>
             <div id="atsakymasA"></div>
             <div id="atsakymasZ"></div>
-            <div id="list"></div>
 
             <input class="agurkas" type="text" name="sodinti-agurka" id="cucumber">
             <button class="sodinti agurka" type="button">Sodinti agurką</button>

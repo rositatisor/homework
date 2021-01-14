@@ -149,9 +149,8 @@
         </div>
         <form action="" method="post">
             <div id="error"></div>
-            <div id="atsakymasA"></div>
-            <div id="atsakymasZ"></div>
-
+            <div id="list"></div>
+            
             <input class="agurkas" type="text" name="sodinti-agurka" id="cucumber">
             <button class="sodinti agurka" type="button">Sodinti agurką</button>
             <input class="zirnis" type="text" name="sodinti-zirni" id="pea">

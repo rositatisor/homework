@@ -1,8 +1,24 @@
 const buttonCucumber = document.querySelector('.sodinti.agurka');
 const buttonPea = document.querySelector('.sodinti.zirni');
-const placeCucumber = document.querySelector('#atsakymasA');
-const placePea = document.querySelector('#atsakymasZ');
+const listPlace = document.querySelector('#list');
 const errorMsg = document.querySelector('#error');
+
+document.addEventListener('DOMContentLoaded', () => {
+    axios.post(apiUrl, {
+        list: 1,
+    })
+        .then(function (response) {
+            console.log(response.data);
+            listPlace.innerHTML = response.data.list;
+            errorMsg.innerHTML = '';
+            addNewListC();
+            addNewListP();
+        })
+        .catch(function (error) {
+            console.log(error.response.data.msg);
+            errorMsg.innerHTML = error.response.data.msg;
+        });
+})
 
 const addNewListC = () => {
     const darzoves = document.querySelectorAll('.items.cucumber');
@@ -17,7 +33,7 @@ const addNewListC = () => {
             })
                 .then(function (response) {
                     console.log(response.data);
-                    placeCucumber.innerHTML = response.data.list;
+                    listPlace.innerHTML = response.data.list;
                     errorMsg.innerHTML = '';
                     addNewListC();
                 })
@@ -28,25 +44,6 @@ const addNewListC = () => {
         });
     });
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    axios.post(apiUrl, {
-        list: 1,
-        // listP: 1
-    })
-        .then(function (response) {
-            console.log(response.data);
-            placeCucumber.innerHTML = response.data.list;
-            // placePea.innerHTML = response.data.listP;
-            errorMsg.innerHTML = '';
-            addNewListC();
-            addNewListP();
-        })
-        .catch(function (error) {
-            console.log(error.response.data.msg);
-            errorMsg.innerHTML = error.response.data.msg;
-        });
-})
 
 const addNewListP = () => {
     const darzoves = document.querySelectorAll('.items.pea');
@@ -60,7 +57,7 @@ const addNewListP = () => {
             })
                 .then(function (response) {
                     console.log(response.data);
-                    placeCucumber.innerHTML = response.data.list;
+                    listPlace.innerHTML = response.data.list;
                     errorMsg.innerHTML = '';
                     addNewListP();
                 })
@@ -80,7 +77,7 @@ buttonCucumber.addEventListener('click', () => {
     })
         .then(function (response) {
             console.log(response.data);
-            placeCucumber.innerHTML = response.data.list;
+            listPlace.innerHTML = response.data.list;
             errorMsg.innerHTML = '';
             addNewListC();
         })
@@ -98,7 +95,7 @@ buttonPea.addEventListener('click', () => {
     })
         .then(function (response) {
             console.log(response.data);
-            placeCucumber.innerHTML = response.data.list;
+            listPlace.innerHTML = response.data.list;
             errorMsg.innerHTML = '';
             addNewListP();
         })

@@ -109,12 +109,6 @@
             <a class="auginimas" href="auginimas">Auginimas</a>
             <a class="skynimas" href="skynimas">Skynimas</a>
         </div>
-        <?php if (isset($_SESSION['error'])): ?>
-            <?php if( 1 == $_SESSION['error']): ?>
-            <p class="error">⚠ Negalima nuskinti įvesto kiekio.</p>
-            <?php endif ?>
-            <?php unset($_SESSION['error']); ?>
-        <?php endif ?>
         <div class="form">
             <div id="error"></div>
             <div id="list"></div>

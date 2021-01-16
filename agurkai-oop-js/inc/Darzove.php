@@ -5,8 +5,8 @@ use Greenhouse\Siltnamis;
 
 abstract class Darzove implements Siltnamis {
 
-    public function augintiDarzove($kiek) {
-        $this->kiekis = $this->kiekis + $kiek;
+    public function augintiDarzove($kiekAugti) {
+        $this->kiekis = $this->kiekis + $kiekAugti;
     }
 
     public function nuskintiVisus() {

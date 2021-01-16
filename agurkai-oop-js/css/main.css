@@ -93,7 +93,7 @@ button {
         margin-bottom: 20px;
     }
 
-    form {
+    .form {
         display: inline-block;
         width: 64%;
         margin: 0 18% 0 18%;
@@ -107,15 +107,9 @@ button {
             width: 100%;
             margin: 0 0 10px; 
         }
-
-            /* .items:last-of-type{
-                margin-bottom: 10px;
-            } */
-
-            /* BUG: auginti mygtukas per aukstai */
-
-            .items.skynimas:last-of-type{
-                margin-bottom: 10px;
+        
+            .items.auginimas:last-of-type {
+                margin-bottom: 50px;
             }
 
         .kiek {

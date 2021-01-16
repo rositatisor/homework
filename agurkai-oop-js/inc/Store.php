@@ -72,8 +72,10 @@ class Store {
 
     public function grow() {
         foreach ($this->data['darzoves'] as $key => $darzove) {
+            _d($darzove);
             $darzove = unserialize($darzove);
-            $darzove->augintiDarzove($_POST['kiekis'][$darzove->id]);
+            $darzove->augintiDarzove($darzove->kiekAugti);
+            $darzove->kiekAugti();
             self::save($darzove, $key);
         }
     }

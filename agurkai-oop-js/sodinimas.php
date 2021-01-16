@@ -14,7 +14,7 @@
         
         if (isset($rawData['list'])) {
             ob_start();
-            include __DIR__.'/list.php';
+            include __DIR__.'/list-plant.php';
             $out = ob_get_contents();
             ob_end_clean();
             $json = ['list' => $out];
@@ -49,7 +49,7 @@
                 $store->addNewCucumber($agurkasObj);
             }
             ob_start();
-            include __DIR__.'/list.php';
+            include __DIR__.'/list-plant.php';
             $out = ob_get_contents();
             ob_end_clean();
             $json = ['list' => $out];
@@ -85,7 +85,7 @@
                 $store->addNewPea($zirnisObj);
             }
             ob_start();
-            include __DIR__.'/list.php';
+            include __DIR__.'/list-plant.php';
             $out = ob_get_contents();
             ob_end_clean();
             $json = ['list' => $out];
@@ -100,7 +100,7 @@
             $store->remove($rawData['id']);
 
             ob_start();
-            include __DIR__.'/list.php';
+            include __DIR__.'/list-plant.php';
             $out = ob_get_contents();
             ob_end_clean();
             $json = ['list' => $out];

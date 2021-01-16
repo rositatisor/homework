@@ -8,19 +8,45 @@
 
     $store = new Store('darzoves');
 
-    if(isset($_POST['skinti'])) {
-        $store->harvest();
-        App::redirect('skynimas');
-    }
-    
-    if(isset($_POST['skinti-visus'])) {
-        $store->harvestOne();
-        App::redirect('skynimas');
-    }
+    if ('POST' == $_SERVER['REQUEST_METHOD']) {
+        $rawData = file_get_contents("php://input");
+        $rawData = json_decode($rawData, 1);
+        
+        if (isset($rawData['list'])) {
+            ob_start();
+            include __DIR__.'/list-harvest.php';
+            $out = ob_get_contents();
+            ob_end_clean();
+            $json = ['list' => $out];
+            $json = json_encode($json);
+            header('Content-type: application/json');
+            http_response_code(200);
+            echo $json;
+            die;
+        }
 
-    if(isset($_POST['nuimti-viska'])) {
-        $store->harvestAll();
-        App::redirect('skynimas');
+        elseif (isset($rawData['skinti'])) {
+            $store->harvest();
+        }
+        
+        elseif (isset($rawData['skinti-visus'])) {
+            $store->harvestOne();
+        }
+
+        elseif (isset($rawData['nuimti-viska'])) {
+            $store->harvestAll();
+
+            ob_start();
+            include __DIR__.'/list-harvest.php';
+            $out = ob_get_contents();
+            ob_end_clean();
+            $json = ['list' => $out];
+            $json = json_encode($json);
+            header('Content-type: application/json');
+            http_response_code(200);
+            echo $json;
+            die;
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -32,6 +58,9 @@
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/main.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" defer integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous"></script>
+    <script src="http://localhost/homework/agurkai-oop-js/js/skynimas.js" defer></script>
+    <script>const apiUrl = 'http://localhost/homework/agurkai-oop-js/skynimas';</script>
 </head>
 <body>
     <div class="container">
@@ -41,50 +70,18 @@
             <a class="auginimas" href="auginimas">Auginimas</a>
             <a class="skynimas" href="skynimas">Skynimas</a>
         </div>
-            <?php if (isset($_SESSION['error'])): ?>
-                <?php if( 1 == $_SESSION['error']): ?>
-                <p class="error">⚠ Negalima nuskinti įvesto kiekio.</p>
-                <?php endif ?>
-                <?php unset($_SESSION['error']); ?>
+        <?php if (isset($_SESSION['error'])): ?>
+            <?php if( 1 == $_SESSION['error']): ?>
+            <p class="error">⚠ Negalima nuskinti įvesto kiekio.</p>
             <?php endif ?>
-            <?php foreach ($store->getAll() as $darzove): ?>
-                <form action="<?= URL.'skynimas' ?>" method="post">
-                    <?php if ($darzove instanceof Agurkas): ?>
-                    <div class="items skynimas">
-                        <img src="./img/cucumber-<?= $darzove->imgPath?>.jpg" alt="Agurko nuotrauka">
-                            <?php if($darzove->kiekis == 0): ?>
-                                <p>Agurkas nr. <?= $darzove->id ?></p>
-                                <p>Kiekis: <span><?= $darzove->kiekis ?></span></p>
-                                <p>Nėra ko skinti.</p>
-                            <?php else: ?>
-                                <p>Galima skinti: <span style="font-weight: 600"><?= $darzove->kiekis ?></span></p>
-                                <input class="kiek" type="text" name="kiek">
-                                <button class="skinti" type="submit" name="skinti" value="<?= $darzove->id ?>">Skinti</button>
-                                <button class="skinti-visus" type="submit" name="skinti-visus" value="<?= $darzove->id ?>">Skinti visus</button>
-                            <?php endif ?>
-                    </div>
-                    <?php else: ?>
-                    <div class="items skynimas">
-                        <img src="./img/pea-<?= $darzove->imgPath?>.jpg" alt="Agurko nuotrauka">
-                            <?php if($darzove->kiekis == 0): ?>
-                                <p>Žirnis nr. <?= $darzove->id ?></p>
-                                <p>Kiekis: <span><?= $darzove->kiekis ?></span></p>
-                                <p>Nėra ko skinti.</p>
-                            <?php else: ?>
-                                <p>Galima skinti: <span style="font-weight: 600"><?= $darzove->kiekis ?></span></p>
-                                <input class="kiek" type="text" name="kiek">
-                                <button class="skinti" type="submit" name="skinti" value="<?= $darzove->id ?>">Skinti</button>
-                                <button class="skinti-visus" type="submit" name="skinti-visus" value="<?= $darzove->id ?>">Skinti visus</button>
-                            <?php endif ?>
-                    </div>
-                    <?php endif ?> 
-                </form>
-            <?php endforeach ?>
-            <form class="nuimti-viska" action="<?= URL.'skynimas' ?>" method="post">
-                <button class="nuimti-viska" type="submit" name="nuimti-viska">Nuimti visą derlių</button>
-            </form>
+            <?php unset($_SESSION['error']); ?>
+        <?php endif ?>
+        <div class="form">
+            <div id="error"></div>
+            <div id="list"></div>
+            <button class="nuimti-viska" type="button" name="nuimti-viska">Nuimti visą derlių</button>
+        </div>
     </div>
-    <!-- <script src="./js/main.js" type="module"></script> -->
     <script>
         let allNav = document.querySelectorAll('a');
         sessionStorage.setItem("navClicked", 2);

@@ -134,15 +134,14 @@
             <a class="auginimas" href="auginimas">Auginimas</a>
             <a class="skynimas" href="skynimas">Skynimas</a>
         </div>
-        <form action="" method="post">
+        <div class="form">
             <div id="error"></div>
             <div id="list"></div>
-
-            <input class="agurkas" type="text" name="sodinti-agurka" id="cucumber">
             <button class="sodinti agurka" type="button">Sodinti agurką</button>
-            <input class="zirnis" type="text" name="sodinti-zirni" id="pea">
             <button class="sodinti zirni" type="button">Sodinti žirnį</button>
-        </form>
+        </div>
+            <input class="agurkas" type="text" name="sodinti-agurka" id="cucumber">
+            <input class="zirnis" type="text" name="sodinti-zirni" id="pea">
     </div>
     <script>
         let allNav = document.querySelectorAll('a');

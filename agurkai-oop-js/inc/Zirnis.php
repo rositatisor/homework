@@ -11,7 +11,7 @@ class Zirnis extends Darzove {
         $this->imgPath = rand(1, 6);
         $this->kiekis = 0;
         $this->name = 'Zirnis';
-        $this->kiekAugti = 0;
+        $this->kiekAugti = rand(1, 3);
     }
 
     public function __get($propertyName) {

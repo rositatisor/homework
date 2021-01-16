@@ -11,7 +11,7 @@ class Agurkas extends Darzove {
         $this->imgPath = rand(1, 6);
         $this->kiekis = 0;
         $this->name = 'Agurkas';
-        $this->kiekAugti = 0;
+        $this->kiekAugti = rand(2, 9);
     }
 
     public function __get($propertyName) {

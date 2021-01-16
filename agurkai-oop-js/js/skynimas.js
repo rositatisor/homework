@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(function (response) {
             console.log(response);
             listPlace.innerHTML = response.data.list;
+            harvest();
             harvestOne();
         })
         .catch(function (error) {
@@ -30,9 +31,37 @@ const harvestOne = () => {
                 })
                     .then(function (response) {
                         console.log(response);
-                        console.log(response.data);
                         listPlace.innerHTML = response.data.list;
+                        harvest();
                         harvestOne();
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                        errorMsg.innerHTML = error.response.data.msg;
+                    });
+            });
+        }
+    })
+}
+
+const harvest = () => {
+    const darzoves = document.querySelectorAll('.items');
+    darzoves.forEach(darzove => {
+        const btn = darzove.querySelector('.skinti');
+        if (btn) {
+            btn.addEventListener('click', () => {
+                const id = darzove.querySelector('[name=skinti]').value;
+                const count = darzove.querySelector('[name=kiek]').value;
+
+                axios.post(apiUrl, {
+                    id: id,
+                    'kiek-skinti': count,
+                    'skinti': 1
+                })
+                    .then(function (response) {
+                        console.log(response);
+                        listPlace.innerHTML = response.data.list;
+                        harvest();
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -49,13 +78,12 @@ buttonHarvestAll.addEventListener('click', () => {
     })
         .then(function (response) {
             console.log(response);
-            console.log(response.data);
             listPlace.innerHTML = response.data.list;
+            harvest();
             harvestOne();
         })
         .catch(function (error) {
             console.log(error);
-            console.log(error.response.data.msg);
             errorMsg.innerHTML = error.response.data.msg;
         });
 });

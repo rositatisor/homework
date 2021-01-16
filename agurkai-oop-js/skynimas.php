@@ -26,7 +26,20 @@
         }
 
         elseif (isset($rawData['skinti'])) {
-            $store->harvest();
+            $kiekis = (int) $rawData['kiek-skinti'];
+            _d($kiekis);
+            $store->harvest($rawData['id'], $kiekis);
+
+            ob_start();
+            include __DIR__.'/list-harvest.php';
+            $out = ob_get_contents();
+            ob_end_clean();
+            $json = ['list' => $out];
+            $json = json_encode($json);
+            header('Content-type: application/json');
+            http_response_code(200);
+            echo $json;
+            die;
         }
         
         elseif (isset($rawData['skinti-visus'])) {

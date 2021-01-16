@@ -79,14 +79,12 @@ class Store {
         }
     }
     
-    public function harvest() {
+    public function harvest($id, $kiek) {
         foreach ($this->data['darzoves'] as $key => $darzove) {
             $darzove = unserialize($darzove);
-            if ($_POST['skinti'] == $darzove->id){
-
-                $kiek = (int) $_POST['kiek'];
+            if ($darzove->id == $id) {
                 if ($darzove->kiekis < $kiek || $kiek < 0) {
-                    $_SESSION['error'] = 1;
+                    $error = 1;
                     break;
                 }
                 $darzove->kiekis -= $kiek;

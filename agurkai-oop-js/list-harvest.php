@@ -8,8 +8,8 @@
                 <p>Nėra ko skinti.</p>
             <?php else: ?>
                 <p>Galima skinti: <span style="font-weight: 600"><?= $darzove->kiekis ?></span></p>
-                <input class="kiek" type="text" name="kiek">
-                <button class="skinti" type="button" name="skinti" value="<?= $darzove->id ?>">Skinti</button>
+                <input class="kiek" type="text" name="kiek" id="cucumber">
+                <button class="skinti" type="button" name="skinti" value="<?= $darzove->id ?>" id="cucumber">Skinti</button>
                 <button class="skinti-visus" type="button" name="skinti-visus" value="<?= $darzove->id ?>">Skinti visus</button>
             <?php endif ?>
     </div>
@@ -22,8 +22,8 @@
                 <p>Nėra ko skinti.</p>
             <?php else: ?>
                 <p>Galima skinti: <span style="font-weight: 600"><?= $darzove->kiekis ?></span></p>
-                <input class="kiek" type="text" name="kiek">
-                <button class="skinti" type="button" name="skinti" value="<?= $darzove->id ?>">Skinti</button>
+                <input class="kiek" type="text" name="kiek" id="pea">
+                <button class="skinti" type="button" name="skinti" value="<?= $darzove->id ?>" id="pea">Skinti</button>
                 <button class="skinti-visus" type="button" name="skinti-visus" value="<?= $darzove->id ?>">Skinti visus</button>
             <?php endif ?>
     </div>

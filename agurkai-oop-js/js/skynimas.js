@@ -62,6 +62,7 @@ const harvest = () => {
                         console.log(response);
                         listPlace.innerHTML = response.data.list;
                         harvest();
+                        harvestOne();
                     })
                     .catch(function (error) {
                         console.log(error);

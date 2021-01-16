@@ -83,10 +83,7 @@ class Store {
         foreach ($this->data['darzoves'] as $key => $darzove) {
             $darzove = unserialize($darzove);
             if ($darzove->id == $id) {
-                if ($darzove->kiekis < $kiek || $kiek < 0) {
-                    $error = 1;
-                    break;
-                }
+                if ($darzove->kiekis < $kiek) break;
                 $darzove->kiekis -= $kiek;
                 self::save($darzove, $key);
             }

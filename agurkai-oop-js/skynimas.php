@@ -27,8 +27,23 @@
 
         elseif (isset($rawData['skinti'])) {
             $kiekis = (int) $rawData['kiek-skinti'];
-            _d($kiekis);
             $store->harvest($rawData['id'], $kiekis);
+            
+            if ($kiekis <= 0) {
+                if (0 == $kiekis) $error = 0;
+                elseif (0 > $kiekis) $error = 1;
+                // elseif ($kiekis >= X) $error = 3;
+                ob_start();
+                include __DIR__.'/error.php';
+                $out = ob_get_contents();
+                ob_end_clean();
+                $json = ['msg' => $out];
+                $json = json_encode($json);
+                header('Content-type: application/json');
+                http_response_code(400);
+                echo $json;
+                die;
+            }
 
             ob_start();
             include __DIR__.'/list-harvest.php';

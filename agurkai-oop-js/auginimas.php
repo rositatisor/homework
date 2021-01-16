@@ -69,7 +69,6 @@
             <button class="auginti" type="button" name="auginti">Auginti</button>
         </div>
     </div>
-    <!-- <script src="./js/main.js" type="module"></script> -->
     <script>
         let allNav = document.querySelectorAll('a');
         sessionStorage.setItem("navClicked", 1);

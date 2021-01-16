@@ -72,7 +72,6 @@ class Store {
 
     public function grow() {
         foreach ($this->data['darzoves'] as $key => $darzove) {
-            _d($darzove);
             $darzove = unserialize($darzove);
             $darzove->augintiDarzove($darzove->kiekAugti);
             $darzove->kiekAugti();

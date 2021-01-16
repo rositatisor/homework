@@ -13,7 +13,7 @@ class Store {
 
     public function __construct($file) {
         $this->fileName = $file;
-        if(!file_exists(self::PATH.$this->fileName.'.json')) {
+        if (!file_exists(self::PATH.$this->fileName.'.json')) {
             file_put_contents(self::PATH.$this->fileName.'.json', json_encode(['darzoves' => [], 'darzoviu id' => 0]));
             $this->data = ['darzoves' => [], 'darzoviu id' => 0];
         } else {
@@ -64,7 +64,7 @@ class Store {
     public function remove($id) {
         foreach ($this->data['darzoves'] as $key => $darzove) {
             $darzove = unserialize($darzove);
-            if($darzove->id == $id) {
+            if ($darzove->id == $id) {
                 unset($this->data['darzoves'][$key]);
             }
         }
@@ -82,10 +82,10 @@ class Store {
     public function harvest() {
         foreach ($this->data['darzoves'] as $key => $darzove) {
             $darzove = unserialize($darzove);
-            if($_POST['skinti'] == $darzove->id){
+            if ($_POST['skinti'] == $darzove->id){
 
                 $kiek = (int) $_POST['kiek'];
-                if($darzove->kiekis < $kiek || $kiek < 0) {
+                if ($darzove->kiekis < $kiek || $kiek < 0) {
                     $_SESSION['error'] = 1;
                     break;
                 }
@@ -95,10 +95,10 @@ class Store {
         }
     }
 
-    public function harvestOne() {
+    public function harvestOne($id) {
         foreach ($this->data['darzoves'] as $key => $darzove) {
             $darzove = unserialize($darzove);
-            if($_POST['skinti-visus'] == $darzove->id){
+            if ($darzove->id == $id) {
                 $darzove->nuskintiVisus();
                 self::save($darzove, $key);
             }

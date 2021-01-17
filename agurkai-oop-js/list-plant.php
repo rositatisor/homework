@@ -4,6 +4,7 @@
             <img src="./img/cucumber-<?= $darzove->imgPath?>.jpg" alt="Agurko nuotrauka">
             <p>Agurkas nr. <?= $darzove->id ?></p>
             <p>Kiekis: <?= $darzove->kiekis ?></p>
+            <p>Kaina: <?= $darzove->price ?> EUR</p>
             <button class="rauti" type="button" name="rauti" value="<?= $darzove->id ?>">+</button>
         </div>
     <?php elseif ($darzove->name == 'Zirnis'): ?>
@@ -11,6 +12,7 @@
             <img src="./img/pea-<?= $darzove->imgPath?>.jpg" alt="Agurko nuotrauka">
             <p>Žirnis nr. <?= $darzove->id ?></p>
             <p>Kiekis: <?= $darzove->kiekis ?></p>
+            <p>Kaina: <?= $darzove->price ?> EUR</p>
             <button class="rauti" type="button" name="rauti" value="<?= $darzove->id ?>">+</button>
         </div>
     <?php endif ?>

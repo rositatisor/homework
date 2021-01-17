@@ -53,6 +53,7 @@ buttonCucumber.addEventListener('click', () => {
         .then(function (response) {
             console.log(response.data);
             listPlace.innerHTML = response.data.list;
+            document.querySelector('#cucumber').value = '';
             errorMsg.innerHTML = '';
             addNewList();
         })
@@ -71,6 +72,7 @@ buttonPea.addEventListener('click', () => {
         .then(function (response) {
             console.log(response.data);
             listPlace.innerHTML = response.data.list;
+            document.querySelector('#pea').value = '';
             errorMsg.innerHTML = '';
             addNewList();
         })

@@ -8,22 +8,20 @@ document.addEventListener('DOMContentLoaded', () => {
         list: 1,
     })
         .then(function (response) {
-            console.log(response.data);
+            console.log(response);
             listPlace.innerHTML = response.data.list;
             errorMsg.innerHTML = '';
             addNewList();
         })
         .catch(function (error) {
-            console.log(error.response.data.msg);
+            console.log(error);
             errorMsg.innerHTML = error.response.data.msg;
         });
 })
 
 const addNewList = () => {
     const darzoves = document.querySelectorAll('.items');
-    console.log(darzoves);
     darzoves.forEach(darzoves => {
-        console.log(darzoves);
         darzoves.querySelector('[type=button]').addEventListener('click', () => {
             const id = darzoves.querySelector('[name=rauti]').value;
             axios.post(apiUrl, {
@@ -51,14 +49,14 @@ buttonCucumber.addEventListener('click', () => {
         'sodinti-agurka': 1
     })
         .then(function (response) {
-            console.log(response.data);
+            console.log(response);
             listPlace.innerHTML = response.data.list;
             document.querySelector('#cucumber').value = '';
             errorMsg.innerHTML = '';
             addNewList();
         })
         .catch(function (error) {
-            console.log(error.response.data.msg);
+            console.log(error);
             errorMsg.innerHTML = error.response.data.msg;
         });
 });
@@ -70,14 +68,14 @@ buttonPea.addEventListener('click', () => {
         'sodinti-zirni': 1
     })
         .then(function (response) {
-            console.log(response.data);
+            console.log(response);
             listPlace.innerHTML = response.data.list;
             document.querySelector('#pea').value = '';
             errorMsg.innerHTML = '';
             addNewList();
         })
         .catch(function (error) {
-            console.log(error.response.data.msg);
+            console.log(error);
             errorMsg.innerHTML = error.response.data.msg;
         });
 });

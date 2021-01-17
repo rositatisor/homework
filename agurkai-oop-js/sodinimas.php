@@ -3,10 +3,13 @@
     
     use Main\Store;
     use Main\App;
+    use Main\Catche;
     use Cucumber\Agurkas;
     use Pea\Zirnis;
 
     $store = new Store('darzoves');
+    $DATA = new Catche;
+    $rate = App::getRate($DATA);
 
     if ('POST' == $_SERVER['REQUEST_METHOD']) {
         $rawData = file_get_contents("php://input");

@@ -4,18 +4,27 @@ session_start();
 if (!empty($_POST)) {
     $from = $_POST['city-from'];
     $to = $_POST['city-to'];
-    // API START
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'https://www.distance24.org/route.json?stops='.$from.'|'.$to);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $answer = curl_exec($ch);
-    $answer = json_decode($answer);
+    //CATCHE START
+    include __DIR__.'/Catche.php';
+    $DATA = new Catche;
+    $answer = $DATA->get();
 
-    $distance = $answer->distance;
+    $_SESSION['method'] = ($answer === false) ? 'API' : 'CATCHE';
 
-    // API END
-    $_SESSION['distance'] = $distance;
+    if ($answer === false) {
+        // API START
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'https://www.distance24.org/route.json?stops='.$from.'|'.$to);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $answer = curl_exec($ch);
+        $answer = json_decode($answer);
+        $DATA->set($answer);
+        // $distance = $answer->distance;
+        // API END
+    }
+
+    $_SESSION['distance'] = $answer->distance;
     $_SESSION['from'] = $from;
     $_SESSION['to'] = $to;
     $_SESSION['img-from'] = $answer->stops[0]->wikipedia->image;
@@ -31,7 +40,8 @@ if (isset($_SESSION['distance'])) {
     $to = $_SESSION['to'];
     $fromImg = $_SESSION['img-from'];
     $toImg = $_SESSION['img-to'];
-    unset($_SESSION['distance'], $_SESSION['from'], $_SESSION['to'], $_SESSION['img-from'], $_SESSION['img-to']);
+    $method = $_SESSION['method'];
+    unset($_SESSION['distance'], $_SESSION['from'], $_SESSION['to'], $_SESSION['img-from'], $_SESSION['img-to'], $_SESSION['method']);
 }
 
 ?>
@@ -50,6 +60,7 @@ if (isset($_SESSION['distance'])) {
         <button type="submit">GET DISTANCE</button>
     </form>
     <?php if (isset($distance)): ?>
+    <h2>Method: <?= $method ?></h2>
     <h2>Distance: <?= $distance?> km</h2>
     <img style="height: 300px" src="<?= $fromImg?>" alt="">
     <img style="height: 300px" src="<?= $toImg?>" alt="">

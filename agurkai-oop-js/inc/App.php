@@ -21,6 +21,7 @@ class App {
         $answer = $DATA->get();
 
         // $_SESSION['method'] = ($answer === false) ? 'API' : 'CATCHE';
+        // _d($_SESSION['method']);
 
         if ($answer === false) {
             $ch = curl_init();

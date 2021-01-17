@@ -10,7 +10,7 @@
     $store = new Store('darzoves');
     $DATA = new Catche;
     $rate = App::getRate($DATA);
-
+    
     if ('POST' == $_SERVER['REQUEST_METHOD']) {
         $rawData = file_get_contents("php://input");
         $rawData = json_decode($rawData, 1);

@@ -2,8 +2,15 @@
 namespace Main;
 
 use Controllers\SodinimasController;
+use Symfony\Component\HttpFoundation\Request;
 
 class App {
+    public static $request;
+
+    public static function start() {
+        self::$request = Request::createFromGlobals();
+        return self::route();
+    }
 
     public static function route() {
         $uri = str_replace(INSTALL_FOLDER, '', $_SERVER['REQUEST_URI']);

@@ -2,7 +2,9 @@
     "name": "narku/agurkai-oop-js",
     "description": "darzoves",
     "license": "MIT",
-    "require": {},
+    "require": {
+        "symfony/http-foundation": "^5.2"
+    },
     "autoload": {
         "psr-4": {
             "Main\\": "inc",

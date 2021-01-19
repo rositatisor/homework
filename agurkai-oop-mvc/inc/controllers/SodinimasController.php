@@ -31,7 +31,7 @@ class SodinimasController {
             ['content-type' => 'text/html']
         );
         ob_start();
-        include DIR.'/views/index.php';
+        include DIR.'/views/sodinimas/index.php';
         $out = ob_get_contents();
         ob_end_clean();
 
@@ -45,7 +45,7 @@ class SodinimasController {
         $store = new Store('darzoves');
         $rate = $this->rate;
         ob_start();
-        include DIR.'/views/list-plant.php';
+        include DIR.'/views/sodinimas/list-plant.php';
         $out = ob_get_contents();
         ob_end_clean();
 
@@ -65,7 +65,7 @@ class SodinimasController {
             elseif (0 > $kiekis) $error = 1;
             elseif (4 < $kiekis) $error = 2;
             ob_start();
-            include DIR.'/views/error.php';
+            include DIR.'/views/sodinimas/error.php';
             $out = ob_get_contents();
             ob_end_clean();
             $json = ['msg' => $out];
@@ -83,7 +83,7 @@ class SodinimasController {
         $store = $this->store;
         $rate = $this->rate;
         ob_start();
-        include DIR.'/views/list-plant.php';
+        include DIR.'/views/sodinimas/list-plant.php';
         $out = ob_get_contents();
         ob_end_clean();
         $json = ['list' => $out];
@@ -102,7 +102,7 @@ class SodinimasController {
             elseif (0 > $kiekis) $error = 1;
             elseif(4 < $kiekis) $error = 2;
             ob_start();
-            include DIR.'/views/error.php';
+            include DIR.'/views/sodinimas/error.php';
             $out = ob_get_contents();
             ob_end_clean();
             $json = ['msg' => $out];
@@ -120,7 +120,7 @@ class SodinimasController {
         $store = $this->store;
         $rate = $this->rate;
         ob_start();
-        include DIR.'/views/list-plant.php';
+        include DIR.'/views/sodinimas/list-plant.php';
         $out = ob_get_contents();
         ob_end_clean();
         $json = ['list' => $out];
@@ -137,7 +137,7 @@ class SodinimasController {
         $store = $this->store;
         $rate = $this->rate;
         ob_start();
-        include DIR.'/views/list-plant.php';
+        include DIR.'/views/sodinimas/list-plant.php';
         $out = ob_get_contents();
         ob_end_clean();
         $json = ['list' => $out];

@@ -1,8 +1,7 @@
 <?php
 
-define('DOOR_BELL', 'ring');
-define('INSTALL_FOLDER', '/homework/agurkai-oop-js/');
-define('URL', 'http://localhost/homework/agurkai-oop-js/');
+define('INSTALL_FOLDER', '/homework/agurkai-oop-mvc/');
+define('URL', 'http://localhost/homework/agurkai-oop-mvc/');
 define('DIR', __DIR__);
 
 include __DIR__.'/bootstrap.php';

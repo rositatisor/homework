@@ -11,4 +11,5 @@ return array(
     'Main\\' => array($baseDir . '/inc'),
     'Greenhouse\\' => array($baseDir . '/inc'),
     'Cucumber\\' => array($baseDir . '/inc'),
+    'Controllers\\' => array($baseDir . '/inc/controllers'),
 );

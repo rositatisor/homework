@@ -1,6 +1,5 @@
 <?php
-    defined('DOOR_BELL') || die('Priėjimas nepasiekiamas');
-    
+
     use Main\Store;
     use Main\App;
     use Cucumber\Agurkas;

@@ -26,6 +26,7 @@ class ComposerStaticInit0a6e057f697a37c8d3fb6b25dcac56ec
         'C' => 
         array (
             'Cucumber\\' => 9,
+            'Controllers\\' => 12,
         ),
     );
 
@@ -49,6 +50,10 @@ class ComposerStaticInit0a6e057f697a37c8d3fb6b25dcac56ec
         'Cucumber\\' => 
         array (
             0 => __DIR__ . '/../..' . '/inc',
+        ),
+        'Controllers\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/inc/controllers',
         ),
     );
 

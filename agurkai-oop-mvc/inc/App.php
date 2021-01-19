@@ -1,13 +1,22 @@
 <?php
 namespace Main;
 
+use Controllers\SodinimasController;
+
 class App {
 
     public static function route() {
         $uri = str_replace(INSTALL_FOLDER, '', $_SERVER['REQUEST_URI']);
         $uri = explode('/', $uri);
 
-        if('sodinimas' == $uri[0]) include DIR.'/sodinimas.php';
+        if('sodinimas' == $uri[0]) {
+            if (!isset($uri[1])) return (new SodinimasController)->index();
+            if ('list' == $uri[1]) return (new SodinimasController)->list();
+            if ('remove' == $uri[1]) return (new SodinimasController)->remove();
+            if ('plantCucumber' == $uri[1]) return (new SodinimasController)->plantCucumber();
+            if ('plantPea' == $uri[1]) return (new SodinimasController)->plantPea();
+            //TODO: add 404 page
+        }
         elseif('auginimas' == $uri[0]) include DIR.'/auginimas.php';
         elseif('skynimas' == $uri[0]) include DIR.'/skynimas.php';
     }

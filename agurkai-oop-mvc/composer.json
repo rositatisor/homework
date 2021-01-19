@@ -9,7 +9,8 @@
             "Cucumber\\": "inc",
             "Pea\\": "inc",
             "Veggies\\": "inc",
-            "Greenhouse\\": "inc"
+            "Greenhouse\\": "inc",
+            "Controllers\\": "inc/controllers"
         }
     }
 }

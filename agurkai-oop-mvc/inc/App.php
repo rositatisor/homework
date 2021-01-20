@@ -3,6 +3,7 @@ namespace Main;
 
 use Controllers\SodinimasController;
 use Controllers\AuginimasController;
+use Controllers\SkynimasController;
 use Symfony\Component\HttpFoundation\Request;
 
 class App {
@@ -30,7 +31,14 @@ class App {
             if ('grow' == $uri[1]) return (new AuginimasController)->grow();
             //TODO: add 404 page
         }
-        elseif ('skynimas' == $uri[0]) include DIR.'/skynimas.php';
+        elseif ('skynimas' == $uri[0]) {
+            if (!isset($uri[1])) return (new SkynimasController)->index();
+            if ('list' == $uri[1]) return (new SkynimasController)->list();
+            if ('harvest' == $uri[1]) return (new SkynimasController)->harvest();
+            if ('harvestOne' == $uri[1]) return (new SkynimasController)->harvestOne();
+            if ('harvestAll' == $uri[1]) return (new SkynimasController)->harvestAll();
+            //TODO: add 404 page
+        }
     }
 
     public static function redirect($fileName) {

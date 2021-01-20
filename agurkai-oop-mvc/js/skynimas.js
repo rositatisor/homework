@@ -3,9 +3,7 @@ const listPlace = document.querySelector('#list');
 const errorMsg = document.querySelector('#error');
 
 document.addEventListener('DOMContentLoaded', () => {
-    axios.post(apiUrl, {
-        list: 1,
-    })
+    axios.post(apiUrl + '/list', {})
         .then(function (response) {
             console.log(response);
             listPlace.innerHTML = response.data.list;
@@ -25,9 +23,8 @@ const harvestOne = () => {
         if (btn) {
             btn.addEventListener('click', () => {
                 const id = darzove.querySelector('[name=skinti-visus]').value;
-                axios.post(apiUrl, {
-                    id: id,
-                    'skinti-visus': 1
+                axios.post(apiUrl + '/harvestOne', {
+                    id: id
                 })
                     .then(function (response) {
                         console.log(response);
@@ -53,10 +50,9 @@ const harvest = () => {
                 const id = darzove.querySelector('[name=skinti]').value;
                 const count = darzove.querySelector('[name=kiek]').value;
 
-                axios.post(apiUrl, {
+                axios.post(apiUrl + '/harvest', {
                     id: id,
-                    'kiek-skinti': count,
-                    'skinti': 1
+                    'kiek-skinti': count
                 })
                     .then(function (response) {
                         console.log(response);
@@ -74,9 +70,7 @@ const harvest = () => {
 }
 
 buttonHarvestAll.addEventListener('click', () => {
-    axios.post(apiUrl, {
-        'nuimti-viska': 1
-    })
+    axios.post(apiUrl + '/harvestAll', {})
         .then(function (response) {
             console.log(response);
             listPlace.innerHTML = response.data.list;

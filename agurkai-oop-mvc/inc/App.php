@@ -2,6 +2,7 @@
 namespace Main;
 
 use Controllers\SodinimasController;
+use Controllers\AuginimasController;
 use Symfony\Component\HttpFoundation\Request;
 
 class App {
@@ -23,9 +24,13 @@ class App {
             if ('plantCucumber' == $uri[1]) return (new SodinimasController)->plantCucumber();
             if ('plantPea' == $uri[1]) return (new SodinimasController)->plantPea();
             //TODO: add 404 page
+        } elseif ('auginimas' == $uri[0]) {
+            if (!isset($uri[1])) return (new AuginimasController)->index();
+            if ('list' == $uri[1]) return (new AuginimasController)->list();
+            if ('grow' == $uri[1]) return (new AuginimasController)->grow();
+            //TODO: add 404 page
         }
-        elseif('auginimas' == $uri[0]) include DIR.'/auginimas.php';
-        elseif('skynimas' == $uri[0]) include DIR.'/skynimas.php';
+        elseif ('skynimas' == $uri[0]) include DIR.'/skynimas.php';
     }
 
     public static function redirect($fileName) {

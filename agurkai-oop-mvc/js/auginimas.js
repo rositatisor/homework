@@ -3,11 +3,8 @@ const listPlace = document.querySelector('#list');
 const errorMsg = document.querySelector('#error');
 
 document.addEventListener('DOMContentLoaded', () => {
-    axios.post(apiUrl, {
-        list: 1,
-    })
+    axios.post(apiUrl + '/list', {})
         .then(function (response) {
-            console.log(response);
             console.log(response.data);
             listPlace.innerHTML = response.data.list;
         })
@@ -18,11 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 buttonGrow.addEventListener('click', () => {
-    axios.post(apiUrl, {
-        'auginti': 1
-    })
+    axios.post(apiUrl + '/auginti', {})
         .then(function (response) {
-            console.log(response);
             console.log(response.data);
             listPlace.innerHTML = response.data.list;
         })

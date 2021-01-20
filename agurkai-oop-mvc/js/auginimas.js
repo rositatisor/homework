@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 buttonGrow.addEventListener('click', () => {
-    axios.post(apiUrl + '/auginti', {})
+    axios.post(apiUrl + '/grow', {})
         .then(function (response) {
             console.log(response.data);
             listPlace.innerHTML = response.data.list;

@@ -56,9 +56,9 @@ class AuginimasController {
     }
 
     public function grow() {
-        $rate = $this->rate;
-        $this->store = new Store('darzoves');
         $this->store->grow();
+        $rate = $this->rate;
+        $store = $this->store;
         ob_start();
         include DIR.'/views/auginimas/list-grow.php';
         $out = ob_get_contents();

@@ -4,7 +4,7 @@
             <img src="./img/cucumber-<?= $darzove->imgPath ?>.jpg" alt="Agurko nuotrauka">
             <p>Agurkas nr. <?= $darzove->id ?></p>
             <p>Kiekis: <?= $darzove->kiekis ?></p>
-            <p>Suma: <?= round($darzove->price * $rate)?> HUF</p>
+            <p>Suma: <?= round($darzove->kiekis * $rate)?> HUF</p>
             <p class="kiek-augs">+<?= $darzove->kiekAugti ?></p>
         </div>
     <?php elseif ($darzove->name == 'Zirnis'): ?>
@@ -12,7 +12,7 @@
             <img src="./img/pea-<?= $darzove->imgPath ?>.jpg" alt="Agurko nuotrauka">
             <p>Žirnis nr. <?= $darzove->id ?></p>
             <p>Kiekis: <?= $darzove->kiekis ?></p>
-            <p>Suma: <?= round($darzove->price * $rate)?> HUF</p>
+            <p>Suma: <?= round($darzove->kiekis * $rate)?> HUF</p>
             <p class="kiek-augs">+<?= $darzove->kiekAugti ?></p>
         </div>
     <?php endif ?>

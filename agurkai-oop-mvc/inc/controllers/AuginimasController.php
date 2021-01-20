@@ -32,10 +32,8 @@ class AuginimasController {
         include DIR.'/views/auginimas/index.php';
         $out = ob_get_contents();
         ob_end_clean();
-
         $response->setContent($out);
         $response->prepare(App::$request);
-
         return $response;
     }
 
@@ -46,12 +44,9 @@ class AuginimasController {
         include DIR.'/views/auginimas/list-grow.php';
         $out = ob_get_contents();
         ob_end_clean();
-
         $json = ['list' => $out];
         $response = new JsonResponse($json);
-
         $response->prepare(App::$request);
-
         return $response;
     }
 
@@ -64,10 +59,8 @@ class AuginimasController {
         $out = ob_get_contents();
         ob_end_clean();
         $json = ['list' => $out];
-        $json = json_encode($json);
-        header('Content-type: application/json');
-        http_response_code(200);
-        echo $json;
-        die;
+        $response = new JsonResponse($json);
+        $response->prepare(App::$request);
+        return $response;
     }
 }

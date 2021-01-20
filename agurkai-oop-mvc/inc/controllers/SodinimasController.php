@@ -34,10 +34,8 @@ class SodinimasController {
         include DIR.'/views/sodinimas/index.php';
         $out = ob_get_contents();
         ob_end_clean();
-
         $response->setContent($out);
         $response->prepare(App::$request);
-
         return $response;
     }
 
@@ -48,12 +46,9 @@ class SodinimasController {
         include DIR.'/views/sodinimas/list-plant.php';
         $out = ob_get_contents();
         ob_end_clean();
-
         $json = ['list' => $out];
         $response = new JsonResponse($json);
-
         $response->prepare(App::$request);
-
         return $response;
     }
 
@@ -87,11 +82,9 @@ class SodinimasController {
         $out = ob_get_contents();
         ob_end_clean();
         $json = ['list' => $out];
-        $json = json_encode($json);
-        header('Content-type: application/json');
-        http_response_code(201);
-        echo $json;
-        die;
+        $response = new JsonResponse($json);
+        $response->prepare(App::$request);
+        return $response;
     }
         
     public function plantPea() {
@@ -124,11 +117,9 @@ class SodinimasController {
         $out = ob_get_contents();
         ob_end_clean();
         $json = ['list' => $out];
-        $json = json_encode($json);
-        header('Content-type: application/json');
-        http_response_code(201);
-        echo $json;
-        die;
+        $response = new JsonResponse($json);
+        $response->prepare(App::$request);
+        return $response;
         }
 
     public function remove() {
@@ -141,10 +132,8 @@ class SodinimasController {
         $out = ob_get_contents();
         ob_end_clean();
         $json = ['list' => $out];
-        $json = json_encode($json);
-        header('Content-type: application/json');
-        http_response_code(200);
-        echo $json;
-        die;
+        $response = new JsonResponse($json);
+        $response->prepare(App::$request);
+        return $response;
     }
 }

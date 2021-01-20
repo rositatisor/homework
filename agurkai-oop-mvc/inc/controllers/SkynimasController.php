@@ -79,11 +79,9 @@ class SkynimasController {
         $out = ob_get_contents();
         ob_end_clean();
         $json = ['list' => $out];
-        $json = json_encode($json);
-        header('Content-type: application/json');
-        http_response_code(200);
-        echo $json;
-        die;
+        $response = new JsonResponse($json);
+        $response->prepare(App::$request);
+        return $response;
     }
         
     public function harvestOne() {
@@ -96,11 +94,9 @@ class SkynimasController {
         $out = ob_get_contents();
         ob_end_clean();
         $json = ['list' => $out];
-        $json = json_encode($json);
-        header('Content-type: application/json');
-        http_response_code(200);
-        echo $json;
-        die;
+        $response = new JsonResponse($json);
+        $response->prepare(App::$request);
+        return $response;
     }
 
     public function harvestAll() {
@@ -113,10 +109,8 @@ class SkynimasController {
         $out = ob_get_contents();
         ob_end_clean();
         $json = ['list' => $out];
-        $json = json_encode($json);
-        header('Content-type: application/json');
-        http_response_code(200);
-        echo $json;
-        die;
+        $response = new JsonResponse($json);
+        $response->prepare(App::$request);
+        return $response;
     }
 }

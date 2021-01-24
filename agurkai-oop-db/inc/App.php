@@ -5,13 +5,20 @@ use Controllers\SodinimasController;
 use Controllers\AuginimasController;
 use Controllers\SkynimasController;
 use Symfony\Component\HttpFoundation\Request;
+use PDO;
 
 class App {
     public static $request;
+    private static $storeSetting = 'db'; // json OR db
 
     public static function start() {
         self::$request = Request::createFromGlobals();
         return self::route();
+    }
+
+    public static function store($type) { // <-- factory
+        if (self::$storeSetting  == 'json') return new JsonStore($type);
+        if (self::$storeSetting  == 'db') return new DbStore($type);
     }
 
     public static function route() {

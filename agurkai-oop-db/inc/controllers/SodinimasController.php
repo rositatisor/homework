@@ -16,7 +16,7 @@ class SodinimasController {
 
     public function __construct() {
         if ('POST' == $_SERVER['REQUEST_METHOD']) {
-            $this->store = new Store('darzoves');
+            $this->store = App::store('darzoves');
             $this->DATA = new Catche;
             $this->rate = App::getRate($this->DATA);
             $this->rawData = App::$request->getContent();
@@ -40,7 +40,7 @@ class SodinimasController {
     }
 
     public function list() {
-        $store = new Store('darzoves');
+        $store = App::store('darzoves');
         $rate = $this->rate;
         ob_start();
         include DIR.'/views/sodinimas/list-plant.php';

@@ -74,7 +74,12 @@ class DbStore implements Store {
 
     public function remove($id) {
         $sql = "DELETE FROM vegetables
-        WHERE id = '".$id."';";
-        $this->pdo->query($sql);
+        WHERE id = ?;";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$id]);
+
+        // $sql = "DELETE FROM vegetables
+        // WHERE id = '".$id."';";
+        // $this->pdo->query($sql);
     }
 }
